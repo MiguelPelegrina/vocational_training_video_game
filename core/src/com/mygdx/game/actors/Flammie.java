@@ -42,7 +42,7 @@ public class Flammie extends Actor {
     private Body body;
     private Fixture fixture;
 
-    private Sound crashSound;
+    private Sound hitSound;
 
     /**
      * Constructor por parámetros
@@ -58,7 +58,7 @@ public class Flammie extends Actor {
         this.animationLeft = AssetMan.getInstance().getFlammieAnimationL();
         this.animationRight = AssetMan.getInstance().getFlammieAnimationR();
 
-        //this.crashSound = AssetMan.getInstance().getCrashSound();
+        this.hitSound = AssetMan.getInstance().getHitSound();
 
         createBody();
         createFixture();

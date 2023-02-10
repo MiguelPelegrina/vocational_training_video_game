@@ -62,7 +62,7 @@ public class Utils {
 
     // Música y sonidos
     public static final String MUSIC_BG = "musicSound/musicBackground.mp3";
-    // CHOQUE
+    public static final String SOUND_HIT = "musicSound/soundHit.mp3";
     // SCREECH del BAT al entrar?
 
     // Fuentes
