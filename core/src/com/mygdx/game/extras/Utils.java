@@ -32,10 +32,26 @@ public class Utils {
     // Movimiento hacia la derecha
     public static final String FLAMMIE1L = "Flammie1l";
     public static final String FLAMMIE2L = "Flammie2l";
+    public static final String FLAMMIE3L = "Flammie3l";
+    public static final String FLAMMIE4L = "Flammie4l";
+    public static final String FLAMMIE5L = "Flammie5l";
+    public static final String FLAMMIE6L = "Flammie6l";
+    public static final String FLAMMIE7L = "Flammie7l";
+    public static final String FLAMMIE8L = "Flammie8l";
+    public static final String FLAMMIE9L = "Flammie9l";
+    public static final String FLAMMIE10L = "Flammie10l";
 
     // Movimiento hacia la izquierda
     public static final String FLAMMIE1R = "Flammie1r";
     public static final String FLAMMIE2R = "Flammie2r";
+    public static final String FLAMMIE3R = "Flammie3r";
+    public static final String FLAMMIE4R = "Flammie4r";
+    public static final String FLAMMIE5R = "Flammie5r";
+    public static final String FLAMMIE6R = "Flammie6r";
+    public static final String FLAMMIE7R = "Flammie7r";
+    public static final String FLAMMIE8R = "Flammie8r";
+    public static final String FLAMMIE9R = "Flammie9r";
+    public static final String FLAMMIE10R = "Flammie10r";
 
     // Música y sonidos
     public static final String MUSIC_BG = "musicSound/musicBackground.mp3";
