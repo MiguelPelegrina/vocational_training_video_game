@@ -62,6 +62,8 @@ public class Utils {
 
     // Música y sonidos
     public static final String MUSIC_BG = "musicSound/musicBackground.mp3";
+    // CHOQUE
+    // SCREECH del BAT al entrar?
 
     // Fuentes
 
@@ -69,4 +71,5 @@ public class Utils {
     public static final String USER_FLAMMIE = "Flammie";
     public static final String USER_ROCK = "rock";
     public static final String USER_BAT = "bat";
+    public static final String USER_COUNTER = "counter";
 }

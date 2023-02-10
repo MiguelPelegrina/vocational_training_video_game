@@ -42,7 +42,6 @@ public class Flammie extends Actor {
     private Body body;
     private Fixture fixture;
 
-    private Sound jumpSound;
     private Sound crashSound;
 
     /**
@@ -58,7 +57,7 @@ public class Flammie extends Actor {
         this.animationStraight = AssetMan.getInstance().getFlammieAnimation();
         this.animationLeft = AssetMan.getInstance().getFlammieAnimationL();
         this.animationRight = AssetMan.getInstance().getFlammieAnimationR();
-        //this.jumpSound = AssetMan.getInstance().getJumpSound();
+
         //this.crashSound = AssetMan.getInstance().getCrashSound();
 
         createBody();
@@ -129,7 +128,6 @@ public class Flammie extends Actor {
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(this.position);
         bodyDef.type = BodyDef.BodyType.DynamicBody;
-
         this.body = this.world.createBody(bodyDef);
     }
 
@@ -139,12 +137,8 @@ public class Flammie extends Actor {
     private void createFixture(){
         CircleShape circle = new CircleShape();
         circle.setRadius(FLAMMIE_FIXTURE_RADIUS);
-
         this.fixture = this.body.createFixture(circle, 8);
         this.fixture.setUserData(USER_FLAMMIE);
-
         circle.dispose();
     }
-
-
 }

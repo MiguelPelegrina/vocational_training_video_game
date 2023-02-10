@@ -15,12 +15,9 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.MainGame;
 import com.mygdx.game.actors.Bat;
@@ -67,7 +64,6 @@ public class GameScreen extends BaseScreen{
         FitViewport fitViewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
         this.stage = new Stage(fitViewport);
 
-        //this.arrayRocks = new Array<>();
         //this.timeToCreateRock = 0f;
 
         this.musicBG = AssetMan.getInstance().getBGMusic();
@@ -182,7 +178,7 @@ public class GameScreen extends BaseScreen{
         addBorder(leftBorder,leftBorderFixture,new Vector2(0,0), new Vector2(0,WORLD_HEIGHT));
         addBorder(rightBorder,rightBorderFixture,new Vector2(WORLD_WIDTH,0),new Vector2(WORLD_WIDTH,WORLD_WIDTH));
 
-        this.bat  = new Bat(this.world, new Vector2(3.75f,2f));
+        this.bat  = new Bat(this.world, new Vector2(WORLD_WIDTH/2,WORLD_HEIGHT - 1));
         this.stage.addActor(this.bat);
 
         musicBG.setLooping(true);
