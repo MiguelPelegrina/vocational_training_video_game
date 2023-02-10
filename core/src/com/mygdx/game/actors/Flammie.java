@@ -5,6 +5,8 @@ import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 import static com.mygdx.game.extras.Utils.USER_FLAMMIE;
 import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
+import static java.lang.Math.round;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -30,6 +32,7 @@ public class Flammie extends Actor {
     // Solo se requieren en la propio clase
     private static final float FLAMMIE_WIDTH = 0.84f;
     private static final float FLAMMIE_HEIGHT = 0.66f;
+    private static final float VELOCIDAD_MOVIMIENTO = 1f;
 
     //Atributos de la instancia
     private int state;
@@ -68,14 +71,16 @@ public class Flammie extends Actor {
     @Override
     public void act(float delta) {
         boolean jump  = Gdx.input.isTouched();
+        int positionX = Gdx.input.getX();
 
         if(jump && this.state == STATE_NORMAL){
-            int positionX = Gdx.input.getX();
             if(positionX > SCREEN_WIDTH/2){
-                this.body.setLinearVelocity(1.25f,0f);
+                this.body.setLinearVelocity(VELOCIDAD_MOVIMIENTO,0f);
             }else{
-                this.body.setLinearVelocity(-1.25f,0f);
+                this.body.setLinearVelocity(-VELOCIDAD_MOVIMIENTO,0f);
             }
+        }else{
+            this.body.setLinearVelocity(0,0);
         }
 
         /* utilizando una variable acumuladora (con delta), cambiando la animación (el texturregion)
@@ -146,4 +151,6 @@ public class Flammie extends Actor {
 
         circle.dispose();
     }
+
+
 }

@@ -13,6 +13,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -36,8 +38,10 @@ public class GameScreen extends BaseScreen{
     private Flammie flammie;
     private Music musicBG;
 
-    private Body ground;
-    private Body sky;
+    private Body leftBorder;
+    private Body rightBorder;
+    private Fixture leftBorderFixture;
+    private Fixture rightBorderFixture;
 
     private float timeToCreateRock;
     private Array<Rock> arrayRocks;
@@ -175,6 +179,8 @@ public class GameScreen extends BaseScreen{
         super.show();
         addBackground();
         addFlammie();
+        addBorder(leftBorder,leftBorderFixture,new Vector2(0,0), new Vector2(0,WORLD_HEIGHT));
+        addBorder(rightBorder,rightBorderFixture,new Vector2(WORLD_WIDTH,0),new Vector2(WORLD_WIDTH,WORLD_WIDTH));
 
         musicBG.setLooping(true);
         musicBG.play();
@@ -200,6 +206,18 @@ public class GameScreen extends BaseScreen{
         this.world.dispose();
 
         this.musicBG.dispose();
+    }
+
+    // Métodos auxiliares
+    private void addBorder(Body border, Fixture fixture, Vector2 vector1, Vector2 vector2) {
+        BodyDef bodydef = new BodyDef();
+        bodydef.type = BodyDef.BodyType.StaticBody;
+        border = world.createBody(bodydef);
+
+        EdgeShape edge = new EdgeShape();
+        edge.set(vector1,vector2);
+        fixture = border.createFixture(edge, 1);
+        edge.dispose();
     }
 
     /**
