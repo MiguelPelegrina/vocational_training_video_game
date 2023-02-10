@@ -3,19 +3,23 @@ package com.mygdx.game.actors;
 import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
 import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 import static com.mygdx.game.extras.Utils.USER_FLAMMIE;
+import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.mygdx.game.extras.AssetMan;
 
 public class Flammie extends Actor {
@@ -63,7 +67,16 @@ public class Flammie extends Actor {
      */
     @Override
     public void act(float delta) {
-        //boolean jump  = Gdx.input.justTouched();
+        boolean jump  = Gdx.input.isTouched();
+
+        if(jump && this.state == STATE_NORMAL){
+            int positionX = Gdx.input.getX();
+            if(positionX > SCREEN_WIDTH/2){
+                this.body.setLinearVelocity(1.25f,0f);
+            }else{
+                this.body.setLinearVelocity(-1.25f,0f);
+            }
+        }
 
         /* utilizando una variable acumuladora (con delta), cambiando la animación (el texturregion)
         después del touch, y cuando la variable acumuladora sea mayor de 1 segundo (por ejemplo)
@@ -102,7 +115,7 @@ public class Flammie extends Actor {
     }
 
     /**
-     * Método encargado de "matar" al pajaro
+     * Método encargado de "matar" al personaje
      */
     public void dies(){
         state = STATE_DEAD;
@@ -116,7 +129,7 @@ public class Flammie extends Actor {
     private void createBody(){
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(this.position);
-        bodyDef.type = BodyDef.BodyType.KinematicBody;
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
 
         this.body = this.world.createBody(bodyDef);
     }
