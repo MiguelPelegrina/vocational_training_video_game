@@ -18,6 +18,7 @@ public class Utils {
     public static final String ATLAS_MAP = "Flammie.atlas";
     // Imágenes
     public static final String BACKGROUND_IMAGE = "backgroundPixelated";
+    // Personaje principal
     // Movimiento hacia delante
     public static final String FLAMMIE1 = "Flammie1";
     public static final String FLAMMIE2 = "Flammie2";
@@ -40,7 +41,6 @@ public class Utils {
     public static final String FLAMMIE8L = "Flammie8l";
     public static final String FLAMMIE9L = "Flammie9l";
     public static final String FLAMMIE10L = "Flammie10l";
-
     // Movimiento hacia la izquierda
     public static final String FLAMMIE1R = "Flammie1r";
     public static final String FLAMMIE2R = "Flammie2r";
@@ -53,6 +53,13 @@ public class Utils {
     public static final String FLAMMIE9R = "Flammie9r";
     public static final String FLAMMIE10R = "Flammie10r";
 
+    // Enemigos
+    public static final String ROCK = "rock";
+    public static final String BAT1 = "bat1";
+    public static final String BAT2 = "bat2";
+    public static final String BAT3 = "bat3";
+    public static final String BAT4 = "bat4";
+
     // Música y sonidos
     public static final String MUSIC_BG = "musicSound/musicBackground.mp3";
 
@@ -60,5 +67,6 @@ public class Utils {
 
     //Identificadores de los cuerpos
     public static final String USER_FLAMMIE = "Flammie";
-
+    public static final String USER_ROCK = "rock";
+    public static final String USER_BAT = "bat";
 }

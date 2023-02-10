@@ -6,218 +6,246 @@ filter: Nearest, Nearest
 repeat: none
 Flammie1
   rotate: false
-  xy: 49, 49
+  xy: 49, 71
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie10
   rotate: false
-  xy: 96, 96
+  xy: 96, 118
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie10l
   rotate: false
-  xy: 1111, 1772
+  xy: 1111, 1794
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie10r
   rotate: false
-  xy: 1111, 1678
+  xy: 1111, 1700
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie1l
   rotate: false
-  xy: 2, 133
+  xy: 2, 155
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie1r
   rotate: false
-  xy: 1064, 1631
+  xy: 1064, 1653
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie2
   rotate: false
-  xy: 1158, 1688
+  xy: 1158, 1710
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie2l
   rotate: false
-  xy: 49, 133
+  xy: 49, 155
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie2r
   rotate: false
-  xy: 2, 180
+  xy: 2, 202
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie3
   rotate: false
-  xy: 190, 190
+  xy: 190, 212
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie3l
   rotate: false
-  xy: 1111, 1725
+  xy: 1111, 1747
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie3r
   rotate: false
-  xy: 1064, 1725
+  xy: 1064, 1747
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie4
   rotate: false
-  xy: 1252, 1782
+  xy: 1252, 1804
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie4l
   rotate: false
-  xy: 2, 39
+  xy: 2, 61
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie4r
   rotate: false
-  xy: 96, 180
+  xy: 96, 202
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie5
   rotate: false
-  xy: 1111, 1641
+  xy: 1111, 1663
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie5l
   rotate: false
-  xy: 96, 133
+  xy: 96, 155
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie5r
   rotate: false
-  xy: 1158, 1772
+  xy: 1158, 1794
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie6
   rotate: false
-  xy: 143, 143
+  xy: 143, 165
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie6l
   rotate: false
-  xy: 1158, 1725
+  xy: 1158, 1747
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie6r
   rotate: false
-  xy: 49, 86
+  xy: 49, 108
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie7
   rotate: false
-  xy: 1205, 1735
+  xy: 1205, 1757
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie7l
   rotate: false
-  xy: 1064, 1772
+  xy: 1064, 1794
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie7r
   rotate: false
-  xy: 143, 180
+  xy: 143, 202
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie8
   rotate: false
-  xy: 1064, 1594
+  xy: 1064, 1616
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie8l
   rotate: false
-  xy: 2, 86
+  xy: 2, 108
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie8r
   rotate: false
-  xy: 1205, 1772
+  xy: 1205, 1794
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie9
   rotate: false
-  xy: 2, 2
+  xy: 2, 24
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie9l
   rotate: false
-  xy: 1064, 1678
+  xy: 1064, 1700
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie9r
   rotate: false
-  xy: 49, 180
+  xy: 49, 202
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 backgroundPixelated
   rotate: false
-  xy: 2, 227
+  xy: 2, 249
   size: 1060, 1590
   orig: 1060, 1590
+  offset: 0, 0
+  index: -1
+bat1
+  rotate: false
+  xy: 1064, 1594
+  size: 30, 20
+  orig: 30, 20
+  offset: 0, 0
+  index: -1
+bat2
+  rotate: false
+  xy: 227, 227
+  size: 31, 20
+  orig: 31, 20
+  offset: 0, 0
+  index: -1
+bat3
+  rotate: false
+  xy: 1289, 1819
+  size: 30, 20
+  orig: 30, 20
+  offset: 0, 0
+  index: -1
+bat4
+  rotate: false
+  xy: 2, 2
+  size: 32, 20
+  orig: 32, 20
   offset: 0, 0
   index: -1

@@ -2,6 +2,10 @@ package com.mygdx.game.extras;
 
 import static com.mygdx.game.extras.Utils.ATLAS_MAP;
 import static com.mygdx.game.extras.Utils.BACKGROUND_IMAGE;
+import static com.mygdx.game.extras.Utils.BAT1;
+import static com.mygdx.game.extras.Utils.BAT2;
+import static com.mygdx.game.extras.Utils.BAT3;
+import static com.mygdx.game.extras.Utils.BAT4;
 import static com.mygdx.game.extras.Utils.FLAMMIE1;
 import static com.mygdx.game.extras.Utils.FLAMMIE10;
 import static com.mygdx.game.extras.Utils.FLAMMIE10L;
@@ -135,6 +139,15 @@ public class AssetMan {
                 textureAtlas.findRegion(FLAMMIE8R),
                 textureAtlas.findRegion(FLAMMIE9R),
                 textureAtlas.findRegion(FLAMMIE10R)
+        );
+    }
+
+    public Animation<TextureRegion> getBatAnimation(){
+        return new Animation<TextureRegion>(0.25f,
+                textureAtlas.findRegion(BAT1),
+                textureAtlas.findRegion(BAT2),
+                textureAtlas.findRegion(BAT3),
+                textureAtlas.findRegion(BAT4)
         );
     }
 

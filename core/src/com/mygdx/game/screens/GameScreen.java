@@ -23,6 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.MainGame;
+import com.mygdx.game.actors.Bat;
 import com.mygdx.game.actors.Flammie;
 import com.mygdx.game.actors.Rock;
 import com.mygdx.game.extras.AssetMan;
@@ -43,8 +44,7 @@ public class GameScreen extends BaseScreen{
     private Fixture leftBorderFixture;
     private Fixture rightBorderFixture;
 
-    private float timeToCreateRock;
-    private Array<Rock> arrayRocks;
+    private Bat bat;
 
     // Depuración
     // TODO QUITAR AL FINAL
@@ -182,6 +182,9 @@ public class GameScreen extends BaseScreen{
         addBorder(leftBorder,leftBorderFixture,new Vector2(0,0), new Vector2(0,WORLD_HEIGHT));
         addBorder(rightBorder,rightBorderFixture,new Vector2(WORLD_WIDTH,0),new Vector2(WORLD_WIDTH,WORLD_WIDTH));
 
+        this.bat  = new Bat(this.world, new Vector2(3.75f,2f));
+        this.stage.addActor(this.bat);
+
         musicBG.setLooping(true);
         musicBG.play();
     }
@@ -193,6 +196,8 @@ public class GameScreen extends BaseScreen{
     public void hide() {
         this.flammie.detach();
         this.flammie.remove();
+        this.bat.detach();
+        this.bat.remove();
 
         this.musicBG.stop();
     }
@@ -204,7 +209,6 @@ public class GameScreen extends BaseScreen{
     public void dispose() {
         this.stage.dispose();
         this.world.dispose();
-
         this.musicBG.dispose();
     }
 

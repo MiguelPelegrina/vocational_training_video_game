@@ -27,7 +27,7 @@ public class Flammie extends Actor {
     // Solo se requieren en la propio clase
     private static final float FLAMMIE_WIDTH = 1f;
     private static final float FLAMMIE_HEIGHT = 1f;
-    private static final float FLAMMIE_FIXTURE_RADIUS = 0.4f;
+    private static final float FLAMMIE_FIXTURE_RADIUS = 0.3f;
     private static final float VELOCIDAD_MOVIMIENTO = 1.2f;
 
     //Atributos de la instancia
