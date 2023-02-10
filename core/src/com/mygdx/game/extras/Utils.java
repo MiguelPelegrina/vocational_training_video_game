@@ -29,6 +29,14 @@ public class Utils {
     public static final String FLAMMIE8 = "Flammie8";
     public static final String FLAMMIE9 = "Flammie9";
     public static final String FLAMMIE10 = "Flammie10";
+    // Movimiento hacia la derecha
+    public static final String FLAMMIE1L = "Flammie1l";
+    public static final String FLAMMIE2L = "Flammie2l";
+
+    // Movimiento hacia la izquierda
+    public static final String FLAMMIE1R = "Flammie1r";
+    public static final String FLAMMIE2R = "Flammie2r";
+
     // Música y sonidos
     public static final String MUSIC_BG = "musicSound/musicBackground.mp3";
 

@@ -4,7 +4,11 @@ import static com.mygdx.game.extras.Utils.ATLAS_MAP;
 import static com.mygdx.game.extras.Utils.BACKGROUND_IMAGE;
 import static com.mygdx.game.extras.Utils.FLAMMIE1;
 import static com.mygdx.game.extras.Utils.FLAMMIE10;
+import static com.mygdx.game.extras.Utils.FLAMMIE1L;
+import static com.mygdx.game.extras.Utils.FLAMMIE1R;
 import static com.mygdx.game.extras.Utils.FLAMMIE2;
+import static com.mygdx.game.extras.Utils.FLAMMIE2L;
+import static com.mygdx.game.extras.Utils.FLAMMIE2R;
 import static com.mygdx.game.extras.Utils.FLAMMIE3;
 import static com.mygdx.game.extras.Utils.FLAMMIE4;
 import static com.mygdx.game.extras.Utils.FLAMMIE5;
@@ -86,6 +90,37 @@ public class AssetMan {
                 textureAtlas.findRegion(FLAMMIE8),
                 textureAtlas.findRegion(FLAMMIE9),
                 textureAtlas.findRegion(FLAMMIE10));
+    }
+
+    public Animation<TextureRegion> getFlammieAnimationL(){
+        return new Animation<TextureRegion>(0.2f,
+                textureAtlas.findRegion(FLAMMIE1L),
+                textureAtlas.findRegion(FLAMMIE2L)
+                /*,textureAtlas.findRegion(FLAMMIE3),
+                textureAtlas.findRegion(FLAMMIE4),
+                textureAtlas.findRegion(FLAMMIE5),
+                textureAtlas.findRegion(FLAMMIE6),
+                textureAtlas.findRegion(FLAMMIE7),
+                textureAtlas.findRegion(FLAMMIE8),
+                textureAtlas.findRegion(FLAMMIE9),
+                textureAtlas.findRegion(FLAMMIE10)*/
+        );
+    }
+
+    public Animation<TextureRegion> getFlammieAnimationR(){
+        return new Animation<TextureRegion>(0.2f,
+                textureAtlas.findRegion(FLAMMIE1R),
+                textureAtlas.findRegion(FLAMMIE2R)
+                /*,
+                textureAtlas.findRegion(FLAMMIE3),
+                textureAtlas.findRegion(FLAMMIE4),
+                textureAtlas.findRegion(FLAMMIE5),
+                textureAtlas.findRegion(FLAMMIE6),
+                textureAtlas.findRegion(FLAMMIE7),
+                textureAtlas.findRegion(FLAMMIE8),
+                textureAtlas.findRegion(FLAMMIE9),
+                textureAtlas.findRegion(FLAMMIE10)*/
+        );
     }
 
     /**

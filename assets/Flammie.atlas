@@ -6,7 +6,7 @@ filter: Nearest, Nearest
 repeat: none
 Flammie1
   rotate: false
-  xy: 1064, 1668
+  xy: 1111, 1725
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
@@ -18,65 +18,93 @@ Flammie10
   orig: 35, 35
   offset: 0, 0
   index: -1
+Flammie1l
+  rotate: false
+  xy: 1064, 1715
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+Flammie1r
+  rotate: false
+  xy: 49, 123
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
 Flammie2
-  rotate: false
-  xy: 39, 39
-  size: 35, 35
-  orig: 35, 35
-  offset: 0, 0
-  index: -1
-Flammie3
-  rotate: false
-  xy: 1064, 1631
-  size: 35, 35
-  orig: 35, 35
-  offset: 0, 0
-  index: -1
-Flammie4
-  rotate: false
-  xy: 1064, 1594
-  size: 35, 35
-  orig: 35, 35
-  offset: 0, 0
-  index: -1
-Flammie5
   rotate: false
   xy: 2, 2
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
+Flammie2l
+  rotate: false
+  xy: 2, 76
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+Flammie2r
+  rotate: false
+  xy: 2, 123
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+Flammie3
+  rotate: false
+  xy: 96, 133
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+Flammie4
+  rotate: false
+  xy: 1064, 1604
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+Flammie5
+  rotate: false
+  xy: 1148, 1725
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
 Flammie6
   rotate: false
-  xy: 39, 76
+  xy: 49, 86
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie7
   rotate: false
-  xy: 76, 76
+  xy: 133, 133
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie8
   rotate: false
-  xy: 1101, 1668
+  xy: 1064, 1641
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie9
   rotate: false
-  xy: 2, 76
+  xy: 1064, 1678
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 backgroundPixelated
   rotate: false
-  xy: 2, 113
+  xy: 2, 170
   size: 1060, 1590
   orig: 1060, 1590
   offset: 0, 0

@@ -1,9 +1,7 @@
 package com.mygdx.game.actors;
 
-import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
 import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 import static com.mygdx.game.extras.Utils.USER_FLAMMIE;
-import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
 import static java.lang.Math.round;
 
@@ -12,16 +10,13 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.mygdx.game.extras.AssetMan;
 
 public class Flammie extends Actor {
@@ -30,13 +25,17 @@ public class Flammie extends Actor {
     public static final int STATE_NORMAL = 0;
     public static final int STATE_DEAD = 1;
     // Solo se requieren en la propio clase
-    private static final float FLAMMIE_WIDTH = 0.84f;
-    private static final float FLAMMIE_HEIGHT = 0.66f;
-    private static final float VELOCIDAD_MOVIMIENTO = 1f;
+    private static final float FLAMMIE_WIDTH = 1f;
+    private static final float FLAMMIE_HEIGHT = 1f;
+    private static final float FLAMMIE_FIXTURE_RADIUS = 0.4f;
+    private static final float VELOCIDAD_MOVIMIENTO = 1.2f;
 
     //Atributos de la instancia
     private int state;
-    private Animation<TextureRegion> flammieAnimation;
+    private Animation<TextureRegion> animation;
+    private Animation<TextureRegion> animationStraight;
+    private Animation<TextureRegion> animationLeft;
+    private Animation<TextureRegion> animationRight;
     private Vector2 position;
     private float stateTime;
     private World world;
@@ -56,7 +55,9 @@ public class Flammie extends Actor {
         this.stateTime = 0f;
         this.state = STATE_NORMAL;
 
-        this.flammieAnimation = AssetMan.getInstance().getFlammieAnimation();
+        this.animationStraight = AssetMan.getInstance().getFlammieAnimation();
+        this.animationLeft = AssetMan.getInstance().getFlammieAnimationL();
+        this.animationRight = AssetMan.getInstance().getFlammieAnimationR();
         //this.jumpSound = AssetMan.getInstance().getJumpSound();
         //this.crashSound = AssetMan.getInstance().getCrashSound();
 
@@ -76,21 +77,15 @@ public class Flammie extends Actor {
         if(jump && this.state == STATE_NORMAL){
             if(positionX > SCREEN_WIDTH/2){
                 this.body.setLinearVelocity(VELOCIDAD_MOVIMIENTO,0f);
+                this.animation = animationRight;
             }else{
                 this.body.setLinearVelocity(-VELOCIDAD_MOVIMIENTO,0f);
+                this.animation = animationLeft;
             }
         }else{
             this.body.setLinearVelocity(0,0);
+            this.animation = animationStraight;
         }
-
-        /* utilizando una variable acumuladora (con delta), cambiando la animación (el texturregion)
-        después del touch, y cuando la variable acumuladora sea mayor de 1 segundo (por ejemplo)
-        volver a la animación original y reiniciar la variable acumuladora a 0
-
-        if(jump && this.state == STATE_NORMAL){
-            this.jumpSound.play();
-            this.body.setLinearVelocity(0,JUMP_SPEED);
-        }*/
     }
 
     /**
@@ -101,8 +96,7 @@ public class Flammie extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         setPosition(body.getPosition().x - FLAMMIE_WIDTH/2, body.getPosition().y - FLAMMIE_HEIGHT/2);
-        batch.draw(this.flammieAnimation.getKeyFrame(stateTime, true), getX(), getY(), FLAMMIE_WIDTH,FLAMMIE_HEIGHT);
-        //batch.draw(this.flammieAnimation.getKeyFrame(stateTime, true), this.position.x, this.position.y, FLAMMIE_WIDTH,FLAMMIE_HEIGHT);
+        batch.draw(this.animation.getKeyFrame(stateTime, true), getX(), getY(), FLAMMIE_WIDTH,FLAMMIE_HEIGHT);
 
         stateTime += Gdx.graphics.getDeltaTime();
     }
@@ -144,7 +138,7 @@ public class Flammie extends Actor {
      */
     private void createFixture(){
         CircleShape circle = new CircleShape();
-        circle.setRadius(0.3f);
+        circle.setRadius(FLAMMIE_FIXTURE_RADIUS);
 
         this.fixture = this.body.createFixture(circle, 8);
         this.fixture.setUserData(USER_FLAMMIE);
