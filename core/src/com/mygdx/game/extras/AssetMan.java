@@ -69,8 +69,8 @@ public class AssetMan {
         this.assetManager = new AssetManager();
         // Cargamos el TextureAtlas que guarda las texturas que se usarán posteriormente
         assetManager.load(ATLAS_MAP, TextureAtlas.class);
-
         assetManager.load(MUSIC_BG, Music.class);
+        assetManager.load(SOUND_HIT, Sound.class);
         // Esperamos a que todos los recursos se hayan cargado
         assetManager.finishLoading();
 

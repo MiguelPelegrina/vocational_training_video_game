@@ -1,5 +1,6 @@
 package com.mygdx.game.actors;
 
+import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
 import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 import static com.mygdx.game.extras.Utils.USER_FLAMMIE;
 
@@ -72,14 +73,45 @@ public class Flammie extends Actor {
     public void act(float delta) {
         boolean jump  = Gdx.input.isTouched();
         int positionX = Gdx.input.getX();
+        int positionY = Gdx.input.getY();
 
         if(jump && this.state == STATE_NORMAL){
-            if(positionX > SCREEN_WIDTH/2){
-                this.body.setLinearVelocity(VELOCIDAD_MOVIMIENTO,0f);
+            if(positionX > SCREEN_WIDTH * 0.66){
                 this.animation = animationRight;
+
+                if(positionY > SCREEN_HEIGHT * 0.33 && positionY < SCREEN_HEIGHT * 0.66 ){
+                    this.body.setLinearVelocity(VELOCIDAD_MOVIMIENTO,0f);
+                }else{
+                    if(positionY < SCREEN_HEIGHT * 0.33){
+                        this.body.setLinearVelocity(VELOCIDAD_MOVIMIENTO,VELOCIDAD_MOVIMIENTO);
+                    }else{
+                        this.body.setLinearVelocity(VELOCIDAD_MOVIMIENTO,-VELOCIDAD_MOVIMIENTO);
+                    }
+                }
             }else{
-                this.body.setLinearVelocity(-VELOCIDAD_MOVIMIENTO,0f);
-                this.animation = animationLeft;
+                if(positionX < SCREEN_WIDTH * 0.33){
+                    this.animation = animationLeft;
+
+                    if(positionY > SCREEN_HEIGHT * 0.33 && positionY < SCREEN_HEIGHT * 0.66 ){
+                        this.body.setLinearVelocity(-VELOCIDAD_MOVIMIENTO,0f);
+                    }else{
+                        if(positionY < SCREEN_HEIGHT * 0.33){
+                            this.body.setLinearVelocity(-VELOCIDAD_MOVIMIENTO,VELOCIDAD_MOVIMIENTO);
+                        }else{
+                            this.body.setLinearVelocity(-VELOCIDAD_MOVIMIENTO,-VELOCIDAD_MOVIMIENTO);
+                        }
+                    }
+                }else{
+                    this.animation = animationStraight;
+
+                    if(positionY > SCREEN_HEIGHT * 0.66){
+                        this.body.setLinearVelocity(0,-VELOCIDAD_MOVIMIENTO);
+                    }else{
+                        if(positionY < SCREEN_HEIGHT * 0.33){
+                            this.body.setLinearVelocity(0,VELOCIDAD_MOVIMIENTO);
+                        }
+                    }
+                }
             }
         }else{
             this.body.setLinearVelocity(0,0);
