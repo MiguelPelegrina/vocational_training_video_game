@@ -176,7 +176,7 @@ public class GameScreen extends BaseScreen{
         addBackground();
         addFlammie();
         addBorder(leftBorder,leftBorderFixture,new Vector2(0,0), new Vector2(0,WORLD_HEIGHT));
-        addBorder(rightBorder,rightBorderFixture,new Vector2(WORLD_WIDTH,0),new Vector2(WORLD_WIDTH,WORLD_WIDTH));
+        addBorder(rightBorder,rightBorderFixture,new Vector2(WORLD_WIDTH,0),new Vector2(WORLD_WIDTH,WORLD_HEIGHT));
 
         this.bat  = new Bat(this.world, new Vector2(WORLD_WIDTH/2,WORLD_HEIGHT - 1));
         this.stage.addActor(this.bat);
