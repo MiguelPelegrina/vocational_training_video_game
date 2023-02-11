@@ -29,7 +29,7 @@ public class Flammie extends Actor {
     private static final float FLAMMIE_WIDTH = 1f;
     private static final float FLAMMIE_HEIGHT = 1f;
     private static final float FLAMMIE_FIXTURE_RADIUS = 0.3f;
-    private static final float VELOCIDAD_MOVIMIENTO = 1.2f;
+    private static final float SPEED = 1.5f;
 
     //Atributos de la instancia
     private int state;
@@ -50,15 +50,13 @@ public class Flammie extends Actor {
      */
     public Flammie(World world, Vector2 position){
         //Inicialización de atributos
+        this.animationStraight = AssetMan.getInstance().getFlammieAnimation();
+        this.animationLeft = AssetMan.getInstance().getFlammieAnimationL();
+        this.animationRight = AssetMan.getInstance().getFlammieAnimationR();
         this.position = position;
         this.world = world;
         this.stateTime = 0f;
         this.state = STATE_NORMAL;
-
-        this.animationStraight = AssetMan.getInstance().getFlammieAnimation();
-        this.animationLeft = AssetMan.getInstance().getFlammieAnimationL();
-        this.animationRight = AssetMan.getInstance().getFlammieAnimationR();
-
         this.hitSound = AssetMan.getInstance().getHitSound();
 
         createBody();
@@ -83,39 +81,42 @@ public class Flammie extends Actor {
         // diagonal mientras que los demás campos ([1][0], [0][1], [1][2], [2][1]) implican un
         // movimiento unidireccional vertical u horizontal
         if(jump && this.state == STATE_NORMAL){
+            // Comprobamos la primera columna de la matriz
             if(positionX > SCREEN_WIDTH * 0.66){
                 this.animation = animationRight;
 
                 if(positionY > SCREEN_HEIGHT * 0.33 && positionY < SCREEN_HEIGHT * 0.66 ){
-                    this.body.setLinearVelocity(VELOCIDAD_MOVIMIENTO,0f);
+                    this.body.setLinearVelocity(SPEED,0f);
                 }else{
                     if(positionY < SCREEN_HEIGHT * 0.33){
-                        this.body.setLinearVelocity(VELOCIDAD_MOVIMIENTO,VELOCIDAD_MOVIMIENTO);
+                        this.body.setLinearVelocity(SPEED, SPEED);
                     }else{
-                        this.body.setLinearVelocity(VELOCIDAD_MOVIMIENTO,-VELOCIDAD_MOVIMIENTO);
+                        this.body.setLinearVelocity(SPEED,-SPEED);
                     }
                 }
             }else{
+                // Comprobamos la tercera columna de la matriz
                 if(positionX < SCREEN_WIDTH * 0.33){
                     this.animation = animationLeft;
 
                     if(positionY > SCREEN_HEIGHT * 0.33 && positionY < SCREEN_HEIGHT * 0.66 ){
-                        this.body.setLinearVelocity(-VELOCIDAD_MOVIMIENTO,0f);
+                        this.body.setLinearVelocity(-SPEED,0f);
                     }else{
                         if(positionY < SCREEN_HEIGHT * 0.33){
-                            this.body.setLinearVelocity(-VELOCIDAD_MOVIMIENTO,VELOCIDAD_MOVIMIENTO);
+                            this.body.setLinearVelocity(-SPEED, SPEED);
                         }else{
-                            this.body.setLinearVelocity(-VELOCIDAD_MOVIMIENTO,-VELOCIDAD_MOVIMIENTO);
+                            this.body.setLinearVelocity(-SPEED,-SPEED);
                         }
                     }
                 }else{
+                    // Comprobamos el centro de la segunda columna matriz
                     this.animation = animationStraight;
 
                     if(positionY > SCREEN_HEIGHT * 0.66){
-                        this.body.setLinearVelocity(0,-VELOCIDAD_MOVIMIENTO);
+                        this.body.setLinearVelocity(0,-SPEED);
                     }else{
                         if(positionY < SCREEN_HEIGHT * 0.33){
-                            this.body.setLinearVelocity(0,VELOCIDAD_MOVIMIENTO);
+                            this.body.setLinearVelocity(0, SPEED);
                         }
                     }
                 }

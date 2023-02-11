@@ -1,5 +1,8 @@
 package com.mygdx.game.screens;
 
+import static com.mygdx.game.actors.Bat.BAT_WIDTH;
+import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
+import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 import static com.mygdx.game.extras.Utils.WORLD_HEIGHT;
 import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
@@ -17,7 +20,9 @@ import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.MainGame;
 import com.mygdx.game.actors.Bat;
@@ -27,9 +32,10 @@ import com.mygdx.game.extras.AssetMan;
 
 public class GameScreen extends BaseScreen{
     // Atributo de la clase
-    private static final float ROCKS_SPAWN_TIME = 1.5f;
+    private static final float BAT_SPAWN_TIME = 1.5f;
 
     // Atributos de la instancia
+    private float timeToCreateBat;
     private Stage stage;
     private World world;
     private Image background;
@@ -41,7 +47,7 @@ public class GameScreen extends BaseScreen{
     private Fixture leftBorderFixture;
     private Fixture rightBorderFixture;
 
-    private Bat bat;
+    private Array<Bat> arrayBats = new Array<Bat>();
 
     // Depuración
     // TODO QUITAR AL FINAL
@@ -64,7 +70,7 @@ public class GameScreen extends BaseScreen{
         FitViewport fitViewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
         this.stage = new Stage(fitViewport);
 
-        //this.timeToCreateRock = 0f;
+        this.timeToCreateBat= 0f;
 
         this.musicBG = AssetMan.getInstance().getBGMusic();
 
@@ -97,46 +103,45 @@ public class GameScreen extends BaseScreen{
      *
      * @param delta
      */
-    /*public void addRocks(float delta){
+    public void addBats(float delta){
         // Mientras que el muñeco está vivo
         if(flammie.getState() == Flammie.STATE_NORMAL){
             // Acumulamos el tiempo entre un fotograma y el siguiente
-            this.timeToCreateRock += delta;
-            // Si el tiempo acumulado supera el establecido TODO como dificultad
-            if(this.timeToCreateRock >= ROCKS_SPAWN_TIME){
-                // "Reiniciamos" el contador
-                this.timeToCreateRock -= ROCKS_SPAWN_TIME;
-                // Obtenemos un número aleatorio para posicionar las siguientes tuberías
-                float randomYPosition = MathUtils.random(0f, 2f);
-                // Instanciamos un grupo de rocas fuera de la pantalla
-                Rocks rocks = new Rocks(this.world, new Vector2(WORLD_WIDTH + 0.5f, randomYPosition));
-                // Añadimos las rocas al array y a la escena
-                arrayRocks.add(rocks);
-                this.stage.addActor(rocks);
+            this.timeToCreateBat += delta;
+            // Si el tiempo acumulado supera el establecido TODO como dificultad?
+            if(this.timeToCreateBat >= BAT_SPAWN_TIME){
+                // Reiniciamos el contador
+                this.timeToCreateBat -= BAT_SPAWN_TIME;
+                // Instanciamos un grupo de rocas fuera de la pantalla en función de la posición
+                // actual de nuestro protagonista
+                Bat bat = new Bat(this.world, new Vector2(flammie.getX(), WORLD_HEIGHT + 0.5f));
+                arrayBats.add(bat);
+                // Añadimos el murciélago a la escena
+                this.stage.addActor(bat);
             }
         }
-    }*/
+    }
 
     /**
      *
      */
-    /*public void removeRocks(){
+    public void removeBats(){
         // Por cada uno de los grupos de rocas (roca inferior, roca superior y bloque del contador)
-        for(Rocks rocks : this.arrayRocks){
+        for(Bat bats : this.arrayBats){
             // Mientras que no se esté actualizando el mundo en este momento
             if(!world.isLocked()){
                 // Comprobamos si el grupo de rocas se encuentra visibles
-                if(rocks.isOutOfScreen()){
+                if(bats.isOutOfScreen()){
                     // Liberamos el espacio en la gráfica
-                    rocks.detach();
+                    bats.detach();
                     // Quitamos las rocas de la escena
-                    rocks.remove();
+                    bats.remove();
                     // Sacamos las rocas de la colección
-                    arrayRocks.removeValue(rocks,false);
+                    arrayBats.removeValue(bats,false);
                 }
             }
         }
-    }*/
+    }
 
     /**
      *
@@ -145,8 +150,8 @@ public class GameScreen extends BaseScreen{
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        // Colocamos las rocas
-        //addRocks(delta);
+        // Colocamos los murciélagos
+        addBats(delta);
         // Configuramos el lote del escenario de tal forma que representa los elementos en función
         // del tamaño del mundo
         //this.stage.getBatch().setProjectionMatrix(worldCamera.combined);
@@ -157,7 +162,7 @@ public class GameScreen extends BaseScreen{
         this.debugRenderer.render(this.world, this.worldCamera.combined);
         // Liberamos el espacio de la gráfica destinado a las rocas que se encuentra ya fuera de la
         // pantalla
-        //removeRocks();
+        removeBats();
 
         // Configuramos el lote del escenario de tal forma que representa solo la fuenta en función
         // de la resolución de la pantalla en píxeles
@@ -178,9 +183,6 @@ public class GameScreen extends BaseScreen{
         addBorder(leftBorder,leftBorderFixture,new Vector2(0,0), new Vector2(0,WORLD_HEIGHT));
         addBorder(rightBorder,rightBorderFixture,new Vector2(WORLD_WIDTH,0),new Vector2(WORLD_WIDTH,WORLD_HEIGHT));
 
-        this.bat  = new Bat(this.world, new Vector2(WORLD_WIDTH/2,WORLD_HEIGHT - 1));
-        this.stage.addActor(this.bat);
-
         musicBG.setLooping(true);
         musicBG.play();
     }
@@ -192,8 +194,6 @@ public class GameScreen extends BaseScreen{
     public void hide() {
         this.flammie.detach();
         this.flammie.remove();
-        this.bat.detach();
-        this.bat.remove();
 
         this.musicBG.stop();
     }
