@@ -72,8 +72,8 @@ public class Flammie extends Actor {
     public void act(float delta) {
         boolean jump  = Gdx.input.isTouched();
         int positionX = Gdx.input.getX();
-        int positionY = Gdx.input.getY();
 
+        /*int positionY = Gdx.input.getY();
         // En este caso vamos a realizar varias comprobaciones para determinar el movimiento del
         // actor. A cuestiones prácticas la pantalla se divide en una matriz de 3 por 3. Cada
         // campo de la matriz determina el tipo de movimiento, excepto el campo central ([0][0]).
@@ -82,16 +82,14 @@ public class Flammie extends Actor {
         // movimiento unidireccional vertical u horizontal
         if(jump && this.state == STATE_NORMAL){
             // Comprobamos la primera columna de la matriz
-            if(positionX > SCREEN_WIDTH * 0.66){
-                this.animation = animationRight;
+            if(positionX < SCREEN_WIDTH * 0.66 && positionX > SCREEN_WIDTH * 0.33){
+                this.animation = animationStraight;
 
-                if(positionY > SCREEN_HEIGHT * 0.33 && positionY < SCREEN_HEIGHT * 0.66 ){
-                    this.body.setLinearVelocity(SPEED,0f);
+                if(positionY > SCREEN_HEIGHT * 0.66){
+                    this.body.setLinearVelocity(0,-SPEED);
                 }else{
                     if(positionY < SCREEN_HEIGHT * 0.33){
-                        this.body.setLinearVelocity(SPEED, SPEED);
-                    }else{
-                        this.body.setLinearVelocity(SPEED,-SPEED);
+                        this.body.setLinearVelocity(0, SPEED);
                     }
                 }
             }else{
@@ -110,13 +108,15 @@ public class Flammie extends Actor {
                     }
                 }else{
                     // Comprobamos el centro de la segunda columna matriz
-                    this.animation = animationStraight;
+                    this.animation = animationRight;
 
-                    if(positionY > SCREEN_HEIGHT * 0.66){
-                        this.body.setLinearVelocity(0,-SPEED);
+                    if(positionY > SCREEN_HEIGHT * 0.33 && positionY < SCREEN_HEIGHT * 0.66 ){
+                        this.body.setLinearVelocity(SPEED,0f);
                     }else{
                         if(positionY < SCREEN_HEIGHT * 0.33){
-                            this.body.setLinearVelocity(0, SPEED);
+                            this.body.setLinearVelocity(SPEED, SPEED);
+                        }else{
+                            this.body.setLinearVelocity(SPEED,-SPEED);
                         }
                     }
                 }
@@ -124,7 +124,23 @@ public class Flammie extends Actor {
         }else{
             this.body.setLinearVelocity(0,0);
             this.animation = animationStraight;
+        }*/
+
+
+        if(jump && this.state == STATE_NORMAL){
+            // Comprobamos la primera columna de la matriz
+            if(positionX > SCREEN_WIDTH/2){
+                this.body.setLinearVelocity(SPEED,0f);
+                this.animation= animationRight;
+            }else{
+                this.body.setLinearVelocity(-SPEED,0f);
+                this.animation = animationLeft;
+            }
+        }else{
+            this.body.setLinearVelocity(0,0);
+            this.animation = animationStraight;
         }
+
     }
 
     /**

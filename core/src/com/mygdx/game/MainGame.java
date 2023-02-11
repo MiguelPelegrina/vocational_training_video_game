@@ -18,8 +18,8 @@ public class MainGame extends Game {
 	@Override
 	public void create () {
 		this.gameScreen = new GameScreen(this);
-		//this.gameOverScreen = new GameOverScreen(this);
-		//this.getReadyScreen = new GetReadyScreen(this);
+		this.gameOverScreen = new GameOverScreen(this);
+		this.getReadyScreen = new GetReadyScreen(this);
 		setScreen(this.gameScreen);
 	}
 

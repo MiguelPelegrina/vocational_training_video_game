@@ -16,6 +16,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
@@ -29,7 +30,9 @@ import com.mygdx.game.actors.Bat;
 import com.mygdx.game.actors.Flammie;
 import com.mygdx.game.extras.AssetMan;
 
-public class GameScreen extends BaseScreen{
+public class GameScreen extends BaseScreen
+        //implements ContactListener
+{
     // Atributo de la clase
     private static final float BAT_SPAWN_TIME = 1.5f;
 

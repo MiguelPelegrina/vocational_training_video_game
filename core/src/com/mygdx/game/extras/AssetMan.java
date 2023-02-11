@@ -39,6 +39,7 @@ import static com.mygdx.game.extras.Utils.FLAMMIE9R;
 import static com.mygdx.game.extras.Utils.FONT_FNT;
 import static com.mygdx.game.extras.Utils.FONT_PNG;
 import static com.mygdx.game.extras.Utils.MUSIC_BG;
+import static com.mygdx.game.extras.Utils.MUSIC_GAMEOVER;
 import static com.mygdx.game.extras.Utils.SOUND_HIT;
 
 import com.badlogic.gdx.Gdx;
@@ -74,6 +75,7 @@ public class AssetMan {
         // Cargamos el TextureAtlas que guarda las texturas que se usarán posteriormente
         assetManager.load(ATLAS_MAP, TextureAtlas.class);
         assetManager.load(MUSIC_BG, Music.class);
+        assetManager.load(MUSIC_GAMEOVER, Music.class);
         assetManager.load(SOUND_HIT, Sound.class);
         // Esperamos a que todos los recursos se hayan cargado
         assetManager.finishLoading();
@@ -118,6 +120,10 @@ public class AssetMan {
                 textureAtlas.findRegion(FLAMMIE10));
     }
 
+    /**
+     *
+     * @return
+     */
     public Animation<TextureRegion> getFlammieAnimationL(){
         return new Animation<TextureRegion>(0.1f,
                 textureAtlas.findRegion(FLAMMIE1L),
@@ -133,6 +139,10 @@ public class AssetMan {
         );
     }
 
+    /**
+     *
+     * @return
+     */
     public Animation<TextureRegion> getFlammieAnimationR(){
         return new Animation<TextureRegion>(0.1f,
                 textureAtlas.findRegion(FLAMMIE1R),
@@ -148,6 +158,10 @@ public class AssetMan {
         );
     }
 
+    /**
+     *
+     * @return
+     */
     public Animation<TextureRegion> getBatAnimation(){
         return new Animation<TextureRegion>(0.25f,
                 textureAtlas.findRegion(BAT1),
@@ -165,10 +179,26 @@ public class AssetMan {
         return this.assetManager.get(MUSIC_BG);
     }
 
+    /**
+     *
+     * @return
+     */
+    public Music getGOMusic(){
+        return this.assetManager.get(MUSIC_GAMEOVER);
+    }
+
+    /**
+     * Método encargado de devolver el sonido del choque del muñeco
+     * @return Devuelve el sonido de choque con otros objetos
+     */
     public Sound getHitSound(){
         return this.assetManager.get(SOUND_HIT);
     }
 
+    /**
+     *
+     * @return
+     */
     public BitmapFont getFont(){
         return new BitmapFont(Gdx.files.internal(FONT_FNT), Gdx.files.internal(FONT_PNG), false);
     }

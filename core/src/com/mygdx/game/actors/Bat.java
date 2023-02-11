@@ -52,6 +52,10 @@ public class Bat extends Actor {
         return this.body.getPosition().y <= -2f;
     }
 
+    public void stopBat(){
+        body.setLinearVelocity(0,0);
+    }
+
     public void act(float delta) {
         super.act(delta);
     }
