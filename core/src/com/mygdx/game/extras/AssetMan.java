@@ -36,13 +36,17 @@ import static com.mygdx.game.extras.Utils.FLAMMIE8R;
 import static com.mygdx.game.extras.Utils.FLAMMIE9;
 import static com.mygdx.game.extras.Utils.FLAMMIE9L;
 import static com.mygdx.game.extras.Utils.FLAMMIE9R;
+import static com.mygdx.game.extras.Utils.FONT_FNT;
+import static com.mygdx.game.extras.Utils.FONT_PNG;
 import static com.mygdx.game.extras.Utils.MUSIC_BG;
 import static com.mygdx.game.extras.Utils.SOUND_HIT;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -163,5 +167,9 @@ public class AssetMan {
 
     public Sound getHitSound(){
         return this.assetManager.get(SOUND_HIT);
+    }
+
+    public BitmapFont getFont(){
+        return new BitmapFont(Gdx.files.internal(FONT_FNT), Gdx.files.internal(FONT_PNG), false);
     }
 }

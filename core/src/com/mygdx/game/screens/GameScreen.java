@@ -27,7 +27,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.MainGame;
 import com.mygdx.game.actors.Bat;
 import com.mygdx.game.actors.Flammie;
-import com.mygdx.game.actors.Rock;
 import com.mygdx.game.extras.AssetMan;
 
 public class GameScreen extends BaseScreen{
@@ -47,7 +46,7 @@ public class GameScreen extends BaseScreen{
     private Fixture leftBorderFixture;
     private Fixture rightBorderFixture;
 
-    private Array<Bat> arrayBats = new Array<Bat>();
+    private Array<Bat> arrayBats;
 
     // Depuración
     // TODO QUITAR AL FINAL
@@ -70,11 +69,12 @@ public class GameScreen extends BaseScreen{
         FitViewport fitViewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
         this.stage = new Stage(fitViewport);
 
+        this.arrayBats = new Array<Bat>();
         this.timeToCreateBat= 0f;
 
         this.musicBG = AssetMan.getInstance().getBGMusic();
 
-        //prepareScore();
+        prepareScore();
 
         // TODO QUITAR AL FINAL
         this.worldCamera = (OrthographicCamera) this.stage.getCamera();
@@ -154,7 +154,7 @@ public class GameScreen extends BaseScreen{
         addBats(delta);
         // Configuramos el lote del escenario de tal forma que representa los elementos en función
         // del tamaño del mundo
-        //this.stage.getBatch().setProjectionMatrix(worldCamera.combined);
+        this.stage.getBatch().setProjectionMatrix(worldCamera.combined);
         this.stage.act();
         this.world.step(delta,6,2);
         this.stage.draw();
@@ -166,10 +166,10 @@ public class GameScreen extends BaseScreen{
 
         // Configuramos el lote del escenario de tal forma que representa solo la fuenta en función
         // de la resolución de la pantalla en píxeles
-        //this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
-        //this.stage.getBatch().begin();
-        //this.score.draw(this.stage.getBatch(), arrayRocks.size + "", SCREEN_WIDTH/2f, SCREEN_HEIGHT*0.95f);
-        //this.stage.getBatch().end();
+        this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
+        this.stage.getBatch().begin();
+        this.score.draw(this.stage.getBatch(), arrayBats.size + "", SCREEN_WIDTH/2f, SCREEN_HEIGHT*0.95f);
+        this.stage.getBatch().end();
     }
 
     /**
@@ -223,7 +223,7 @@ public class GameScreen extends BaseScreen{
     /**
      * Método encargado de configurar la puntuación
      */
-    /*private void prepareScore(){
+    private void prepareScore(){
         // Configuramos la fuente y su escala
         this.score = AssetMan.getInstance().getFont();
         this.score.getData().scale(1f);
@@ -232,5 +232,5 @@ public class GameScreen extends BaseScreen{
         this.fontCamera = new OrthographicCamera();
         this.fontCamera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
         this.fontCamera.update();
-    }*/
+    }
 }

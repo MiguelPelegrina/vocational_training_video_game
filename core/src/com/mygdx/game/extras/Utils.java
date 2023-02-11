@@ -63,9 +63,10 @@ public class Utils {
     // Música y sonidos
     public static final String MUSIC_BG = "musicSound/musicBackground.mp3";
     public static final String SOUND_HIT = "musicSound/soundHit.mp3";
-    // SCREECH del BAT al entrar?
 
     // Fuentes
+    public static final String FONT_FNT = "FlammieFont.fnt";
+    public static final String FONT_PNG = "FlammieFont.png";
 
     //Identificadores de los cuerpos
     public static final String USER_FLAMMIE = "Flammie";
