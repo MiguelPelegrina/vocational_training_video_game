@@ -114,7 +114,7 @@ public class GameScreen extends BaseScreen{
                 this.timeToCreateBat -= BAT_SPAWN_TIME;
                 // Instanciamos un grupo de rocas fuera de la pantalla en función de la posición
                 // actual de nuestro protagonista
-                Bat bat = new Bat(this.world, new Vector2(flammie.getX(), WORLD_HEIGHT + 0.5f));
+                Bat bat = new Bat(this.world, new Vector2(flammie.getX() + BAT_WIDTH/2f, WORLD_HEIGHT + 0.5f));
                 arrayBats.add(bat);
                 // Añadimos el murciélago a la escena
                 this.stage.addActor(bat);

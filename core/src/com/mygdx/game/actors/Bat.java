@@ -41,7 +41,7 @@ public class Bat extends Actor {
         this.world = world;
         this.position = position;
 
-        this.randomSpeedFactor = SPEED + MathUtils.random(-0.4f, 0.4f);
+        this.randomSpeedFactor = SPEED + MathUtils.random(-0.5f, 0.5f);
 
         createBody(position);
         createFixture();
