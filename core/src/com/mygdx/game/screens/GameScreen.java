@@ -3,11 +3,14 @@ package com.mygdx.game.screens;
 import static com.mygdx.game.actors.Bat.BAT_WIDTH;
 import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
 import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
+import static com.mygdx.game.extras.Utils.USER_COUNTER;
+import static com.mygdx.game.extras.Utils.USER_FLAMMIE;
 import static com.mygdx.game.extras.Utils.WORLD_HEIGHT;
 import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -16,9 +19,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -30,24 +36,29 @@ import com.mygdx.game.actors.Bat;
 import com.mygdx.game.actors.Flammie;
 import com.mygdx.game.extras.AssetMan;
 
-public class GameScreen extends BaseScreen
-        //implements ContactListener
-{
+/**
+ *
+ */
+public class GameScreen extends BaseScreen implements ContactListener {
     // Atributo de la clase
     private static final float BAT_SPAWN_TIME = 1.5f;
-
     // Atributos de la instancia
     private float timeToCreateBat;
     private Stage stage;
     private World world;
     private Image background;
     private Flammie flammie;
+
     private Music musicBG;
+    private Music musicGO;
+    private Sound hitSound;
 
     private Body leftBorder;
     private Body rightBorder;
     private Fixture leftBorderFixture;
     private Fixture rightBorderFixture;
+
+    private int scoreNumber;
 
     private Array<Bat> arrayBats;
 
@@ -69,14 +80,16 @@ public class GameScreen extends BaseScreen
 
         // Como todos los actores de este juego vuelan, el mundo no tendrá gravedad
         this.world = new World(new Vector2(0,0), true);
+        // Asignamos la interfaz encargada de gestionar los eventos de contacto implementados en la
+        // propia clase
+        this.world.setContactListener(this);
         FitViewport fitViewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
         this.stage = new Stage(fitViewport);
 
         this.arrayBats = new Array<Bat>();
         this.timeToCreateBat= 0f;
 
-        this.musicBG = AssetMan.getInstance().getBGMusic();
-
+        prepareGameSound();
         prepareScore();
 
         // TODO QUITAR AL FINAL
@@ -171,7 +184,7 @@ public class GameScreen extends BaseScreen
         // de la resolución de la pantalla en píxeles
         this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
         this.stage.getBatch().begin();
-        this.score.draw(this.stage.getBatch(), arrayBats.size + "", SCREEN_WIDTH/2f, SCREEN_HEIGHT*0.95f);
+        this.score.draw(this.stage.getBatch(), this.scoreNumber + "", SCREEN_WIDTH/2f, SCREEN_HEIGHT*0.95f);
         this.stage.getBatch().end();
     }
 
@@ -211,7 +224,63 @@ public class GameScreen extends BaseScreen
         this.musicBG.dispose();
     }
 
+    @Override
+    public void beginContact(Contact contact) {
+        if(areColider(contact, USER_FLAMMIE, USER_COUNTER)){
+            this.scoreNumber++;
+        }else{
+            flammie.dies();
+            this.hitSound.play();
+            this.musicBG.stop();
+            this.musicGO.play();
+            for (Bat bat : arrayBats) {
+                bat.stopBat();
+            }
+
+            this.stage.addAction(Actions.sequence(
+                    Actions.delay(1.5f),
+                    Actions.run(new Runnable() {
+                        @Override
+                        public void run() {
+                            mainGame.setScreen(mainGame.gameOverScreen);
+                        }
+                    })
+            ));
+        }
+    }
+
+    @Override
+    public void endContact(Contact contact) {
+
+    }
+
+    @Override
+    public void preSolve(Contact contact, Manifold oldManifold) {
+
+    }
+
+    @Override
+    public void postSolve(Contact contact, ContactImpulse impulse) {
+
+    }
+
     // Métodos auxiliares
+
+    /**
+     * Método encargado de averiguar si dos actores se han chocado. Internamente debe comprobar dos
+     * casos: si A se ha topado con B o si B se ha topado con A, ya que el registro del contacto
+     * sino puede ser erróneo.
+     * @param contact Objeto que registra el contacto entre dos objetos
+     * @param objA Objeto A que se registra en el contacto
+     * @param objB Objeto B que se registra en el contacto
+     * @return Devuelve true si se ha producido contacto entre los dos objetos o false si no se ha
+     * producido contacto.
+     */
+    private boolean areColider(Contact contact, Object objA, Object objB){
+        return (contact.getFixtureA().getUserData().equals(objA) && contact.getFixtureB().getUserData().equals(objB)) ||
+                (contact.getFixtureA().getUserData().equals(objB) && contact.getFixtureB().getUserData().equals(objA));
+    }
+
     private void addBorder(Body border, Fixture fixture, Vector2 vector1, Vector2 vector2) {
         BodyDef bodydef = new BodyDef();
         bodydef.type = BodyDef.BodyType.StaticBody;
@@ -224,10 +293,20 @@ public class GameScreen extends BaseScreen
     }
 
     /**
+     * Método encargado de configurar la música y los sonidos
+     */
+    private void prepareGameSound() {
+        this.musicBG = AssetMan.getInstance().getBGMusic();
+        this.musicGO = AssetMan.getInstance().getGOMusic();
+        this.hitSound = AssetMan.getInstance().getHitSound();
+    }
+
+    /**
      * Método encargado de configurar la puntuación
      */
     private void prepareScore(){
         // Configuramos la fuente y su escala
+        this.scoreNumber = 0;
         this.score = AssetMan.getInstance().getFont();
         this.score.getData().scale(1f);
 

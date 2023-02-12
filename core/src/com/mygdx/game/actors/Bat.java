@@ -36,6 +36,11 @@ public class Bat extends Actor {
     private float randomSpeedFactor;
     private Vector2 position;
 
+    /**
+     * Constructor por parámetros
+     * @param world
+     * @param position
+     */
     public Bat(World world, Vector2 position){
         this.animation = AssetMan.getInstance().getBatAnimation();
         this.world = world;
@@ -48,10 +53,19 @@ public class Bat extends Actor {
         createCounter();
     }
 
+    /**
+     * Método encargado de indicar cuando el murciélago se encuentra fuera de la pantalla
+     * @return Devuelve true si la posición actual del actor está fuera de la pantalla o false si se
+     * encuentra dentro
+     */
     public boolean isOutOfScreen(){
-        return this.body.getPosition().y <= -2f;
+        return this.body.getPosition().y <= -BAT_HEIGHT - 0.1f;
     }
 
+    /**
+     * Método encargado de parar el movimiento del murciélago y del su respectivo contador cuando se
+     * pause o acabe el juego
+     */
     public void stopBat(){
         body.setLinearVelocity(0,0);
     }
@@ -104,7 +118,7 @@ public class Bat extends Actor {
         shape.setAsBox(WORLD_WIDTH,COUNTER_HEIGHT);
         this.fixtureCounter = bodyCounter.createFixture(shape,3);
         this.fixtureCounter.setSensor(true);
-        this.bodyCounter.setUserData(USER_COUNTER);
+        this.fixtureCounter.setUserData(USER_COUNTER);
         shape.dispose();
     }
 

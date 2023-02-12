@@ -43,8 +43,6 @@ public class Flammie extends Actor {
     private Body body;
     private Fixture fixture;
 
-    private Sound hitSound;
-
     /**
      * Constructor por parámetros
      */
@@ -57,7 +55,6 @@ public class Flammie extends Actor {
         this.world = world;
         this.stateTime = 0f;
         this.state = STATE_NORMAL;
-        this.hitSound = AssetMan.getInstance().getHitSound();
 
         createBody();
         createFixture();
@@ -74,61 +71,10 @@ public class Flammie extends Actor {
         int positionX = Gdx.input.getX();
 
         /*int positionY = Gdx.input.getY();
-        // En este caso vamos a realizar varias comprobaciones para determinar el movimiento del
-        // actor. A cuestiones prácticas la pantalla se divide en una matriz de 3 por 3. Cada
-        // campo de la matriz determina el tipo de movimiento, excepto el campo central ([0][0]).
-        // Los campos de las esquinas ([0][0], [0][2], [2][0], [2][2]) implican un movimiento
-        // diagonal mientras que los demás campos ([1][0], [0][1], [1][2], [2][1]) implican un
-        // movimiento unidireccional vertical u horizontal
-        if(jump && this.state == STATE_NORMAL){
-            // Comprobamos la primera columna de la matriz
-            if(positionX < SCREEN_WIDTH * 0.66 && positionX > SCREEN_WIDTH * 0.33){
-                this.animation = animationStraight;
-
-                if(positionY > SCREEN_HEIGHT * 0.66){
-                    this.body.setLinearVelocity(0,-SPEED);
-                }else{
-                    if(positionY < SCREEN_HEIGHT * 0.33){
-                        this.body.setLinearVelocity(0, SPEED);
-                    }
-                }
-            }else{
-                // Comprobamos la tercera columna de la matriz
-                if(positionX < SCREEN_WIDTH * 0.33){
-                    this.animation = animationLeft;
-
-                    if(positionY > SCREEN_HEIGHT * 0.33 && positionY < SCREEN_HEIGHT * 0.66 ){
-                        this.body.setLinearVelocity(-SPEED,0f);
-                    }else{
-                        if(positionY < SCREEN_HEIGHT * 0.33){
-                            this.body.setLinearVelocity(-SPEED, SPEED);
-                        }else{
-                            this.body.setLinearVelocity(-SPEED,-SPEED);
-                        }
-                    }
-                }else{
-                    // Comprobamos el centro de la segunda columna matriz
-                    this.animation = animationRight;
-
-                    if(positionY > SCREEN_HEIGHT * 0.33 && positionY < SCREEN_HEIGHT * 0.66 ){
-                        this.body.setLinearVelocity(SPEED,0f);
-                    }else{
-                        if(positionY < SCREEN_HEIGHT * 0.33){
-                            this.body.setLinearVelocity(SPEED, SPEED);
-                        }else{
-                            this.body.setLinearVelocity(SPEED,-SPEED);
-                        }
-                    }
-                }
-            }
-        }else{
-            this.body.setLinearVelocity(0,0);
-            this.animation = animationStraight;
-        }*/
-
+        float distanciaX = (positionX - this.body.getPosition().x)/200;
+        float distanciaY = (positionY - this.body.getPosition().y)/200;*/
 
         if(jump && this.state == STATE_NORMAL){
-            // Comprobamos la primera columna de la matriz
             if(positionX > SCREEN_WIDTH/2){
                 this.body.setLinearVelocity(SPEED,0f);
                 this.animation= animationRight;
@@ -136,11 +82,11 @@ public class Flammie extends Actor {
                 this.body.setLinearVelocity(-SPEED,0f);
                 this.animation = animationLeft;
             }
+            //this.body.setLinearVelocity(distanciaX, distanciaY);
         }else{
             this.body.setLinearVelocity(0,0);
             this.animation = animationStraight;
         }
-
     }
 
     /**
@@ -169,7 +115,7 @@ public class Flammie extends Actor {
     }
 
     /**
-     * Método encargado de "matar" al personaje
+     * Método encargado de cambiar el estado del personaje a muerto cuando colisiona con un enemigo.
      */
     public void dies(){
         state = STATE_DEAD;
