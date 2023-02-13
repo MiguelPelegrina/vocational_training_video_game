@@ -52,7 +52,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
     private Flammie flammie;
 
     private Music musicBG;
-    private Music musicGO;
     private Sound hitSound;
 
     private Body leftBorder;
@@ -113,7 +112,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
      *
      */
     public void addFlammie(){
-        this.flammie = new Flammie(this.world, new Vector2(WORLD_WIDTH/2f,WORLD_HEIGHT/2f));
+        this.flammie = new Flammie(this.world, new Vector2(WORLD_WIDTH/2f,WORLD_HEIGHT/4f));
         this.stage.addActor(this.flammie);
     }
 
@@ -169,7 +168,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // Colocamos los murciélagos
-        //addBats(delta);
+        addBats(delta);
         // Configuramos el lote del escenario de tal forma que representa los elementos en función
         // del tamaño del mundo
         this.stage.getBatch().setProjectionMatrix(worldCamera.combined);
@@ -180,9 +179,9 @@ public class GameScreen extends BaseScreen implements ContactListener {
         this.debugRenderer.render(this.world, this.worldCamera.combined);
         // Liberamos el espacio de la gráfica destinado a las rocas que se encuentra ya fuera de la
         // pantalla
-        //removeBats();
+        removeBats();
 
-        // Configuramos el lote del escenario de tal forma que representa solo la fuenta en función
+        // Configuramos el lote del escenario de tal forma que representa solo la fuente en función
         // de la resolución de la pantalla en píxeles
         this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
         this.stage.getBatch().begin();
@@ -234,7 +233,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
             flammie.dies();
             this.hitSound.play();
             this.musicBG.stop();
-            this.musicGO.play();
             for (Bat bat : arrayBats) {
                 bat.stopBat();
             }
@@ -300,7 +298,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
      */
     private void prepareGameSound() {
         this.musicBG = AssetMan.getInstance().getBGMusic();
-        this.musicGO = AssetMan.getInstance().getGOMusic();
         this.hitSound = AssetMan.getInstance().getHitSound();
     }
 
