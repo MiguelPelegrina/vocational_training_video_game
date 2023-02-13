@@ -67,6 +67,7 @@ public class Flammie extends Actor {
      */
     @Override
     public void act(float delta) {
+        // FUNCIONA
         boolean moving  = Gdx.input.isTouched();
         int positionX = Gdx.input.getX();
 
@@ -82,6 +83,23 @@ public class Flammie extends Actor {
             this.body.setLinearVelocity(0,0);
             this.animation = animationStraight;
         }
+
+        // TODO NO FUNCIONA
+        /*boolean moving  = Gdx.input.isTouched();
+        int positionX = Gdx.input.getX();
+        float distanciaX = positionX/100f;
+
+        if(moving && this.state == STATE_NORMAL){
+            if(distanciaX > this.body.getPosition().x){
+                this.animation= animationRight;
+            }else{
+                this.animation = animationLeft;
+            }
+            this.body.setLinearVelocity(distanciaX - this.body.getPosition().x, 0f);
+        }else{
+            this.body.setLinearVelocity(0,0);
+            this.animation = animationStraight;
+        }*/
     }
 
     /**
