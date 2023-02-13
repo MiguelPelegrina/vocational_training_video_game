@@ -5,6 +5,8 @@ import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
 import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 import static com.mygdx.game.extras.Utils.USER_COUNTER;
 import static com.mygdx.game.extras.Utils.USER_FLAMMIE;
+import static com.mygdx.game.extras.Utils.USER_LEFTBORDER;
+import static com.mygdx.game.extras.Utils.USER_RIGHTBORDER;
 import static com.mygdx.game.extras.Utils.WORLD_HEIGHT;
 import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
@@ -167,7 +169,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // Colocamos los murciélagos
-        addBats(delta);
+        //addBats(delta);
         // Configuramos el lote del escenario de tal forma que representa los elementos en función
         // del tamaño del mundo
         this.stage.getBatch().setProjectionMatrix(worldCamera.combined);
@@ -178,7 +180,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
         this.debugRenderer.render(this.world, this.worldCamera.combined);
         // Liberamos el espacio de la gráfica destinado a las rocas que se encuentra ya fuera de la
         // pantalla
-        removeBats();
+        //removeBats();
 
         // Configuramos el lote del escenario de tal forma que representa solo la fuenta en función
         // de la resolución de la pantalla en píxeles
@@ -196,8 +198,8 @@ public class GameScreen extends BaseScreen implements ContactListener {
         super.show();
         addBackground();
         addFlammie();
-        addBorder(leftBorder,leftBorderFixture,new Vector2(0,0), new Vector2(0,WORLD_HEIGHT));
-        addBorder(rightBorder,rightBorderFixture,new Vector2(WORLD_WIDTH,0),new Vector2(WORLD_WIDTH,WORLD_HEIGHT));
+        addBorder(leftBorder,leftBorderFixture, USER_LEFTBORDER,new Vector2(0,0), new Vector2(0,WORLD_HEIGHT));
+        addBorder(rightBorder,rightBorderFixture, USER_RIGHTBORDER,new Vector2(WORLD_WIDTH,0),new Vector2(WORLD_WIDTH,WORLD_HEIGHT));
 
         musicBG.setLooping(true);
         musicBG.play();
@@ -281,7 +283,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
                 (contact.getFixtureA().getUserData().equals(objB) && contact.getFixtureB().getUserData().equals(objA));
     }
 
-    private void addBorder(Body border, Fixture fixture, Vector2 vector1, Vector2 vector2) {
+    private void addBorder(Body border, Fixture fixture, String user, Vector2 vector1, Vector2 vector2) {
         BodyDef bodydef = new BodyDef();
         bodydef.type = BodyDef.BodyType.StaticBody;
         border = world.createBody(bodydef);
@@ -289,6 +291,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
         EdgeShape edge = new EdgeShape();
         edge.set(vector1,vector2);
         fixture = border.createFixture(edge, 1);
+        fixture.setUserData(user);
         edge.dispose();
     }
 

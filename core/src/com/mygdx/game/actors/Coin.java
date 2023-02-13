@@ -1,5 +1,5 @@
 package com.mygdx.game.actors;
 
-public class Rock {
+public class Coin {
 
 }
