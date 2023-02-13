@@ -70,19 +70,14 @@ public class Flammie extends Actor {
         boolean moving  = Gdx.input.isTouched();
         int positionX = Gdx.input.getX();
 
-        //int positionY = Gdx.input.getY();
-        float distanciaX = positionX/100f - this.body.getPosition().x;
-        //float distanciaY = (positionY - this.body.getPosition().y)/200;
-
         if(moving && this.state == STATE_NORMAL){
             if(positionX > SCREEN_WIDTH/2){
-                this.body.setLinearVelocity(positionX/100f - this.body.getPosition().x,0f);
+                this.body.setLinearVelocity(SPEED,0f);
                 this.animation= animationRight;
             }else{
-                this.body.setLinearVelocity(-this.body.getPosition().x + positionX/100f,0f);
+                this.body.setLinearVelocity(-SPEED,0f);
                 this.animation = animationLeft;
             }
-            //this.body.setLinearVelocity(distanciaX, 0f);
         }else{
             this.body.setLinearVelocity(0,0);
             this.animation = animationStraight;
