@@ -1,15 +1,10 @@
 package com.mygdx.game.screens;
 
-import static com.mygdx.game.extras.Utils.USER_LEFTBORDER;
-import static com.mygdx.game.extras.Utils.USER_RIGHTBORDER;
-import static com.mygdx.game.extras.Utils.WORLD_HEIGHT;
-import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.MainGame;
 import com.mygdx.game.extras.AssetMan;
 
@@ -62,7 +57,6 @@ public class GameOverScreen extends BaseScreen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         if(Gdx.input.isTouched()){
-
             this.mainGame.setScreen(new GameScreen(this.mainGame));
             dispose();
         }

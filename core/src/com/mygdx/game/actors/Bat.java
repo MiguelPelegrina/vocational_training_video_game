@@ -67,7 +67,8 @@ public class Bat extends Actor {
      * pause o acabe el juego
      */
     public void stopBat(){
-        body.setLinearVelocity(0,0);
+        this.body.setLinearVelocity(0,0);
+        this.bodyCounter.setLinearVelocity(0,0);
     }
 
     public void act(float delta) {

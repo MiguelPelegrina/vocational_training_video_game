@@ -1,7 +1,5 @@
 package com.mygdx.game.screens;
 
-import static com.mygdx.game.extras.Utils.USER_LEFTBORDER;
-import static com.mygdx.game.extras.Utils.USER_RIGHTBORDER;
 import static com.mygdx.game.extras.Utils.WORLD_HEIGHT;
 import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
@@ -13,7 +11,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.MainGame;
-import com.mygdx.game.extras.AssetMan;
 
 /**
  *
@@ -41,13 +38,6 @@ public class GetReadyScreen extends BaseScreen{
     @Override
     public void render(float delta){
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        /*camera.update();
-        this.mainGame.batch.setProjectionMatrix(camera.combined);
-        this.mainGame.batch.begin();
-        AssetMan.getInstance().getFont().draw(this.mainGame.batch, "Bienvenido a Flammie!", 100,150);
-        AssetMan.getInstance().getFont().draw(this.mainGame.batch, "Presiona donde quieras para empezar", 100,100);
-        this.mainGame.batch.end();*/
 
         if(Gdx.input.isTouched()){
             this.mainGame.setScreen(new GameScreen(this.mainGame));
