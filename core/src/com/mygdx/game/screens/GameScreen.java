@@ -14,7 +14,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -62,9 +61,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
     // TODO QUITAR AL FINAL
     private Box2DDebugRenderer debugRenderer;
     private OrthographicCamera worldCamera;
-
-    // Para mostrar la puntuación
-    private OrthographicCamera fontCamera;
 
     /**
      * Constructor por parámetros
@@ -179,7 +175,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
         // de la resolución de la pantalla en píxeles
         this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
         this.stage.getBatch().begin();
-        this.text.draw(this.stage.getBatch(), this.scoreNumber + "", SCREEN_WIDTH*0.9f, SCREEN_HEIGHT*0.95f);
+        this.font.draw(this.stage.getBatch(), this.scoreNumber + "", SCREEN_WIDTH*0.9f, SCREEN_HEIGHT*0.95f);
         this.stage.getBatch().end();
     }
 
@@ -301,8 +297,8 @@ public class GameScreen extends BaseScreen implements ContactListener {
     private void prepareScore(){
         // Configuramos la fuente y su escala
         this.scoreNumber = 0;
-        this.text = AssetMan.getInstance().getFont();
-        this.text.getData().scale(1f);
+        this.font = AssetMan.getInstance().getFont();
+        this.font.getData().scale(1f);
 
         // Instanciamos la cámara con el tamáno de la pantalla
         this.fontCamera = new OrthographicCamera();
