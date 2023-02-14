@@ -23,11 +23,6 @@ import com.mygdx.game.extras.AssetMan;
  */
 public class GameOverScreen extends BaseScreen{
     // Declaración de variables
-    private OrthographicCamera fontCamera;
-    private Stage stage;
-    private World world;
-    private String getReady;
-    private BitmapFont text;
 
     /**
      * Constructor por parámetros
@@ -80,7 +75,7 @@ public class GameOverScreen extends BaseScreen{
 
         this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
         this.stage.getBatch().begin();
-        this.text.draw(this.stage.getBatch(), this.getReady + "", SCREEN_WIDTH*0.3f, SCREEN_HEIGHT*0.7f);
+        this.font.draw(this.stage.getBatch(), this.text + "", SCREEN_WIDTH*0.3f, SCREEN_HEIGHT*0.7f);
         this.stage.getBatch().end();
 
         if(Gdx.input.isTouched()){
@@ -92,9 +87,9 @@ public class GameOverScreen extends BaseScreen{
     // Métodos auxiliares
     private void prepareMessage() {
         // Configuramos la fuente y su escala
-        this.getReady = "You lost!\nTouch the \nscreen to \nstart again!";
-        this.text = AssetMan.getInstance().getFont();
-        this.text.getData().scale(1f);
+        this.text = "You lost!\nTouch the \nscreen to \nstart again!";
+        this.font = AssetMan.getInstance().getFont();
+        this.font.getData().scale(1f);
 
         // Instanciamos la cámara con el tamáno de la pantalla
         this.fontCamera = new OrthographicCamera();
