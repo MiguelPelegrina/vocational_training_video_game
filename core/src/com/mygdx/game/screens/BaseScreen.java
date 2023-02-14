@@ -2,6 +2,8 @@ package com.mygdx.game.screens;
 
 import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
 import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
+import static com.mygdx.game.extras.Utils.WORLD_HEIGHT;
+import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
@@ -9,6 +11,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.mygdx.game.MainGame;
 import com.mygdx.game.extras.AssetMan;
 
@@ -25,6 +28,7 @@ public abstract class BaseScreen implements Screen {
     // TODO ABSTRAER TODOS LOS ATRIBUTOS Y MÉTODOS REPETIDOS
     protected Stage stage;
     protected World world;
+    protected Image background;
     protected OrthographicCamera fontCamera;
     protected Music music;
     protected String text;
@@ -84,5 +88,12 @@ public abstract class BaseScreen implements Screen {
         this.fontCamera = new OrthographicCamera();
         this.fontCamera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
         this.fontCamera.update();
+    }
+
+    protected void addBackground(){
+        this.background = new Image(AssetMan.getInstance().getBackgroundStart());
+        this.background.setPosition(0,0);
+        this.background.setSize(WORLD_WIDTH,WORLD_HEIGHT);
+        this.stage.addActor(this.background);
     }
 }

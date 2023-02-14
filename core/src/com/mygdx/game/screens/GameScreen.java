@@ -43,7 +43,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
     private static final float BAT_SPAWN_TIME = 1.5f;
     // Atributos de la instancia
     private float timeToCreateBat;
-    private Image background;
     private Flammie flammie;
 
     private Sound hitSound;

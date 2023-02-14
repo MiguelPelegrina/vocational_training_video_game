@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.MainGame;
 import com.mygdx.game.extras.AssetMan;
@@ -42,6 +43,10 @@ public class GetReadyScreen extends BaseScreen{
     public void render(float delta){
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        this.stage.act();
+        this.world.step(delta,6,2);
+        this.stage.draw();
+
         this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
         this.stage.getBatch().begin();
         this.font.draw(this.stage.getBatch(), this.text + "", SCREEN_WIDTH*0.3f, SCREEN_HEIGHT*0.7f);
@@ -59,7 +64,7 @@ public class GetReadyScreen extends BaseScreen{
     @Override
     public void show(){
         super.show();
-        //addBackground();
+        addBackground();
         //addFlammie();
 
         //music.setLooping(true);
