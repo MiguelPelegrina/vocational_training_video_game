@@ -1,250 +1,257 @@
 
 Flammie.png
-size: 2048, 2048
+size: 2048, 1024
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 Flammie1
   rotate: false
-  xy: 49, 71
+  xy: 190, 106
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie10
   rotate: false
-  xy: 96, 118
+  xy: 1172, 795
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie10l
   rotate: false
-  xy: 1111, 1794
+  xy: 1219, 973
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie10r
   rotate: false
-  xy: 1111, 1700
+  xy: 1313, 973
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie1l
   rotate: false
-  xy: 2, 155
+  xy: 1172, 926
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie1r
   rotate: false
-  xy: 1064, 1653
+  xy: 1266, 926
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie2
   rotate: false
-  xy: 1158, 1710
+  xy: 143, 22
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie2l
   rotate: false
-  xy: 49, 155
+  xy: 96, 96
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie2r
   rotate: false
-  xy: 2, 202
+  xy: 1172, 973
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie3
   rotate: false
-  xy: 190, 212
+  xy: 1266, 889
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie3l
   rotate: false
-  xy: 1111, 1747
+  xy: 1266, 973
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie3r
   rotate: false
-  xy: 1064, 1747
+  xy: 2, 2
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie4
   rotate: false
-  xy: 1252, 1804
+  xy: 1172, 758
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie4l
   rotate: false
-  xy: 2, 61
+  xy: 96, 49
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie4r
   rotate: false
-  xy: 96, 202
+  xy: 1172, 879
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie5
   rotate: false
-  xy: 1111, 1663
+  xy: 1360, 983
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie5l
   rotate: false
-  xy: 96, 155
+  xy: 1172, 832
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie5r
   rotate: false
-  xy: 1158, 1794
+  xy: 49, 2
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie6
   rotate: false
-  xy: 143, 165
+  xy: 1219, 842
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie6l
   rotate: false
-  xy: 1158, 1747
+  xy: 96, 2
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie6r
   rotate: false
-  xy: 49, 108
+  xy: 143, 96
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie7
   rotate: false
-  xy: 1205, 1757
+  xy: 227, 106
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie7l
   rotate: false
-  xy: 1064, 1794
+  xy: 2, 49
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie7r
   rotate: false
-  xy: 143, 202
+  xy: 1219, 879
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie8
   rotate: false
-  xy: 1064, 1616
+  xy: 1313, 936
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie8l
   rotate: false
-  xy: 2, 108
+  xy: 49, 49
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie8r
   rotate: false
-  xy: 1205, 1794
+  xy: 2, 96
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie9
   rotate: false
-  xy: 2, 24
+  xy: 143, 59
   size: 35, 35
   orig: 35, 35
   offset: 0, 0
   index: -1
 Flammie9l
   rotate: false
-  xy: 1064, 1700
+  xy: 1219, 926
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 Flammie9r
   rotate: false
-  xy: 49, 202
+  xy: 49, 96
   size: 45, 45
   orig: 45, 45
   offset: 0, 0
   index: -1
 backgroundPixelated
   rotate: false
-  xy: 2, 249
-  size: 1060, 1590
-  orig: 1060, 1590
+  xy: 2, 143
+  size: 583, 875
+  orig: 583, 875
+  offset: 0, 0
+  index: -1
+backgroundPixelatedDarkened
+  rotate: false
+  xy: 587, 143
+  size: 583, 875
+  orig: 583, 875
   offset: 0, 0
   index: -1
 bat1
   rotate: false
-  xy: 1064, 1594
+  xy: 1172, 736
   size: 30, 20
   orig: 30, 20
   offset: 0, 0
   index: -1
 bat2
   rotate: false
-  xy: 227, 227
+  xy: 264, 121
   size: 31, 20
   orig: 31, 20
   offset: 0, 0
   index: -1
 bat3
   rotate: false
-  xy: 1289, 1819
+  xy: 1431, 998
   size: 30, 20
   orig: 30, 20
   offset: 0, 0
   index: -1
 bat4
   rotate: false
-  xy: 2, 2
+  xy: 1397, 998
   size: 32, 20
   orig: 32, 20
   offset: 0, 0

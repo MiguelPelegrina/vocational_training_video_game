@@ -2,6 +2,7 @@ package com.mygdx.game.extras;
 
 import static com.mygdx.game.extras.Utils.ATLAS_MAP;
 import static com.mygdx.game.extras.Utils.BACKGROUND_IMAGE;
+import static com.mygdx.game.extras.Utils.BACKGROUND_IMAGE_START;
 import static com.mygdx.game.extras.Utils.BAT1;
 import static com.mygdx.game.extras.Utils.BAT2;
 import static com.mygdx.game.extras.Utils.BAT3;
@@ -99,6 +100,14 @@ public class AssetMan {
      */
     public TextureRegion getBackground(){
         return this.textureAtlas.findRegion(BACKGROUND_IMAGE);
+    }
+
+    /**
+     * Método encargado de devolver la imagen de fondo
+     * @return Devuelve la imagen de fondo
+     */
+    public TextureRegion getBackgroundStart(){
+        return this.textureAtlas.findRegion(BACKGROUND_IMAGE_START);
     }
 
     /**

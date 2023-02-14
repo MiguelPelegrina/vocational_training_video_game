@@ -76,7 +76,7 @@ public abstract class BaseScreen implements Screen {
     // Métodos auxiliares
     protected void prepareMessage(String text) {
         // Configuramos la fuente y su escala
-        this.text = "You lost!\nTouch the \nscreen to \nstart again!";
+        this.text = text;
         this.font = AssetMan.getInstance().getFont();
         this.font.getData().scale(1f);
 

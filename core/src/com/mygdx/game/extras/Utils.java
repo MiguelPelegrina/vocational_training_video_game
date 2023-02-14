@@ -18,6 +18,7 @@ public class Utils {
     public static final String ATLAS_MAP = "Flammie.atlas";
     // Imágenes
     public static final String BACKGROUND_IMAGE = "backgroundPixelated";
+    public static final String BACKGROUND_IMAGE_START = "backgroundPixelatedDarkened";
     // Personaje principal
     // Movimiento hacia delante
     public static final String FLAMMIE1 = "Flammie1";

@@ -13,11 +13,15 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.MainGame;
+import com.mygdx.game.extras.AssetMan;
 
 /**
  *
  */
 public class GetReadyScreen extends BaseScreen{
+    // Declaración de variables
+    //TODO Megaman?
+
     /**
      * Constructor por parámetros
      * @param mainGame
@@ -31,9 +35,7 @@ public class GetReadyScreen extends BaseScreen{
         this.stage = new Stage(fitViewport);
         this.fontCamera = (OrthographicCamera) this.stage.getCamera();
 
-        //TODO Megaman?
-
-        prepareMessage("Ready?\nTouch the \nscreen to start!");
+        prepareMessage();
     }
 
     @Override
@@ -62,5 +64,18 @@ public class GetReadyScreen extends BaseScreen{
 
         //music.setLooping(true);
         //music.play();
+    }
+
+    // Métodos auxiliares
+    private void prepareMessage() {
+        // Configuramos la fuente y su escala
+        this.text = "Ready?\nTouch the \nscreen to start!";
+        this.font = AssetMan.getInstance().getFont();
+        this.font.getData().scale(1f);
+
+        // Instanciamos la cámara con el tamáno de la pantalla
+        this.fontCamera = new OrthographicCamera();
+        this.fontCamera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
+        this.fontCamera.update();
     }
 }
