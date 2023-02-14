@@ -80,12 +80,12 @@ public class Bat extends Actor {
         setPosition(this.body.getPosition().x - (BAT_WIDTH/2), this.body.getPosition().y - (BAT_HEIGHT/2) );
         batch.draw(this.animation.getKeyFrame(stateTime, true), getX(),getY(),BAT_WIDTH,BAT_HEIGHT);
 
-        stateTime += Gdx.graphics.getDeltaTime();
+        this.stateTime += Gdx.graphics.getDeltaTime();
     }
 
     public void detach(){
-        body.destroyFixture(fixture);
-        world.destroyBody(body);
+        this.body.destroyFixture(fixture);
+        this.world.destroyBody(body);
     }
 
     // Métodos auxiliares

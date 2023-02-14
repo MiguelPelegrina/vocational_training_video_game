@@ -11,7 +11,6 @@ import static com.mygdx.game.extras.Utils.WORLD_HEIGHT;
 import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -45,12 +44,9 @@ public class GameScreen extends BaseScreen implements ContactListener {
     private static final float BAT_SPAWN_TIME = 1.5f;
     // Atributos de la instancia
     private float timeToCreateBat;
-    private Stage stage;
-    private World world;
     private Image background;
     private Flammie flammie;
 
-    private Music musicBG;
     private Sound hitSound;
 
     private Body leftBorder;
@@ -69,7 +65,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
 
     // Para mostrar la puntuación
     private OrthographicCamera fontCamera;
-    private BitmapFont score;
 
     /**
      * Constructor por parámetros
@@ -184,7 +179,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
         // de la resolución de la pantalla en píxeles
         this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
         this.stage.getBatch().begin();
-        this.score.draw(this.stage.getBatch(), this.scoreNumber + "", SCREEN_WIDTH/2f, SCREEN_HEIGHT*0.95f);
+        this.text.draw(this.stage.getBatch(), this.scoreNumber + "", SCREEN_WIDTH*0.9f, SCREEN_HEIGHT*0.95f);
         this.stage.getBatch().end();
     }
 
@@ -199,8 +194,8 @@ public class GameScreen extends BaseScreen implements ContactListener {
         addBorder(leftBorder,leftBorderFixture, USER_LEFTBORDER,new Vector2(0,0), new Vector2(0,WORLD_HEIGHT));
         addBorder(rightBorder,rightBorderFixture, USER_RIGHTBORDER,new Vector2(WORLD_WIDTH,0),new Vector2(WORLD_WIDTH,WORLD_HEIGHT));
 
-        musicBG.setLooping(true);
-        musicBG.play();
+        music.setLooping(true);
+        music.play();
     }
 
     /**
@@ -211,7 +206,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
         this.flammie.detach();
         this.flammie.remove();
 
-        this.musicBG.stop();
+        this.music.stop();
     }
 
     /**
@@ -221,7 +216,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     public void dispose() {
         this.stage.dispose();
         this.world.dispose();
-        this.musicBG.dispose();
+        this.music.dispose();
     }
 
     @Override
@@ -231,7 +226,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
         }else{
             flammie.dies();
             this.hitSound.play();
-            this.musicBG.stop();
+            this.music.stop();
             for (Bat bat : arrayBats) {
                 bat.stopBat();
             }
@@ -296,7 +291,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
      * Método encargado de configurar la música y los sonidos
      */
     private void prepareGameSound() {
-        this.musicBG = AssetMan.getInstance().getBGMusic();
+        this.music = AssetMan.getInstance().getBGMusic();
         this.hitSound = AssetMan.getInstance().getHitSound();
     }
 
@@ -306,10 +301,10 @@ public class GameScreen extends BaseScreen implements ContactListener {
     private void prepareScore(){
         // Configuramos la fuente y su escala
         this.scoreNumber = 0;
-        this.score = AssetMan.getInstance().getFont();
-        this.score.getData().scale(1f);
+        this.text = AssetMan.getInstance().getFont();
+        this.text.getData().scale(1f);
 
-        // Instanciamos la cámara con el taámano de la pantalla
+        // Instanciamos la cámara con el tamáno de la pantalla
         this.fontCamera = new OrthographicCamera();
         this.fontCamera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
         this.fontCamera.update();

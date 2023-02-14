@@ -1,6 +1,10 @@
 package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.MainGame;
 
 /**
@@ -13,6 +17,11 @@ import com.mygdx.game.MainGame;
 public abstract class BaseScreen implements Screen {
     // Atributos de la instancia
     protected MainGame mainGame;
+    // TODO ABSTRAER TODOS LOS ATRIBUTOS Y MÉTODOS REPETIDOS
+    protected Stage stage;
+    protected World world;
+    protected Music music;
+    protected BitmapFont text;
 
     /**
      * Constructor por parámetros

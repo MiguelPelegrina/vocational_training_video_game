@@ -1,25 +1,33 @@
 package com.mygdx.game.screens;
 
+import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
+import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 import static com.mygdx.game.extras.Utils.WORLD_HEIGHT;
 import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.MainGame;
+import com.mygdx.game.extras.AssetMan;
 
 /**
  *
  */
 public class GetReadyScreen extends BaseScreen{
     // Declaración de variables
-    private OrthographicCamera camera;
+    private OrthographicCamera fontCamera;
     private Stage stage;
     private World world;
+    //TODO Megaman?
+    private String getReady;
+    private BitmapFont text;
 
     /**
      * Constructor por parámetros
@@ -32,12 +40,19 @@ public class GetReadyScreen extends BaseScreen{
 
         FitViewport fitViewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
         this.stage = new Stage(fitViewport);
-        this.camera = (OrthographicCamera) this.stage.getCamera();
+        this.fontCamera = (OrthographicCamera) this.stage.getCamera();
+
+        prepareMessage();
     }
 
     @Override
     public void render(float delta){
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
+        this.stage.getBatch().begin();
+        this.text.draw(this.stage.getBatch(), this.getReady + "", SCREEN_WIDTH*0.3f, SCREEN_HEIGHT*0.7f);
+        this.stage.getBatch().end();
 
         if(Gdx.input.isTouched()){
             this.mainGame.setScreen(new GameScreen(this.mainGame));
@@ -54,7 +69,20 @@ public class GetReadyScreen extends BaseScreen{
         //addBackground();
         //addFlammie();
 
-        //musicBG.setLooping(true);
-        //musicBG.play();
+        //music.setLooping(true);
+        //music.play();
+    }
+
+    // Métodos auxiliares
+    private void prepareMessage() {
+        // Configuramos la fuente y su escala
+        this.getReady = "Ready?\nTouch the \nscreen to start!";
+        this.text = AssetMan.getInstance().getFont();
+        this.text.getData().scale(1f);
+
+        // Instanciamos la cámara con el tamáno de la pantalla
+        this.fontCamera = new OrthographicCamera();
+        this.fontCamera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
+        this.fontCamera.update();
     }
 }
