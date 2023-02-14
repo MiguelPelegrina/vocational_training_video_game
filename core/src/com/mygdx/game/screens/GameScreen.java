@@ -68,13 +68,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     public GameScreen(MainGame mainGame) {
         super(mainGame);
 
-        // Como todos los actores de este juego vuelan, el mundo no tendrá gravedad
-        this.world = new World(new Vector2(0,0), true);
-        // Asignamos la interfaz encargada de gestionar los eventos de contacto implementados en la
-        // propia clase
         this.world.setContactListener(this);
-        FitViewport fitViewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
-        this.stage = new Stage(fitViewport);
 
         this.arrayBats = new Array<>();
         this.timeToCreateBat= 0f;

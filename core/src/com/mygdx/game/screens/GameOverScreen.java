@@ -27,10 +27,6 @@ public class GameOverScreen extends BaseScreen{
     public GameOverScreen(MainGame mainGame) {
         super(mainGame);
 
-        this.world = new World(new Vector2(0,0), true);
-
-        FitViewport fitViewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
-        this.stage = new Stage(fitViewport);
         this.fontCamera = (OrthographicCamera) this.stage.getCamera();
 
         prepareMessage("Game over!\nTouch the \nscreen to \nstart again!");
