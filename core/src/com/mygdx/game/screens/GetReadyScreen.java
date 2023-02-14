@@ -6,16 +6,13 @@ import static com.mygdx.game.extras.Utils.WORLD_HEIGHT;
 import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.MainGame;
-import com.mygdx.game.extras.AssetMan;
 
 /**
  *
@@ -36,7 +33,7 @@ public class GetReadyScreen extends BaseScreen{
 
         //TODO Megaman?
 
-        prepareMessage();
+        prepareMessage("Ready?\nTouch the \nscreen to start!");
     }
 
     @Override
@@ -65,18 +62,5 @@ public class GetReadyScreen extends BaseScreen{
 
         //music.setLooping(true);
         //music.play();
-    }
-
-    // Métodos auxiliares
-    private void prepareMessage() {
-        // Configuramos la fuente y su escala
-        this.text = "Ready?\nTouch the \nscreen to start!";
-        this.font = AssetMan.getInstance().getFont();
-        this.font.getData().scale(1f);
-
-        // Instanciamos la cámara con el tamáno de la pantalla
-        this.fontCamera = new OrthographicCamera();
-        this.fontCamera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
-        this.fontCamera.update();
     }
 }

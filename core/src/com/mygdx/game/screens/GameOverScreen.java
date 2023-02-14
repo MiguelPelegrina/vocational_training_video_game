@@ -7,10 +7,8 @@ import static com.mygdx.game.extras.Utils.WORLD_HEIGHT;
 import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -35,7 +33,7 @@ public class GameOverScreen extends BaseScreen{
         this.stage = new Stage(fitViewport);
         this.fontCamera = (OrthographicCamera) this.stage.getCamera();
 
-        prepareMessage();
+        prepareMessage("You lost!\nTouch the \nscreen to \nstart again!");
 
         this.music = AssetMan.getInstance().getGOMusic();
     }
@@ -80,18 +78,5 @@ public class GameOverScreen extends BaseScreen{
             this.mainGame.setScreen(new GameScreen(this.mainGame));
             dispose();
         }
-    }
-
-    // Métodos auxiliares
-    private void prepareMessage() {
-        // Configuramos la fuente y su escala
-        this.text = "You lost!\nTouch the \nscreen to \nstart again!";
-        this.font = AssetMan.getInstance().getFont();
-        this.font.getData().scale(1f);
-
-        // Instanciamos la cámara con el tamáno de la pantalla
-        this.fontCamera = new OrthographicCamera();
-        this.fontCamera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
-        this.fontCamera.update();
     }
 }
