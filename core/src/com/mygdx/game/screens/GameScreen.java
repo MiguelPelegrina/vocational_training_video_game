@@ -86,7 +86,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
         FitViewport fitViewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
         this.stage = new Stage(fitViewport);
 
-        this.arrayBats = new Array<Bat>();
+        this.arrayBats = new Array<>();
         this.timeToCreateBat= 0f;
 
         prepareGameSound();
@@ -111,7 +111,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
      *
      */
     public void addFlammie(){
-        this.flammie = new Flammie(this.world, new Vector2(WORLD_WIDTH/2f,WORLD_HEIGHT/4f));
+        this.flammie = new Flammie(this.world, this.worldCamera, new Vector2(WORLD_WIDTH/2f,WORLD_HEIGHT/4f));
         this.stage.addActor(this.flammie);
     }
 
@@ -121,7 +121,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
      */
     public void addBats(float delta){
         // Mientras que el muñeco está vivo
-        if(flammie.getState() == Flammie.STATE_NORMAL){
+        if(flammie.getState() == Flammie.STATE_ALIVE){
             // Acumulamos el tiempo entre un fotograma y el siguiente
             this.timeToCreateBat += delta;
             // Si el tiempo acumulado supera el establecido TODO como dificultad?

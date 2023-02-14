@@ -1,17 +1,16 @@
 package com.mygdx.game.actors;
 
-import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
-import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 import static com.mygdx.game.extras.Utils.USER_FLAMMIE;
 
 import static java.lang.Math.round;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -23,7 +22,7 @@ import com.mygdx.game.extras.AssetMan;
 public class Flammie extends Actor {
     // Atributos de la clase
     // Se requieren en otras clases del proyecto
-    public static final int STATE_NORMAL = 0;
+    public static final int STATE_ALIVE = 0;
     public static final int STATE_DEAD = 1;
     // Solo se requieren en la propio clase
     private static final float FLAMMIE_WIDTH = 1f;
@@ -42,11 +41,15 @@ public class Flammie extends Actor {
     private World world;
     private Body body;
     private Fixture fixture;
+    // Estas variables son necesarias para obtener las coordenadas correctas de la posición de la
+    // pantalla que se pulsa
+    private Camera camera;
+    private Vector3 auxCoordinates;
 
     /**
      * Constructor por parámetros
      */
-    public Flammie(World world, Vector2 position){
+    public Flammie(World world, Camera camera, Vector2 position){
         //Inicialización de atributos
         this.animationStraight = AssetMan.getInstance().getFlammieAnimation();
         this.animationLeft = AssetMan.getInstance().getFlammieAnimationL();
@@ -54,7 +57,11 @@ public class Flammie extends Actor {
         this.position = position;
         this.world = world;
         this.stateTime = 0f;
-        this.state = STATE_NORMAL;
+        this.state = STATE_ALIVE;
+        this.camera = camera;
+        // Lo instanciamos con valores por defecto para no realizar una instanciación en el act,
+        // donde el tiempo es crucial
+        this.auxCoordinates = new Vector3(position.x, position.y, 0);
 
         createBody();
         createFixture();
@@ -67,39 +74,29 @@ public class Flammie extends Actor {
      */
     @Override
     public void act(float delta) {
-        // FUNCIONA
         boolean moving  = Gdx.input.isTouched();
-        int positionX = Gdx.input.getX();
 
-        if(moving && this.state == STATE_NORMAL){
-            if(positionX > SCREEN_WIDTH/2){
-                this.body.setLinearVelocity(SPEED,0f);
-                this.animation= animationRight;
+        // Si se está pulsando la pantalla y el muñeco vive
+        if(moving && this.state == STATE_ALIVE){
+            // Modificamos las coordenadas en función del input
+            auxCoordinates.set(Gdx.input.getX(),Gdx.input.getY(), 0);
+            // La camara transforma las coordenadas de la pantalla a las coordenadas del mundo
+            camera.unproject(auxCoordinates);
+            // Modificamos la animación en función de las coordenadas de X, es decir, si nos
+            // queremos mover hacia la izquierda utilizamos la animación de la izquierda y viceversa
+            if(auxCoordinates.x > this.body.getPosition().x){
+                this.animation = animationRight;
             }else{
-                this.body.setLinearVelocity(-SPEED,0f);
                 this.animation = animationLeft;
             }
+            // Modificiamos la velocidad en función de la distancia entre el curso y el muñeco de
+            // tal forma que cuanto más lejos se encuentran el uno del otro más acelera
+            this.body.setLinearVelocity(auxCoordinates.x - this.body.getPosition().x, auxCoordinates.y - this.body.getPosition().y);
         }else{
+            // Movimiento por defecto cuando no se toca la pantalla
             this.body.setLinearVelocity(0,0);
             this.animation = animationStraight;
         }
-
-        // TODO NO FUNCIONA
-        /*boolean moving  = Gdx.input.isTouched();
-        int positionX = Gdx.input.getX();
-        float distanciaX = positionX/100f;
-
-        if(moving && this.state == STATE_NORMAL){
-            if(distanciaX > this.body.getPosition().x){
-                this.animation= animationRight;
-            }else{
-                this.animation = animationLeft;
-            }
-            this.body.setLinearVelocity(distanciaX - this.body.getPosition().x, 0f);
-        }else{
-            this.body.setLinearVelocity(0,0);
-            this.animation = animationStraight;
-        }*/
     }
 
     /**
