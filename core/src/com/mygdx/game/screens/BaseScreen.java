@@ -55,7 +55,7 @@ public abstract class BaseScreen implements Screen {
 
     @Override
     public void show() {
-
+        addBackground();
     }
 
     @Override

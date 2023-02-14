@@ -111,9 +111,9 @@ public class AssetMan {
     }
 
     /**
-     * Método encargado de devolver un ArrayList con las imágenes del muñeco y el tiempo durante
-     * el cual se muestra cada una de las imágenes
-     * @return Devuelve un ArrayList que simula el movimiento del muñeco
+     * Método encargado de devolver las animaciones del muñeco moviéndose hacia adelante y el tiempo
+     * durante el cual se muestra cada una de las imágenes
+     * @return Devuelve las animaciones que simulan el movimiento del muñeco
      */
     public Animation<TextureRegion> getFlammieAnimation(){
         return new Animation<TextureRegion>(0.1f,
@@ -130,8 +130,9 @@ public class AssetMan {
     }
 
     /**
-     *
-     * @return
+     * Método encargado de devolver las animaciones del muñeco moviéndose hacia la izquierda y el
+     * tiempo durante el cual se muestra cada una de las imágenes
+     * @return Devuelve las animaciones que simulan el movimiento del muñeco hacia la izquierda
      */
     public Animation<TextureRegion> getFlammieAnimationL(){
         return new Animation<TextureRegion>(0.1f,
@@ -149,8 +150,9 @@ public class AssetMan {
     }
 
     /**
-     *
-     * @return
+     * Método encargado de devolver las animaciones del muñeco moviéndose hacia la derecha y el
+     * tiempo durante el cual se muestra cada una de las imágenes
+     * @return Devuelve las animaciones que simulan el movimiento del muñeco hacia la derecha
      */
     public Animation<TextureRegion> getFlammieAnimationR(){
         return new Animation<TextureRegion>(0.1f,
@@ -168,8 +170,8 @@ public class AssetMan {
     }
 
     /**
-     *
-     * @return
+     * Método encargado
+     * @return Devuelve las animaciones
      */
     public Animation<TextureRegion> getBatAnimation(){
         return new Animation<TextureRegion>(0.25f,
@@ -181,7 +183,7 @@ public class AssetMan {
     }
 
     /**
-     * Método encargado de devolver la música de fondo
+     * Método encargado de devolver la música de fondo de la pantalla de juego
      * @return Devuelve la música de fondo
      */
     public Music getBGMusic(){

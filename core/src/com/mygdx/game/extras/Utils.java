@@ -1,7 +1,7 @@
 package com.mygdx.game.extras;
 
 /**
- * Clase que guarda todas las variables (que no se vayan a modificar) que se vayan a utilizar en el
+ * Clase que guarda todas las variables que no se vayan a modificar y que se vayan a utilizar en el
  * proyecto entero.
  */
 public class Utils {
@@ -55,11 +55,13 @@ public class Utils {
     public static final String FLAMMIE10R = "Flammie10r";
 
     // Enemigos
-    public static final String ROCK = "rock";
     public static final String BAT1 = "bat1";
     public static final String BAT2 = "bat2";
     public static final String BAT3 = "bat3";
     public static final String BAT4 = "bat4";
+
+    // Coleccionables
+    public static final String COIN = "coin";
 
     // Música y sonidos
     public static final String MUSIC_BG = "musicSound/musicBackground.mp3";
@@ -73,7 +75,7 @@ public class Utils {
 
     //Identificadores de los cuerpos
     public static final String USER_FLAMMIE = "Flammie";
-    public static final String USER_ROCK = "rock";
+    public static final String USER_COIN = "coin";
     public static final String USER_BAT = "bat";
     public static final String USER_LEFTBORDER = "leftborder";
     public static final String USER_RIGHTBORDER = "rightborder";

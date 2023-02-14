@@ -20,7 +20,7 @@ import com.mygdx.game.extras.AssetMan;
  */
 public class GetReadyScreen extends BaseScreen{
     // Declaración de variables
-    //TODO Megaman?
+    // TODO Megaman?
 
     /**
      * Constructor por parámetros
@@ -55,7 +55,6 @@ public class GetReadyScreen extends BaseScreen{
     @Override
     public void show(){
         super.show();
-        addBackground();
         //addFlammie();
 
         //startMusic();

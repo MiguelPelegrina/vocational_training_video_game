@@ -40,7 +40,6 @@ public class GameOverScreen extends BaseScreen{
     @Override
     public void show(){
         super.show();
-        addBackground();
 
         startMusic();
     }
