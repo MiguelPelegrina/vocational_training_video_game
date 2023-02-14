@@ -21,9 +21,6 @@ import com.mygdx.game.extras.AssetMan;
  *
  */
 public class GetReadyScreen extends BaseScreen{
-    // Declaración de variables
-    //TODO Megaman?
-
     /**
      * Constructor por parámetros
      * @param mainGame
@@ -36,6 +33,8 @@ public class GetReadyScreen extends BaseScreen{
         FitViewport fitViewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
         this.stage = new Stage(fitViewport);
         this.fontCamera = (OrthographicCamera) this.stage.getCamera();
+
+        //TODO Megaman?
 
         prepareMessage();
     }

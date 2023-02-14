@@ -22,8 +22,6 @@ import com.mygdx.game.extras.AssetMan;
  *
  */
 public class GameOverScreen extends BaseScreen{
-    // Declaración de variables
-
     /**
      * Constructor por parámetros
      * @param mainGame
