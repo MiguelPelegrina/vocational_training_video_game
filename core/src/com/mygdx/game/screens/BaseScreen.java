@@ -5,8 +5,10 @@ import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 import static com.mygdx.game.extras.Utils.WORLD_HEIGHT;
 import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
@@ -58,7 +60,11 @@ public abstract class BaseScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        this.stage.act();
+        this.world.step(delta,6,2);
+        this.stage.draw();
     }
 
     @Override
@@ -86,7 +92,7 @@ public abstract class BaseScreen implements Screen {
 
     }
 
-    // Métodos auxiliares
+    // Métodos auxiliares para clases hijas
     protected void prepareMessage(String text) {
         // Configuramos la fuente y su escala
         this.text = text;
@@ -104,5 +110,10 @@ public abstract class BaseScreen implements Screen {
         this.background.setPosition(0,0);
         this.background.setSize(WORLD_WIDTH,WORLD_HEIGHT);
         this.stage.addActor(this.background);
+    }
+
+    protected void startMusic(){
+        music.setLooping(true);
+        music.play();
     }
 }

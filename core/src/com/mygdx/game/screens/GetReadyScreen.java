@@ -36,11 +36,7 @@ public class GetReadyScreen extends BaseScreen{
 
     @Override
     public void render(float delta){
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        this.stage.act();
-        this.world.step(delta,6,2);
-        this.stage.draw();
+        super.render(delta);
 
         this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
         this.stage.getBatch().begin();
@@ -62,8 +58,7 @@ public class GetReadyScreen extends BaseScreen{
         addBackground();
         //addFlammie();
 
-        //music.setLooping(true);
-        //music.play();
+        //startMusic();
     }
 
     // Métodos auxiliares

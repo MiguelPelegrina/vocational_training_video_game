@@ -183,8 +183,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
         addBorder(leftBorder,leftBorderFixture, USER_LEFTBORDER,new Vector2(0,0), new Vector2(0,WORLD_HEIGHT));
         addBorder(rightBorder,rightBorderFixture, USER_RIGHTBORDER,new Vector2(WORLD_WIDTH,0),new Vector2(WORLD_WIDTH,WORLD_HEIGHT));
 
-        music.setLooping(true);
-        music.play();
+        startMusic();
     }
 
     /**
@@ -248,7 +247,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
     }
 
     // Métodos auxiliares
-
     /**
      * Método encargado de averiguar si dos actores se han chocado. Internamente debe comprobar dos
      * casos: si A se ha topado con B o si B se ha topado con A, ya que el registro del contacto
