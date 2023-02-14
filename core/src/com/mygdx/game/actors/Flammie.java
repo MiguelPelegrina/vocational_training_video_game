@@ -89,9 +89,13 @@ public class Flammie extends Actor {
             }else{
                 this.animation = animationLeft;
             }
-            // Modificiamos la velocidad en función de la distancia entre el curso y el muñeco de
-            // tal forma que cuanto más lejos se encuentran el uno del otro más acelera
-            this.body.setLinearVelocity(auxCoordinates.x - this.body.getPosition().x, auxCoordinates.y - this.body.getPosition().y);
+            // Modificiamos la velocidad en función de la distancia entre la posición del curso y
+            // la del muñeco de tal forma que cuanto más lejos se encuentran el uno del otro más
+            // acelera y permitimos un movimiento diagonal
+            this.body.setLinearVelocity(
+                    auxCoordinates.x - this.body.getPosition().x,
+                    auxCoordinates.y - this.body.getPosition().y
+            );
         }else{
             // Movimiento por defecto cuando no se toca la pantalla
             this.body.setLinearVelocity(0,0);
