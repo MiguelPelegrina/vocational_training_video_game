@@ -61,7 +61,7 @@ public class Utils {
     public static final String BAT4 = "bat4";
 
     // Coleccionables
-    public static final String APPLE = "apple";
+    public static final String APPLE = "Apple";
 
     // Música y sonidos
     public static final String MUSIC_BG = "musicSound/musicBackground.mp3";
