@@ -1,9 +1,12 @@
 package com.mygdx.game.screens;
 
+import static com.mygdx.game.actors.Apple.APPLE_HEIGHT;
+import static com.mygdx.game.actors.Apple.APPLE_WIDTH;
 import static com.mygdx.game.actors.Bat.BAT_HEIGHT;
 import static com.mygdx.game.actors.Bat.BAT_WIDTH;
 import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
 import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
+import static com.mygdx.game.extras.Utils.USER_APPLE;
 import static com.mygdx.game.extras.Utils.USER_COUNTER;
 import static com.mygdx.game.extras.Utils.USER_FLAMMIE;
 import static com.mygdx.game.extras.Utils.USER_LEFTBORDER;
@@ -15,6 +18,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -29,6 +33,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.MainGame;
+import com.mygdx.game.actors.Apple;
 import com.mygdx.game.actors.Bat;
 import com.mygdx.game.actors.Flammie;
 import com.mygdx.game.extras.AssetMan;
@@ -42,7 +47,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     // Atributos de la instancia
     private float timeToCreateBat;
     private Flammie flammie;
-
+    private Apple apple;
     private Sound hitSound;
 
     private Body leftBorder;
@@ -95,6 +100,21 @@ public class GameScreen extends BaseScreen implements ContactListener {
     public void addFlammie(){
         this.flammie = new Flammie(this.world, new Vector2(WORLD_WIDTH/2f,WORLD_HEIGHT/4f));
         this.stage.addActor(this.flammie);
+    }
+
+    public void addApple(){
+        float randomXpos = MathUtils.random(APPLE_WIDTH, WORLD_WIDTH - APPLE_WIDTH);
+        this.apple = new Apple(this.world, new Vector2(randomXpos,WORLD_HEIGHT + APPLE_HEIGHT + 0.1f));
+        this.stage.addActor(this.apple);
+    }
+
+    public void removeApple(){
+        if(!this.world.isLocked()){
+            if(this.apple.isOutOfScreen(APPLE_HEIGHT)){
+                this.apple.detach();
+                this.apple.remove();
+            }
+        }
     }
 
     /**
@@ -177,6 +197,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     public void show(){
         super.show();
         addFlammie();
+        addApple();
         addBorder(leftBorder,leftBorderFixture, USER_LEFTBORDER,new Vector2(0,0), new Vector2(0,WORLD_HEIGHT));
         addBorder(rightBorder,rightBorderFixture, USER_RIGHTBORDER,new Vector2(WORLD_WIDTH,0),new Vector2(WORLD_WIDTH,WORLD_HEIGHT));
 
@@ -206,8 +227,10 @@ public class GameScreen extends BaseScreen implements ContactListener {
 
     @Override
     public void beginContact(Contact contact) {
-        if(areColider(contact, USER_FLAMMIE, USER_COUNTER)){
+        if(areColider(contact, USER_FLAMMIE, USER_APPLE)){
             this.scoreNumber++;
+            this.apple.remove();
+
         }else{
             flammie.dies();
             this.hitSound.play();

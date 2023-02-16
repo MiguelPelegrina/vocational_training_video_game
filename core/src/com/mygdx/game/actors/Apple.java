@@ -14,10 +14,10 @@ import com.mygdx.game.extras.AssetMan;
 
 public class Apple extends BaseActor {
     // Atributos de la clase
-    private static final float APPLE_WIDTH = 0.5f;
-    private static final float APPLE_HEIGHT = 0.5f;
-    private static final float APPLE_FIXTURE_RADIUS = 0.15f;
-    private static final float SPEED = 1f;
+    public static final float APPLE_WIDTH = 0.5f;
+    public static final float APPLE_HEIGHT = 0.5f;
+    private static final float APPLE_FIXTURE_RADIUS = 0.225f;
+    private static final float SPEED = -1f;
 
     // Atributos de la instancia
     private TextureRegion appleTR;
