@@ -58,6 +58,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     private int scoreNumber;
 
     private Array<Bat> arrayBats;
+    private Array<Apple> arrayApples;
 
     // Depuración
     // TODO QUITAR AL FINAL
@@ -102,7 +103,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
         this.stage.addActor(this.flammie);
     }
 
-    public void addApple(){
+    public void addApples(){
         float randomXpos = MathUtils.random(APPLE_WIDTH, WORLD_WIDTH - APPLE_WIDTH);
         this.apple = new Apple(this.world, new Vector2(randomXpos,WORLD_HEIGHT + APPLE_HEIGHT + 0.1f));
         this.stage.addActor(this.apple);
@@ -188,7 +189,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
     public void show(){
         super.show();
         addFlammie();
-        addApple();
         addBorder(leftBorder,leftBorderFixture, USER_LEFTBORDER,new Vector2(0,0), new Vector2(0,WORLD_HEIGHT));
         addBorder(rightBorder,rightBorderFixture, USER_RIGHTBORDER,new Vector2(WORLD_WIDTH,0),new Vector2(WORLD_WIDTH,WORLD_HEIGHT));
 
