@@ -41,9 +41,9 @@ public class Bat extends BaseActor {
      * @param position
      */
     public Bat(World world, Vector2 position){
+        super(world, position);
+
         this.animation = AssetMan.getInstance().getBatAnimation();
-        this.world = world;
-        this.position = position;
 
         this.randomSpeedFactor = SPEED + MathUtils.random(-0.5f, 0.5f);
 

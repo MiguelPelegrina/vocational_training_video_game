@@ -16,9 +16,8 @@ public class Apple extends BaseActor {
     private TextureRegion appleTR;
 
     public Apple(World world, Vector2 position){
+        super(world, position);
         this.appleTR = AssetMan.getInstance().getApple();
-        this.world = world;
-        this.position = position;
 
     }
 }

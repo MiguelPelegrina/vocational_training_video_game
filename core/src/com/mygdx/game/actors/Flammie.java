@@ -46,11 +46,10 @@ public class Flammie extends BaseActor {
      */
     public Flammie(World world, Vector2 position){
         //Inicialización de atributos
+        super(world, position);
         this.animationStraight = AssetMan.getInstance().getFlammieAnimation();
         this.animationLeft = AssetMan.getInstance().getFlammieAnimationL();
         this.animationRight = AssetMan.getInstance().getFlammieAnimationR();
-        this.world = world;
-        this.position = position;
         this.stateTime = 0f;
         this.state = STATE_ALIVE;
         // Lo instanciamos con valores por defecto para no realizar una instanciación en el act,
@@ -108,14 +107,6 @@ public class Flammie extends BaseActor {
         batch.draw(this.animation.getKeyFrame(stateTime, true), getX(), getY(), FLAMMIE_WIDTH,FLAMMIE_HEIGHT);
 
         stateTime += Gdx.graphics.getDeltaTime();
-    }
-
-    /**
-     *
-     */
-    public void detach(){
-        this.body.destroyFixture(this.fixture);
-        this.world.destroyBody(this.body);
     }
 
     public int getState(){

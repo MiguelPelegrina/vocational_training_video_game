@@ -12,4 +12,16 @@ public class BaseActor extends Actor {
     protected Body body;
     protected Fixture fixture;
 
+    public BaseActor(World world, Vector2 position) {
+        this.world = world;
+        this.position = position;
+    }
+
+    /**
+     *
+     */
+    public void detach(){
+        this.body.destroyFixture(this.fixture);
+        this.world.destroyBody(this.body);
+    }
 }
