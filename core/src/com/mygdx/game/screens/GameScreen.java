@@ -1,5 +1,6 @@
 package com.mygdx.game.screens;
 
+import static com.mygdx.game.actors.Bat.BAT_HEIGHT;
 import static com.mygdx.game.actors.Bat.BAT_WIDTH;
 import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
 import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
@@ -128,7 +129,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
             // Mientras que no se esté actualizando el mundo en este momento
             if(!world.isLocked()){
                 // Comprobamos si el grupo de rocas se encuentra visibles
-                if(bats.isOutOfScreen()){
+                if(bats.isOutOfScreen(BAT_HEIGHT)){
                     // Liberamos el espacio en la gráfica
                     bats.detach();
                     // Quitamos las rocas de la escena

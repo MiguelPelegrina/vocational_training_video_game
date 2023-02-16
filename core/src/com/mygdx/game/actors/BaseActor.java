@@ -17,6 +17,16 @@ public class BaseActor extends Actor {
         this.position = position;
     }
 
+
+    /**
+     * Método encargado de indicar cuando actor se encuentra fuera de la pantalla
+     * @return Devuelve true si la posición actual del actor está fuera de la pantalla o false si se
+     * encuentra dentro
+     */
+    public boolean isOutOfScreen(float height){
+        return this.body.getPosition().y <= -height - 0.1f;
+    }
+
     /**
      *
      */

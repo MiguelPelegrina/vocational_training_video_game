@@ -21,17 +21,17 @@ import com.mygdx.game.extras.AssetMan;
 public class Bat extends BaseActor {
     // Atributos de clase
     public static final float BAT_WIDTH = 1f;
-    private static final float BAT_HEIGHT = 0.4f;
+    public static final float BAT_HEIGHT = 0.4f;
     // TODO
-    private static final float COUNTER_HEIGHT = 0.1f;
+    //private static final float COUNTER_HEIGHT = 0.1f;
     private static final float SPEED = -2f;
 
     // Atributos de la instancia
     private Animation<TextureRegion> animation;
     // TODO
-    private Body bodyCounter;
+    //private Body bodyCounter;
     // TODO
-    private Fixture fixtureCounter;
+    //private Fixture fixtureCounter;
     private float stateTime;
     private float randomSpeedFactor;
 
@@ -42,7 +42,6 @@ public class Bat extends BaseActor {
      */
     public Bat(World world, Vector2 position){
         super(world, position);
-
         this.animation = AssetMan.getInstance().getBatAnimation();
 
         this.randomSpeedFactor = SPEED + MathUtils.random(-0.5f, 0.5f);
@@ -50,16 +49,7 @@ public class Bat extends BaseActor {
         createBody(position);
         createFixture();
         // TODO
-        createCounter();
-    }
-
-    /**
-     * Método encargado de indicar cuando el murciélago se encuentra fuera de la pantalla
-     * @return Devuelve true si la posición actual del actor está fuera de la pantalla o false si se
-     * encuentra dentro
-     */
-    public boolean isOutOfScreen(){
-        return this.body.getPosition().y <= -BAT_HEIGHT - 0.1f;
+        //createCounter();
     }
 
     /**
@@ -68,7 +58,7 @@ public class Bat extends BaseActor {
      */
     public void stopBat(){
         this.body.setLinearVelocity(0,0);
-        this.bodyCounter.setLinearVelocity(0,0);
+        //this.bodyCounter.setLinearVelocity(0,0);
     }
 
     public void act(float delta) {
@@ -83,10 +73,6 @@ public class Bat extends BaseActor {
         this.stateTime += Gdx.graphics.getDeltaTime();
     }
 
-    public void detach(){
-        this.body.destroyFixture(fixture);
-        this.world.destroyBody(body);
-    }
 
     // Métodos auxiliares
     private void createBody(Vector2 position){
@@ -107,7 +93,7 @@ public class Bat extends BaseActor {
         shape.dispose();
     }
 
-    private void createCounter() {
+    /*private void createCounter() {
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.x = this.body.getPosition().x;
         bodyDef.position.y = this.body.getPosition().y;
@@ -121,6 +107,5 @@ public class Bat extends BaseActor {
         this.fixtureCounter.setSensor(true);
         this.fixtureCounter.setUserData(USER_COUNTER);
         shape.dispose();
-    }
-
+    }*/
 }
