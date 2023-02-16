@@ -53,8 +53,8 @@ public class Flammie extends Actor {
         this.animationStraight = AssetMan.getInstance().getFlammieAnimation();
         this.animationLeft = AssetMan.getInstance().getFlammieAnimationL();
         this.animationRight = AssetMan.getInstance().getFlammieAnimationR();
-        this.position = position;
         this.world = world;
+        this.position = position;
         this.stateTime = 0f;
         this.state = STATE_ALIVE;
         // Lo instanciamos con valores por defecto para no realizar una instanciación en el act,

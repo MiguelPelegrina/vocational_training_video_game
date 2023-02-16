@@ -22,14 +22,17 @@ public class Bat extends Actor {
     // Atributos de clase
     public static final float BAT_WIDTH = 1f;
     private static final float BAT_HEIGHT = 0.4f;
+    // TODO
     private static final float COUNTER_HEIGHT = 0.1f;
     private static final float SPEED = -2f;
 
     // Atributos de la instancia
     private Animation<TextureRegion> animation;
     private Body body;
+    // TODO
     private Body bodyCounter;
     private Fixture fixture;
+    // TODO
     private Fixture fixtureCounter;
     private World world;
     private float stateTime;
@@ -50,6 +53,7 @@ public class Bat extends Actor {
 
         createBody(position);
         createFixture();
+        // TODO
         createCounter();
     }
 
