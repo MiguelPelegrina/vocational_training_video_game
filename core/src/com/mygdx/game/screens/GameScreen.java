@@ -213,7 +213,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
             this.hitSound.play();
             this.music.stop();
             for (Bat bat : arrayBats) {
-                bat.stopBat();
+                bat.stopActor();
             }
 
             this.stage.addAction(Actions.sequence(

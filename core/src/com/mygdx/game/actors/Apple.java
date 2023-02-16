@@ -3,6 +3,8 @@ package com.mygdx.game.actors;
 import static com.mygdx.game.extras.Utils.USER_APPLE;
 import static com.mygdx.game.extras.Utils.USER_FLAMMIE;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -28,7 +30,11 @@ public class Apple extends BaseActor {
         createFixture();
     }
 
-
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        setPosition(this.body.getPosition().x - (APPLE_WIDTH/2), this.body.getPosition().y - (APPLE_HEIGHT/2) );
+        batch.draw(this.appleTR, this.getX(),this.getY(),APPLE_WIDTH,APPLE_HEIGHT);
+    }
 
     // Métodos auxiliares
     private void createBody() {

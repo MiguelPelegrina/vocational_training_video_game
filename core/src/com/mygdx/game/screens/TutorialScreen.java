@@ -2,6 +2,7 @@ package com.mygdx.game.screens;
 
 import com.badlogic.gdx.audio.Sound;
 import com.mygdx.game.MainGame;
+import com.mygdx.game.extras.AssetMan;
 
 /**
  * Clase que mostrará un tutorial. Utilizaremos el estado del tutorial para mostrar los diferentes
@@ -19,8 +20,7 @@ public class TutorialScreen extends BaseScreen{
     public TutorialScreen(MainGame mainGame) {
         super(mainGame);
         this.state = 0;
-
-        // TODO Sonido de Na'vo "Hey, listen!"
+        this.sound = AssetMan.getInstance().getHitSound();
     }
 
 

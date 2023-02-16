@@ -1,8 +1,6 @@
 package com.mygdx.game.actors;
 
 import static com.mygdx.game.extras.Utils.USER_BAT;
-import static com.mygdx.game.extras.Utils.USER_COUNTER;
-import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -10,12 +8,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.mygdx.game.extras.AssetMan;
 
 public class Bat extends BaseActor {
@@ -50,19 +45,6 @@ public class Bat extends BaseActor {
         createFixture();
         // TODO
         //createCounter();
-    }
-
-    /**
-     * Método encargado de parar el movimiento del murciélago y del su respectivo contador cuando se
-     * pause o acabe el juego
-     */
-    public void stopBat(){
-        this.body.setLinearVelocity(0,0);
-        //this.bodyCounter.setLinearVelocity(0,0);
-    }
-
-    public void act(float delta) {
-        super.act(delta);
     }
 
     @Override

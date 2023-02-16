@@ -28,6 +28,13 @@ public class BaseActor extends Actor {
     }
 
     /**
+     * Método encargado de parar el movimiento del actor
+     */
+    public void stopActor(){
+        this.body.setLinearVelocity(0,0);
+    }
+
+    /**
      *
      */
     public void detach(){
