@@ -32,7 +32,7 @@ public class Apple extends BaseActor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        setPosition(this.body.getPosition().x - (APPLE_WIDTH/2), this.body.getPosition().y - (APPLE_HEIGHT/2) );
+        setPosition(this.body.getPosition().x - (APPLE_WIDTH/2), this.body.getPosition().y - (APPLE_HEIGHT/2));
         batch.draw(this.appleTR, this.getX(),this.getY(),APPLE_WIDTH,APPLE_HEIGHT);
     }
 

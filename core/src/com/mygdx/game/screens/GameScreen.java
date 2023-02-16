@@ -108,15 +108,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
         this.stage.addActor(this.apple);
     }
 
-    public void removeApple(){
-        if(!this.world.isLocked()){
-            if(this.apple.isOutOfScreen(APPLE_HEIGHT)){
-                this.apple.detach();
-                this.apple.remove();
-            }
-        }
-    }
-
     /**
      *
      * @param delta
@@ -229,7 +220,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
     public void beginContact(Contact contact) {
         if(areColider(contact, USER_FLAMMIE, USER_APPLE)){
             this.scoreNumber++;
-            this.apple.remove();
 
         }else{
             flammie.dies();
