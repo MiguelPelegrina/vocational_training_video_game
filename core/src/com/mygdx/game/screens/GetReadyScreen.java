@@ -33,7 +33,7 @@ public class GetReadyScreen extends BaseScreen{
 
         this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
         this.stage.getBatch().begin();
-        this.font.draw(this.stage.getBatch(), this.text + "", SCREEN_WIDTH*0.3f, SCREEN_HEIGHT*0.7f);
+        this.font.draw(this.stage.getBatch(), this.text + "", SCREEN_WIDTH*0.25f, SCREEN_HEIGHT*0.65f);
         this.stage.getBatch().end();
 
         if(Gdx.input.isTouched()){

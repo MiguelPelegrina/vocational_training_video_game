@@ -22,7 +22,7 @@ public class GameOverScreen extends BaseScreen{
 
         this.fontCamera = (OrthographicCamera) this.stage.getCamera();
 
-        prepareMessage("GAME OVER!\nTouch the \nscreen to \nstart again!");
+        prepareMessage("Game over!\nTouch the \nscreen to \nstart again!");
 
         this.music = AssetMan.getInstance().getGOMusic();
     }
