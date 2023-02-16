@@ -41,15 +41,14 @@ public class Flammie extends Actor {
     private World world;
     private Body body;
     private Fixture fixture;
-    // Estas variables son necesarias para obtener las coordenadas correctas de la posición de la
+    // Esta variable es necesaria para obtener las coordenadas correctas de la posición de la
     // pantalla que se pulsa
-    private Camera camera;
     private Vector3 auxCoordinates;
 
     /**
      * Constructor por parámetros
      */
-    public Flammie(World world, Camera camera, Vector2 position){
+    public Flammie(World world, Vector2 position){
         //Inicialización de atributos
         this.animationStraight = AssetMan.getInstance().getFlammieAnimation();
         this.animationLeft = AssetMan.getInstance().getFlammieAnimationL();
@@ -58,7 +57,6 @@ public class Flammie extends Actor {
         this.world = world;
         this.stateTime = 0f;
         this.state = STATE_ALIVE;
-        this.camera = camera;
         // Lo instanciamos con valores por defecto para no realizar una instanciación en el act,
         // donde el tiempo es crucial
         this.auxCoordinates = new Vector3(position.x, position.y, 0);
@@ -81,7 +79,7 @@ public class Flammie extends Actor {
             // Modificamos las coordenadas en función del input
             auxCoordinates.set(Gdx.input.getX(),Gdx.input.getY(), 0);
             // La camara transforma las coordenadas de la pantalla a las coordenadas del mundo
-            camera.unproject(auxCoordinates);
+            this.getStage().getCamera().unproject(auxCoordinates);
             // Modificamos la animación en función de las coordenadas de X, es decir, si nos
             // queremos mover hacia la izquierda utilizamos la animación de la izquierda y viceversa
             if(auxCoordinates.x > this.body.getPosition().x){

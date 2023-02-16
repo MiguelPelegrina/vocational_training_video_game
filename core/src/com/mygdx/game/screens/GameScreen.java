@@ -92,7 +92,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
      *
      */
     public void addFlammie(){
-        this.flammie = new Flammie(this.world, this.worldCamera, new Vector2(WORLD_WIDTH/2f,WORLD_HEIGHT/4f));
+        this.flammie = new Flammie(this.world, new Vector2(WORLD_WIDTH/2f,WORLD_HEIGHT/4f));
         this.stage.addActor(this.flammie);
     }
 

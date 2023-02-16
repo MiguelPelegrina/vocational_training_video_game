@@ -1,5 +1,6 @@
 package com.mygdx.game.extras;
 
+import static com.mygdx.game.extras.Utils.APPLE;
 import static com.mygdx.game.extras.Utils.ATLAS_MAP;
 import static com.mygdx.game.extras.Utils.BACKGROUND_IMAGE;
 import static com.mygdx.game.extras.Utils.BACKGROUND_IMAGE_START;
@@ -180,6 +181,10 @@ public class AssetMan {
                 textureAtlas.findRegion(BAT3),
                 textureAtlas.findRegion(BAT4)
         );
+    }
+
+    public TextureRegion getApple(){
+        return textureAtlas.findRegion(APPLE);
     }
 
     /**

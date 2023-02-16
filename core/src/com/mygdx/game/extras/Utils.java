@@ -61,7 +61,7 @@ public class Utils {
     public static final String BAT4 = "bat4";
 
     // Coleccionables
-    public static final String COIN = "coin";
+    public static final String APPLE = "apple";
 
     // Música y sonidos
     public static final String MUSIC_BG = "musicSound/musicBackground.mp3";
@@ -75,7 +75,7 @@ public class Utils {
 
     //Identificadores de los cuerpos
     public static final String USER_FLAMMIE = "Flammie";
-    public static final String USER_COIN = "coin";
+    public static final String USER_APPLE = "apple";
     public static final String USER_BAT = "bat";
     public static final String USER_LEFTBORDER = "leftborder";
     public static final String USER_RIGHTBORDER = "rightborder";
