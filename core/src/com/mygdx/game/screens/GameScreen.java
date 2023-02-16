@@ -165,7 +165,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
         // de la resolución de la pantalla en píxeles
         this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
         this.stage.getBatch().begin();
-        this.font.draw(this.stage.getBatch(), this.scoreNumber + "", SCREEN_WIDTH*0.9f, SCREEN_HEIGHT*0.95f);
+        this.font.draw(this.stage.getBatch(), "Points: " + this.scoreNumber, SCREEN_WIDTH*0.1f, SCREEN_HEIGHT*0.95f);
         this.stage.getBatch().end();
     }
 
