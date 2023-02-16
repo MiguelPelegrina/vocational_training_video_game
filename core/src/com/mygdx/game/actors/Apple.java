@@ -2,12 +2,10 @@ package com.mygdx.game.actors;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.extras.AssetMan;
 
-public class Apple {
+public class Apple extends BaseActor {
     // Atributos de la clase
     private static final float APPLE_WIDTH = 0.5f;
     private static final float APPLE_HEIGHT = 0.5f;
@@ -16,10 +14,6 @@ public class Apple {
 
     // Atributos de la instancia
     private TextureRegion appleTR;
-    private Body body;
-    private Fixture fixture;
-    private Vector2 position;
-    private World world;
 
     public Apple(World world, Vector2 position){
         this.appleTR = AssetMan.getInstance().getApple();

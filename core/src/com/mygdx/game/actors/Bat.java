@@ -18,7 +18,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.mygdx.game.extras.AssetMan;
 
-public class Bat extends Actor {
+public class Bat extends BaseActor {
     // Atributos de clase
     public static final float BAT_WIDTH = 1f;
     private static final float BAT_HEIGHT = 0.4f;
@@ -28,16 +28,12 @@ public class Bat extends Actor {
 
     // Atributos de la instancia
     private Animation<TextureRegion> animation;
-    private Body body;
     // TODO
     private Body bodyCounter;
-    private Fixture fixture;
     // TODO
     private Fixture fixtureCounter;
-    private World world;
     private float stateTime;
     private float randomSpeedFactor;
-    private Vector2 position;
 
     /**
      * Constructor por parámetros

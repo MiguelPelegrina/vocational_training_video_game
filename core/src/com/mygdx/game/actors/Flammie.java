@@ -19,7 +19,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.mygdx.game.extras.AssetMan;
 
-public class Flammie extends Actor {
+public class Flammie extends BaseActor {
     // Atributos de la clase
     // Se requieren en otras clases del proyecto
     public static final int STATE_ALIVE = 0;
@@ -36,11 +36,7 @@ public class Flammie extends Actor {
     private Animation<TextureRegion> animationStraight;
     private Animation<TextureRegion> animationLeft;
     private Animation<TextureRegion> animationRight;
-    private Vector2 position;
     private float stateTime;
-    private World world;
-    private Body body;
-    private Fixture fixture;
     // Esta variable es necesaria para obtener las coordenadas correctas de la posición de la
     // pantalla que se pulsa
     private Vector3 auxCoordinates;
