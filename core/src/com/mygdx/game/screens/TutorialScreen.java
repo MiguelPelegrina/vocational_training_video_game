@@ -15,11 +15,11 @@ import com.mygdx.game.extras.AssetMan;
  */
 public class TutorialScreen extends BaseScreen{
     // Atributos de la clase
-    private static final float SWAP_STATE_TIME = 4f;
+    private static final float SWAP_STATE_TIME = 3f;
     // Atributos de la instancia
     private float timeToSwapState;
     private int state;
-    private Sound sound;
+    private Sound listenSound;
 
     /**
      * Constructor por parámetros
@@ -29,9 +29,15 @@ public class TutorialScreen extends BaseScreen{
         super(mainGame);
         this.state = 1;
         this.timeToSwapState = 0f;
-        this.sound = AssetMan.getInstance().getListenSound();
+        this.listenSound = AssetMan.getInstance().getListenSound();
 
-        prepareMessage("Dodge bats!");
+        prepareMessage("");
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        this.listenSound.play();
     }
 
     @Override
@@ -41,9 +47,8 @@ public class TutorialScreen extends BaseScreen{
         this.timeToSwapState += delta;
         if(this.timeToSwapState >= SWAP_STATE_TIME){
             this.timeToSwapState -= SWAP_STATE_TIME;
-            if(this.state < 5){
-
-            }else{
+            this.state++;
+            if(this.state == 5) {
                 this.state = 1;
             }
         }
@@ -52,29 +57,29 @@ public class TutorialScreen extends BaseScreen{
         this.stage.getBatch().begin();
         switch (state){
             case 1:
+                prepareMessage("Move Flammie\nto the direction\nyou want!");
                 this.font.draw(this.stage.getBatch(), this.text + "", SCREEN_WIDTH*0.25f, SCREEN_HEIGHT*0.65f);
                 break;
             case 2:
+                prepareMessage("Dodge bats!");
+                this.font.draw(this.stage.getBatch(), this.text + "", SCREEN_WIDTH*0.25f, SCREEN_HEIGHT*0.65f);
                 break;
             case 3:
+                prepareMessage("Grab apples!");
+                this.font.draw(this.stage.getBatch(), this.text + "", SCREEN_WIDTH*0.25f, SCREEN_HEIGHT*0.65f);
                 break;
             case 4:
+                prepareMessage("Don't touch\nthe borders!");
+                this.font.draw(this.stage.getBatch(), this.text + "", SCREEN_WIDTH*0.25f, SCREEN_HEIGHT*0.65f);
                 break;
         }
+        //this.font.draw(this.stage.getBatch(), this.text + "", SCREEN_WIDTH*0.25f, SCREEN_HEIGHT*0.65f);
 
         this.stage.getBatch().end();
 
-        if(Gdx.input.isTouched()){
-            // TODO ES RARO, ESTO NO DEBERÍA SER NECESARIO
-            this.stage.addAction(Actions.sequence(
-                    Actions.delay(0.11f),
-                    Actions.run(new Runnable() {
-                        @Override
-                        public void run() {
-                            mainGame.setScreen(new GetReadyScreen(mainGame));
-                        }
-                    })
-            ));
+        if(Gdx.input.justTouched()){
+            this.mainGame.setScreen(new GetReadyScreen(this.mainGame));
+            dispose();
         }
     }
 }

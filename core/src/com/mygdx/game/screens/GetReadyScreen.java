@@ -32,7 +32,7 @@ public class GetReadyScreen extends BaseScreen{
         this.font.draw(this.stage.getBatch(), this.text + "", SCREEN_WIDTH*0.25f, SCREEN_HEIGHT*0.65f);
         this.stage.getBatch().end();
 
-        if(Gdx.input.isTouched()){
+        if(Gdx.input.justTouched()){
             this.mainGame.setScreen(new GameScreen(this.mainGame));
             dispose();
         }
