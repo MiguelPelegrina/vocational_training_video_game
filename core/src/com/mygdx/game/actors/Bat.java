@@ -17,16 +17,10 @@ public class Bat extends BaseActor {
     // Atributos de clase
     public static final float BAT_WIDTH = 1f;
     public static final float BAT_HEIGHT = 0.4f;
-    // TODO
-    //private static final float COUNTER_HEIGHT = 0.1f;
     private static final float SPEED = -2f;
 
     // Atributos de la instancia
     private Animation<TextureRegion> animation;
-    // TODO
-    //private Body bodyCounter;
-    // TODO
-    //private Fixture fixtureCounter;
     private float stateTime;
     private float randomSpeedFactor;
 
@@ -63,7 +57,6 @@ public class Bat extends BaseActor {
         bodyDef.type = BodyDef.BodyType.KinematicBody;
 
         this.body = this.world.createBody(bodyDef);
-
         this.body.setLinearVelocity(0, randomSpeedFactor);
     }
 
@@ -74,20 +67,4 @@ public class Bat extends BaseActor {
         this.fixture.setUserData(USER_BAT);
         shape.dispose();
     }
-
-    /*private void createCounter() {
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.position.x = this.body.getPosition().x;
-        bodyDef.position.y = this.body.getPosition().y;
-        bodyDef.type = BodyDef.BodyType.KinematicBody;
-        this.bodyCounter = this.world.createBody(bodyDef);
-        this.bodyCounter.setLinearVelocity(0, randomSpeedFactor);
-
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(WORLD_WIDTH,COUNTER_HEIGHT);
-        this.fixtureCounter = bodyCounter.createFixture(shape,3);
-        this.fixtureCounter.setSensor(true);
-        this.fixtureCounter.setUserData(USER_COUNTER);
-        shape.dispose();
-    }*/
 }

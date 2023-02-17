@@ -8,7 +8,6 @@ import static com.mygdx.game.actors.Bat.BAT_WIDTH;
 import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
 import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 import static com.mygdx.game.extras.Utils.USER_APPLE;
-import static com.mygdx.game.extras.Utils.USER_FLAMMIE;
 import static com.mygdx.game.extras.Utils.USER_LEFTBORDER;
 import static com.mygdx.game.extras.Utils.USER_RIGHTBORDER;
 import static com.mygdx.game.extras.Utils.WORLD_HEIGHT;

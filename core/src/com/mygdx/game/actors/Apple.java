@@ -1,6 +1,5 @@
 package com.mygdx.game.actors;
 
-import static com.mygdx.game.extras.Utils.USER_APPLE;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -30,7 +29,7 @@ public class Apple extends BaseActor {
         this.identifier = new AppleIdentifier();
 
         createBody();
-        createFixture();
+        createCircularFixture(APPLE_FIXTURE_RADIUS, this.identifier);
     }
 
     @Override
@@ -59,14 +58,5 @@ public class Apple extends BaseActor {
 
         this.body = this.world.createBody(bodyDef);
         this.body.setLinearVelocity(0, SPEED);
-    }
-
-    private void createFixture(){
-        CircleShape circle = new CircleShape();
-        circle.setRadius(APPLE_FIXTURE_RADIUS);
-        this.fixture = this.body.createFixture(circle, 8);
-        //this.fixture.setUserData(USER_APPLE);
-        this.fixture.setUserData(this.identifier);
-        circle.dispose();
     }
 }
