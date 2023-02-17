@@ -52,6 +52,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     private float timeToCreateApple;
     private Flammie flammie;
     private Sound hitSound;
+    private Sound chompSound;
 
     private Body leftBorder;
     private Body rightBorder;
@@ -209,7 +210,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
         // de la resolución de la pantalla en píxeles
         this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
         this.stage.getBatch().begin();
-        this.font.draw(this.stage.getBatch(), "Points: " + this.scoreNumber, SCREEN_WIDTH*0.1f, SCREEN_HEIGHT*0.95f);
+        this.font.draw(this.stage.getBatch(), "Apples: " + this.scoreNumber, SCREEN_WIDTH*0.1f, SCREEN_HEIGHT*0.95f);
         this.stage.getBatch().end();
     }
 
@@ -251,6 +252,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     public void beginContact(Contact contact) {
         if(areColider(contact, USER_FLAMMIE, USER_APPLE)){
             this.scoreNumber++;
+            this.chompSound.play();
             for(Apple apple : this.arrayApples){
                 if(contact.getFixtureB().getUserData().equals(USER_APPLE) || contact.getFixtureA().getUserData().equals(USER_APPLE)){
                     apple.getsEaten();
@@ -325,6 +327,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     private void prepareGameSound() {
         this.music = AssetMan.getInstance().getBGMusic();
         this.hitSound = AssetMan.getInstance().getHitSound();
+        this.chompSound = AssetMan.getInstance().getChompSound();
     }
 
     /**

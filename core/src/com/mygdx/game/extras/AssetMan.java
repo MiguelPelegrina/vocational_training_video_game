@@ -42,6 +42,7 @@ import static com.mygdx.game.extras.Utils.FONT_FNT;
 import static com.mygdx.game.extras.Utils.FONT_PNG;
 import static com.mygdx.game.extras.Utils.MUSIC_BG;
 import static com.mygdx.game.extras.Utils.MUSIC_GAMEOVER;
+import static com.mygdx.game.extras.Utils.SOUND_CHOMP;
 import static com.mygdx.game.extras.Utils.SOUND_HIT;
 import static com.mygdx.game.extras.Utils.SOUND_LISTEN;
 
@@ -81,6 +82,7 @@ public class AssetMan {
         assetManager.load(MUSIC_GAMEOVER, Music.class);
         assetManager.load(SOUND_HIT, Sound.class);
         assetManager.load(SOUND_LISTEN, Sound.class);
+        assetManager.load(SOUND_CHOMP, Sound.class);
         // Esperamos a que todos los recursos se hayan cargado
         assetManager.finishLoading();
 
@@ -215,6 +217,10 @@ public class AssetMan {
 
     public Sound getListenSound(){
         return this.assetManager.get(SOUND_LISTEN);
+    }
+
+    public Sound getChompSound(){
+        return this.assetManager.get(SOUND_CHOMP);
     }
 
     /**

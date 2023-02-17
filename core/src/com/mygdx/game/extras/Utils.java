@@ -67,6 +67,7 @@ public class Utils {
     public static final String MUSIC_BG = "musicSound/musicBackground.mp3";
     public static final String MUSIC_GAMEOVER = "musicSound/musicGameOver.mp3";
     public static final String SOUND_HIT = "musicSound/soundHit.mp3";
+    public static final String SOUND_CHOMP = "musicSound/soundChomp.mp3";
     public static final String SOUND_LISTEN = "musicSound/soundTutorial.mp3";
 
     // Fuentes
