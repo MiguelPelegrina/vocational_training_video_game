@@ -31,7 +31,7 @@ public class Flammie extends BaseActor {
     private Vector3 auxCoordinates;
 
     /**
-     *
+     * Constructor por parámetros
      * @param world Mundo en el que se instancia el actor
      * @param position Posición en la que se instancia el actor
      */
@@ -52,18 +52,18 @@ public class Flammie extends BaseActor {
     }
 
     /**
-     *
-     * @param delta
+     * Método encargado de que el actor actue cuando el escenario se lo indica
+     * @param delta Tiempo desde la última llamada al método render()
      */
     @Override
     public void act(float delta) {
-        boolean moving  = Gdx.input.isTouched();
-
-        // Si se está pulsando la pantalla y el muñeco vive
+        // Averiguamos si se está pulsando la pantalla
+        boolean moving = Gdx.input.isTouched();
+        // Si se está pulsando la pantalla y el actor vive
         if(moving && this.state == STATE_ALIVE){
             // Modificamos las coordenadas en función del input
             auxCoordinates.set(Gdx.input.getX(),Gdx.input.getY(), 0);
-            // La camara transforma las coordenadas de la pantalla a las coordenadas del mundo
+            // La cámara transforma las coordenadas de la pantalla a las coordenadas del mundo
             this.getStage().getCamera().unproject(auxCoordinates);
             // Modificamos la animación en función de las coordenadas de X, es decir, si nos
             // queremos mover hacia la izquierda utilizamos la animación de la izquierda y viceversa
@@ -72,9 +72,9 @@ public class Flammie extends BaseActor {
             }else{
                 this.animation = animationLeft;
             }
-            // Modificiamos la velocidad en función de la distancia entre la posición del curso y
-            // la del muñeco de tal forma que cuanto más lejos se encuentran el uno del otro más
-            // acelera y permitimos un movimiento diagonal
+            // Modificiamos la velocidad en función de la distancia entre la posición del cursor y
+            // la del actor de tal forma que cuanto más lejos se encuentran el uno del otro más
+            // acelera, tanto en el eje X como Y
             this.body.setLinearVelocity(
                     auxCoordinates.x - this.body.getPosition().x,
                     auxCoordinates.y - this.body.getPosition().y
@@ -87,21 +87,20 @@ public class Flammie extends BaseActor {
     }
 
     /**
-     *
-     * @param batch
+     * Método encargado de pintar Flammie
+     * @param batch Lote que se encarga de pintar el actor
      * @param parentAlpha Indica el nivel de transparencia del padre
      */
     @Override
     public void draw(Batch batch, float parentAlpha) {
         setPosition(body.getPosition().x - FLAMMIE_WIDTH/2, body.getPosition().y - FLAMMIE_HEIGHT/2);
         batch.draw(this.animation.getKeyFrame(stateTime, true), getX(), getY(), FLAMMIE_WIDTH,FLAMMIE_HEIGHT);
-
         stateTime += Gdx.graphics.getDeltaTime();
     }
 
     /**
-     *
-     * @return
+     * Método encargado de devolver el estado de Flammie
+     * @return Devuelve el estado de Flammie
      */
     public int getState(){
         return this.state;
@@ -117,7 +116,7 @@ public class Flammie extends BaseActor {
 
     // Métodos auxiliares
     /**
-     *
+     * Método encargado de crear un cuerpo dinámico
      */
     private void createBody(){
         BodyDef bodyDef = new BodyDef();

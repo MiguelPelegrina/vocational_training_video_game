@@ -42,21 +42,20 @@ public class Bat extends BaseActor {
     }
 
     /**
-     *
-     * @param batch
+     * Método encargado de pintar el muerciélago
+     * @param batch Lote que se encarga de pintar el actor
      * @param parentAlpha Indica el nivel de transparencia del padre
      */
     @Override
     public void draw(Batch batch, float parentAlpha) {
         setPosition(this.body.getPosition().x - (BAT_WIDTH/2), this.body.getPosition().y - (BAT_HEIGHT/2));
         batch.draw(this.animation.getKeyFrame(stateTime, true), this.getX(), this.getY(), BAT_WIDTH, BAT_HEIGHT);
-
         this.stateTime += Gdx.graphics.getDeltaTime();
     }
 
     // Métodos auxiliares
     /**
-     *
+     * Método encargado de asignar un fixture y un userData rectangular al murciélago
      */
     private void createFixture(){
         PolygonShape shape = new PolygonShape();
