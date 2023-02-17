@@ -15,7 +15,7 @@ import com.mygdx.game.extras.AssetMan;
  */
 public class TutorialScreen extends BaseScreen{
     // Atributos de la clase
-    private static final float SWAP_STATE_TIME = 3f;
+    private static final float SWAP_STATE_TIME = 2.5f;
     // Atributos de la instancia
     private float timeToSwapState;
     private int state;
