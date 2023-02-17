@@ -6,6 +6,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.extras.AssetMan;
 
+/**
+ * Clase de tipo actor que interactua con el actor Flammie. Se trata de un objeto redondo que será
+ * objeto de la hambre del actor principal
+ */
 public class Apple extends BaseActor {
     // Atributos de la clase
     public static final float APPLE_WIDTH = 0.5f;

@@ -12,6 +12,10 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.extras.AssetMan;
 
+/**
+ * Clase de tipo actor que interactua con el actor Flammie. Se trata de un enemigo que al colisionar
+ * debe terminar la ejecución de la partida actual.
+ */
 public class Bat extends BaseActor {
     // Atributos de clase
     public static final float BAT_WIDTH = 1f;
@@ -24,13 +28,13 @@ public class Bat extends BaseActor {
 
     /**
      * Constructor por parámetros
-     * @param world
-     * @param position
+     * @param world Mundo en el que se instancia el actor
+     * @param position Posición en la que se instancia el actor
      */
     public Bat(World world, Vector2 position){
         super(world, position);
         this.animation = AssetMan.getInstance().getBatAnimation();
-
+        // Calculamos un velocidad aleatoria para cada uno de los murciélagos
         this.randomSpeedFactor = SPEED + MathUtils.random(-0.5f, 0.5f);
 
         createKinematicBody(position, 0, this.randomSpeedFactor);
@@ -50,6 +54,10 @@ public class Bat extends BaseActor {
         this.stateTime += Gdx.graphics.getDeltaTime();
     }
 
+    // Métodos auxiliares
+    /**
+     *
+     */
     private void createFixture(){
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(BAT_WIDTH/2, BAT_HEIGHT/2);

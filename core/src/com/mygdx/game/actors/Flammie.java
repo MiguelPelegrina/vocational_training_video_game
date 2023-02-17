@@ -31,7 +31,9 @@ public class Flammie extends BaseActor {
     private Vector3 auxCoordinates;
 
     /**
-     * Constructor por parámetros
+     *
+     * @param world Mundo en el que se instancia el actor
+     * @param position Posición en la que se instancia el actor
      */
     public Flammie(World world, Vector2 position){
         //Inicialización de atributos
