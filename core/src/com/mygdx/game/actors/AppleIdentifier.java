@@ -2,6 +2,10 @@ package com.mygdx.game.actors;
 
 import static com.mygdx.game.extras.Utils.USER_APPLE;
 
+/**
+ * Clase auxiliar encargada de identificar CADA manzana de forma única ya que userData acepta como
+ * parámetro un Objeto.
+ */
 public class AppleIdentifier {
     private static int APPLE_COUNTER = 0;
 

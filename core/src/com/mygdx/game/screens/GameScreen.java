@@ -249,6 +249,8 @@ public class GameScreen extends BaseScreen implements ContactListener {
 
     @Override
     public void beginContact(Contact contact) {
+        // Para poder diferenciar una manzana de otra es necesario primero, averiguar si el fixture
+        // de los objetos que establecen contacto son manzanas o no
         AppleIdentifier appleIdentifier = null;
         if(contact.getFixtureA().getUserData() instanceof AppleIdentifier){
             appleIdentifier = (AppleIdentifier) contact.getFixtureA().getUserData();
@@ -256,9 +258,11 @@ public class GameScreen extends BaseScreen implements ContactListener {
         if(contact.getFixtureB().getUserData() instanceof AppleIdentifier){
             appleIdentifier = (AppleIdentifier) contact.getFixtureB().getUserData();
         }
+        // Si los objetos son manzanas y se chocan con nuestro actor principal
         if(appleIdentifier != null && appleIdentifier.getName().equals(USER_APPLE)){
             this.scoreNumber++;
             this.chompSound.play();
+            // Borramos del array de manzanas la manzana que corresponde
             for(Apple apple : this.arrayApples){
                 if(apple.getIdentifier().getNumber() == appleIdentifier.getNumber()){
                     apple.getsEaten();
@@ -300,8 +304,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
     }
 
     // Métodos auxiliares
-
-
     private void addBorder(Body border, Fixture fixture, String user, Vector2 vector1, Vector2 vector2) {
         BodyDef bodydef = new BodyDef();
         bodydef.type = BodyDef.BodyType.StaticBody;
