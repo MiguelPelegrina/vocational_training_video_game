@@ -114,7 +114,7 @@ public class TutorialScreen extends BaseScreen{
     private void configureMessage(){
         switch (this.state){
             case 1:
-                prepareMessage("Move Flammie\nto the direction\nyou want!");
+                prepareMessage("Move Flammie\nto the point\nyou wish by\ntouching!");
                 break;
             case 2:
                 prepareMessage("Dodge bats!");
