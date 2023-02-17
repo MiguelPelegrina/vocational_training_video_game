@@ -6,15 +6,11 @@ import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.game.MainGame;
-import com.mygdx.game.extras.AssetMan;
 
 /**
  *
  */
 public class GetReadyScreen extends BaseScreen{
-    // Declaración de variables
-    // TODO Megaman?
-
     /**
      * Constructor por parámetros
      * @param mainGame
@@ -41,17 +37,4 @@ public class GetReadyScreen extends BaseScreen{
             dispose();
         }
     }
-
-    /**
-     *
-     */
-    @Override
-    public void show(){
-        super.show();
-        //addFlammie();
-
-        //startMusic();
-    }
-
-
 }
