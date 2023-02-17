@@ -62,9 +62,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
     private Array<Bat> arrayBats;
     private Array<Apple> arrayApples;
 
-    // Depuración
-    // TODO QUITAR AL FINAL
-    private Box2DDebugRenderer debugRenderer;
     private OrthographicCamera worldCamera;
 
     /**
@@ -84,9 +81,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
         prepareGameSound();
         prepareScore();
 
-        // TODO QUITAR AL FINAL
         this.worldCamera = (OrthographicCamera) this.stage.getCamera();
-        this.debugRenderer = new Box2DDebugRenderer();
     }
 
     /**
@@ -187,7 +182,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
      */
     @Override
     public void render(float delta) {
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // Colocamos los murciélagos
         addBats(delta);
         addApples(delta);
@@ -198,7 +192,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
         this.world.step(delta,6,2);
         this.stage.draw();
 
-        this.debugRenderer.render(this.world, this.worldCamera.combined);
         // Liberamos el espacio de la gráfica destinado a las rocas que se encuentra ya fuera de la
         // pantalla
         removeBats();
