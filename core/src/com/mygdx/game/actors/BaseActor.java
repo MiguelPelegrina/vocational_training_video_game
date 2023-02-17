@@ -7,6 +7,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class BaseActor extends Actor {
+    // Atributos de la clase
+    // Se requieren en otras clases del proyecto
+    public static final int STATE_ALIVE = 0;
+    public static final int STATE_DEAD = 1;
     protected World world;
     protected Vector2 position;
     protected Body body;

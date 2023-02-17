@@ -20,10 +20,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.mygdx.game.extras.AssetMan;
 
 public class Flammie extends BaseActor {
-    // Atributos de la clase
-    // Se requieren en otras clases del proyecto
-    public static final int STATE_ALIVE = 0;
-    public static final int STATE_DEAD = 1;
     // Solo se requieren en la propio clase
     private static final float FLAMMIE_WIDTH = 1f;
     private static final float FLAMMIE_HEIGHT = 1f;

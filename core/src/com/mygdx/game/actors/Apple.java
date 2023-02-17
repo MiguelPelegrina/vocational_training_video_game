@@ -21,10 +21,12 @@ public class Apple extends BaseActor {
 
     // Atributos de la instancia
     private TextureRegion appleTR;
+    private int state;
 
     public Apple(World world, Vector2 position){
         super(world, position);
         this.appleTR = AssetMan.getInstance().getApple();
+        this.state = STATE_ALIVE;
 
         createBody();
         createFixture();
@@ -34,6 +36,14 @@ public class Apple extends BaseActor {
     public void draw(Batch batch, float parentAlpha) {
         setPosition(this.body.getPosition().x - (APPLE_WIDTH/2), this.body.getPosition().y - (APPLE_HEIGHT/2));
         batch.draw(this.appleTR, this.getX(),this.getY(),APPLE_WIDTH,APPLE_HEIGHT);
+    }
+
+    public int getState(){
+        return this.state;
+    }
+
+    public void getsEaten(){
+        state = STATE_DEAD;
     }
 
     // Métodos auxiliares

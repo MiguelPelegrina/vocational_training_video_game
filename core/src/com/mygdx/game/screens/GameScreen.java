@@ -2,6 +2,7 @@ package com.mygdx.game.screens;
 
 import static com.mygdx.game.actors.Apple.APPLE_HEIGHT;
 import static com.mygdx.game.actors.Apple.APPLE_WIDTH;
+import static com.mygdx.game.actors.BaseActor.STATE_DEAD;
 import static com.mygdx.game.actors.Bat.BAT_HEIGHT;
 import static com.mygdx.game.actors.Bat.BAT_WIDTH;
 import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
@@ -32,6 +33,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.mygdx.game.MainGame;
 import com.mygdx.game.actors.Apple;
 import com.mygdx.game.actors.Bat;
@@ -43,11 +45,12 @@ import com.mygdx.game.extras.AssetMan;
  */
 public class GameScreen extends BaseScreen implements ContactListener {
     // Atributo de la clase
-    private static final float BAT_SPAWN_TIME = 1.5f;
+    private static final float BAT_SPAWN_TIME = 2f;
+    private static final float APPLE_SPAWN_TIME = 3f;
     // Atributos de la instancia
     private float timeToCreateBat;
+    private float timeToCreateApple;
     private Flammie flammie;
-    private Apple apple;
     private Sound hitSound;
 
     private Body leftBorder;
@@ -75,7 +78,9 @@ public class GameScreen extends BaseScreen implements ContactListener {
         this.world.setContactListener(this);
 
         this.arrayBats = new Array<>();
+        this.arrayApples = new Array<>();
         this.timeToCreateBat= 0f;
+        this.timeToCreateApple = 0f;
 
         prepareGameSound();
         prepareScore();
@@ -103,10 +108,34 @@ public class GameScreen extends BaseScreen implements ContactListener {
         this.stage.addActor(this.flammie);
     }
 
-    public void addApples(){
-        float randomXpos = MathUtils.random(APPLE_WIDTH, WORLD_WIDTH - APPLE_WIDTH);
-        this.apple = new Apple(this.world, new Vector2(randomXpos,WORLD_HEIGHT + APPLE_HEIGHT + 0.1f));
-        this.stage.addActor(this.apple);
+    public void addApples(float delta){
+        if(flammie.getState() == Flammie.STATE_ALIVE){
+            this.timeToCreateApple += delta;
+            if (this.timeToCreateApple >= APPLE_SPAWN_TIME){
+                this.timeToCreateApple -= APPLE_SPAWN_TIME;
+                Apple apple = new Apple(this.world, new Vector2(MathUtils.random(APPLE_WIDTH,
+                        WORLD_WIDTH - APPLE_WIDTH),WORLD_HEIGHT + APPLE_HEIGHT + 0.1f));
+                arrayApples.add(apple);
+                this.stage.addActor(apple);
+            }
+        }
+    }
+
+    public void removeApples(){
+        for(Apple apple : this.arrayApples){
+            // Mientras que no se esté actualizando el mundo en este momento
+            if(!world.isLocked()){
+                // Comprobamos si el grupo de rocas se encuentra visibles
+                if(apple.isOutOfScreen(APPLE_HEIGHT) || apple.getState() == STATE_DEAD){
+                    // Liberamos el espacio en la gráfica
+                    apple.detach();
+                    // Quitamos las rocas de la escena
+                    apple.remove();
+                    // Sacamos las rocas de la colección
+                    arrayApples.removeValue(apple,false);
+                }
+            }
+        }
     }
 
     /**
@@ -114,11 +143,11 @@ public class GameScreen extends BaseScreen implements ContactListener {
      * @param delta
      */
     public void addBats(float delta){
-        // Mientras que el muñeco está vivo
+        // Mientras que el actor principal está vivo
         if(flammie.getState() == Flammie.STATE_ALIVE){
             // Acumulamos el tiempo entre un fotograma y el siguiente
             this.timeToCreateBat += delta;
-            // Si el tiempo acumulado supera el establecido TODO como dificultad?
+            // Si el tiempo acumulado supera el establecido
             if(this.timeToCreateBat >= BAT_SPAWN_TIME){
                 // Reiniciamos el contador
                 this.timeToCreateBat -= BAT_SPAWN_TIME;
@@ -137,17 +166,17 @@ public class GameScreen extends BaseScreen implements ContactListener {
      */
     public void removeBats(){
         // Por cada uno de los grupos de rocas (roca inferior, roca superior y bloque del contador)
-        for(Bat bats : this.arrayBats){
+        for(Bat bat : this.arrayBats){
             // Mientras que no se esté actualizando el mundo en este momento
             if(!world.isLocked()){
                 // Comprobamos si el grupo de rocas se encuentra visibles
-                if(bats.isOutOfScreen(BAT_HEIGHT)){
+                if(bat.isOutOfScreen(BAT_HEIGHT)){
                     // Liberamos el espacio en la gráfica
-                    bats.detach();
+                    bat.detach();
                     // Quitamos las rocas de la escena
-                    bats.remove();
-                    // Sacamos las rocas de la colección
-                    arrayBats.removeValue(bats,false);
+                    bat.remove();
+                    // Sacamos los murciélagos de la colección
+                    arrayBats.removeValue(bat,false);
                 }
             }
         }
@@ -162,6 +191,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // Colocamos los murciélagos
         addBats(delta);
+        addApples(delta);
         // Configuramos el lote del escenario de tal forma que representa los elementos en función
         // del tamaño del mundo
         this.stage.getBatch().setProjectionMatrix(worldCamera.combined);
@@ -173,6 +203,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
         // Liberamos el espacio de la gráfica destinado a las rocas que se encuentra ya fuera de la
         // pantalla
         removeBats();
+        removeApples();
 
         // Configuramos el lote del escenario de tal forma que representa solo la fuente en función
         // de la resolución de la pantalla en píxeles
@@ -220,8 +251,11 @@ public class GameScreen extends BaseScreen implements ContactListener {
     public void beginContact(Contact contact) {
         if(areColider(contact, USER_FLAMMIE, USER_APPLE)){
             this.scoreNumber++;
-            //this.apple.remove();
-
+            for(Apple apple : this.arrayApples){
+                if(contact.getFixtureB().getUserData().equals(USER_APPLE) || contact.getFixtureA().getUserData().equals(USER_APPLE)){
+                    apple.getsEaten();
+                }
+            }
         }else{
             flammie.dies();
             this.hitSound.play();
