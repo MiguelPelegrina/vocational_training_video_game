@@ -112,17 +112,20 @@ public class GameScreen extends BaseScreen implements ContactListener {
         }
     }
 
+    /**
+     *
+     */
     public void removeApples(){
         for(Apple apple : this.arrayApples){
             // Mientras que no se esté actualizando el mundo en este momento
             if(!world.isLocked()){
-                // Comprobamos si el grupo de rocas se encuentra visibles
+                // Comprobamos si la manzana se encuentra dentro de la pantalla o se ha comido
                 if(apple.isOutOfScreen(APPLE_HEIGHT) || apple.getState() == STATE_DEAD){
                     // Liberamos el espacio en la gráfica
                     apple.detach();
-                    // Quitamos las rocas de la escena
+                    // Quitamos la manzana de la escena
                     apple.remove();
-                    // Sacamos las rocas de la colección
+                    // Sacamos la manzana del array
                     arrayApples.removeValue(apple,false);
                 }
             }

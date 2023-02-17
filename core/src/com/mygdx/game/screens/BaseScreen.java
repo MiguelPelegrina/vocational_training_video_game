@@ -64,6 +64,7 @@ public abstract class BaseScreen implements Screen {
         this.stage.draw();
     }
 
+    // Métodos de la interfaz Screen a implementar
     @Override
     public void resize(int width, int height) {
 
@@ -90,6 +91,10 @@ public abstract class BaseScreen implements Screen {
     }
 
     // Métodos auxiliares para clases hijas
+    /**
+     *
+     * @param text
+     */
     protected void prepareMessage(String text) {
         // Configuramos la fuente y su escala
         this.text = text;
@@ -102,6 +107,9 @@ public abstract class BaseScreen implements Screen {
         this.fontCamera.update();
     }
 
+    /**
+     *
+     */
     protected void addBackground(){
         this.background = new Image(AssetMan.getInstance().getBackgroundStart());
         this.background.setPosition(0,0);
@@ -109,6 +117,9 @@ public abstract class BaseScreen implements Screen {
         this.stage.addActor(this.background);
     }
 
+    /**
+     *
+     */
     protected void startMusic(){
         music.setLooping(true);
         music.play();
