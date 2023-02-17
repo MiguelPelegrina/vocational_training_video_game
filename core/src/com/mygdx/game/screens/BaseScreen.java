@@ -20,16 +20,12 @@ import com.mygdx.game.MainGame;
 import com.mygdx.game.extras.AssetMan;
 
 /**
- * Clase abstracta que implementa la interfaz Screen. Implementa los métodos de dicha interfaz
- * para que posteriormente las clases que heredan solo tengan que sobrecargar los métodos que
- * necesiten.
- * Alternativamente tendríamos mucho código repetido a través de métodos implementados
- * que no se van a utilizar.
+ * Clase abstracta que implementa la interfaz Screen. Sirve como clase base para las demás pantallas
+ * de tal forma que contiene todos los atributos y métodos compartidos
  */
 public abstract class BaseScreen implements Screen {
     // Atributos de la instancia
     protected MainGame mainGame;
-    // TODO ABSTRAER TODOS LOS ATRIBUTOS Y MÉTODOS REPETIDOS
     protected Stage stage;
     protected World world;
     protected Image background;

@@ -7,16 +7,25 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
+/**
+ * Clase abstracta que extiende de actor. Sirve como clase base para los demás actores de tal forma
+ * que contiene todos los atributos y métodos compartidos.
+ */
 public abstract class BaseActor extends Actor {
     // Atributos de la clase
-    // Se requieren en otras clases del proyecto
     public static final int STATE_ALIVE = 0;
     public static final int STATE_DEAD = 1;
+    // Atributos de la instancia
     protected World world;
     protected Vector2 position;
     protected Body body;
     protected Fixture fixture;
 
+    /**
+     * Constructor por parámetros
+     * @param world
+     * @param position
+     */
     public BaseActor(World world, Vector2 position) {
         this.world = world;
         this.position = position;
