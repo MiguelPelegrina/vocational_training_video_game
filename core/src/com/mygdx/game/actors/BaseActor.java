@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class BaseActor extends Actor {
+public abstract class BaseActor extends Actor {
     // Atributos de la clase
     // Se requieren en otras clases del proyecto
     public static final int STATE_ALIVE = 0;
@@ -20,7 +20,6 @@ public class BaseActor extends Actor {
         this.world = world;
         this.position = position;
     }
-
 
     /**
      * Método encargado de indicar cuando actor se encuentra fuera de la pantalla

@@ -269,11 +269,14 @@ public class GameScreen extends BaseScreen implements ContactListener {
                 }
             }
         }else{
-            flammie.dies();
+            this.flammie.dies();
             this.hitSound.play();
             this.music.stop();
             for (Bat bat : arrayBats) {
                 bat.stopActor();
+            }
+            for(Apple apple : this.arrayApples){
+                apple.stopActor();
             }
 
             this.stage.addAction(Actions.sequence(
