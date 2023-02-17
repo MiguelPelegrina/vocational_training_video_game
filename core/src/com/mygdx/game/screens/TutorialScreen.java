@@ -12,7 +12,10 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.MainGame;
+import com.mygdx.game.actors.Apple;
+import com.mygdx.game.actors.BaseActor;
 import com.mygdx.game.actors.Bat;
 import com.mygdx.game.actors.Flammie;
 import com.mygdx.game.extras.AssetMan;
@@ -27,6 +30,9 @@ public class TutorialScreen extends BaseScreen{
     // Atributos de la instancia
     private Flammie flammie;
     private Bat bat;
+    private Apple apple;
+    // TODO a lo mejor así?
+    private Array<BaseActor> actores;
     private float timeToSwapState;
     private int state;
     private Sound listenSound;
@@ -43,6 +49,7 @@ public class TutorialScreen extends BaseScreen{
         this.timeToSwapState = 0f;
         this.flammie = new Flammie(this.world, new Vector2(WORLD_WIDTH/2f,WORLD_HEIGHT/4f));
         this.bat = new Bat(this.world, new Vector2(WORLD_WIDTH/2f,WORLD_HEIGHT/2f));
+        this.apple = new Apple(this.world, new Vector2(WORLD_WIDTH/2f,WORLD_HEIGHT/2f));
         this.listenSound = AssetMan.getInstance().getListenSound();
 
         this.worldCamera = (OrthographicCamera) this.stage.getCamera();
@@ -100,6 +107,10 @@ public class TutorialScreen extends BaseScreen{
         }
     }
 
+    // Métodos auxiliares
+    /**
+     * Configuramos el mensaje que se va a mostrar en función del estado actual
+     */
     private void configureMessage(){
         switch (this.state){
             case 1:
