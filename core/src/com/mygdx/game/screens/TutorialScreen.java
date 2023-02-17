@@ -71,7 +71,7 @@ public class TutorialScreen extends BaseScreen{
         if(this.timeToSwapState >= SWAP_STATE_TIME){
             this.timeToSwapState -= SWAP_STATE_TIME;
             this.state++;
-            if(this.state == 5) {
+            if(this.state == 6) {
                 this.state = 1;
             }
         }
@@ -102,7 +102,7 @@ public class TutorialScreen extends BaseScreen{
         this.stage.getBatch().end();
 
         if(Gdx.input.justTouched()){
-            this.mainGame.setScreen(new GetReadyScreen(this.mainGame));
+            this.mainGame.setScreen(new GameScreen(this.mainGame));
             dispose();
         }
     }
@@ -124,6 +124,9 @@ public class TutorialScreen extends BaseScreen{
                 break;
             case 4:
                 prepareMessage("Don't touch\nthe borders!");
+                break;
+            case 5:
+                prepareMessage("Touch the\nscreen to \nto start!");
                 break;
         }
     }
