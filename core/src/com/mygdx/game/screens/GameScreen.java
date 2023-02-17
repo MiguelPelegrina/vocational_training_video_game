@@ -277,7 +277,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
             }
 
             this.stage.addAction(Actions.sequence(
-                    Actions.delay(1.5f),
+                    Actions.delay(3f),
                     Actions.run(new Runnable() {
                         @Override
                         public void run() {
