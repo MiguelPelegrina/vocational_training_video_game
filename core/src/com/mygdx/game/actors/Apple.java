@@ -1,9 +1,6 @@
 package com.mygdx.game.actors;
 
 import static com.mygdx.game.extras.Utils.USER_APPLE;
-import static com.mygdx.game.extras.Utils.USER_FLAMMIE;
-
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -19,14 +16,18 @@ public class Apple extends BaseActor {
     private static final float APPLE_FIXTURE_RADIUS = 0.225f;
     private static final float SPEED = -1f;
 
+
     // Atributos de la instancia
     private TextureRegion appleTR;
     private int state;
+    private AppleIdentifier identifier;
 
     public Apple(World world, Vector2 position){
         super(world, position);
         this.appleTR = AssetMan.getInstance().getApple();
         this.state = STATE_ALIVE;
+
+        this.identifier = new AppleIdentifier();
 
         createBody();
         createFixture();
@@ -46,6 +47,10 @@ public class Apple extends BaseActor {
         state = STATE_DEAD;
     }
 
+    public AppleIdentifier getIdentifier(){
+        return this.identifier;
+    }
+
     // Métodos auxiliares
     private void createBody() {
         BodyDef bodyDef = new BodyDef();
@@ -60,7 +65,8 @@ public class Apple extends BaseActor {
         CircleShape circle = new CircleShape();
         circle.setRadius(APPLE_FIXTURE_RADIUS);
         this.fixture = this.body.createFixture(circle, 8);
-        this.fixture.setUserData(USER_APPLE);
+        //this.fixture.setUserData(USER_APPLE);
+        this.fixture.setUserData(this.identifier);
         circle.dispose();
     }
 }

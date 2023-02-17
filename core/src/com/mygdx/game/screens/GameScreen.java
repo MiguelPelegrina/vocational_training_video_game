@@ -8,7 +8,6 @@ import static com.mygdx.game.actors.Bat.BAT_WIDTH;
 import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
 import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 import static com.mygdx.game.extras.Utils.USER_APPLE;
-import static com.mygdx.game.extras.Utils.USER_COUNTER;
 import static com.mygdx.game.extras.Utils.USER_FLAMMIE;
 import static com.mygdx.game.extras.Utils.USER_LEFTBORDER;
 import static com.mygdx.game.extras.Utils.USER_RIGHTBORDER;
@@ -33,9 +32,9 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.mygdx.game.MainGame;
 import com.mygdx.game.actors.Apple;
+import com.mygdx.game.actors.AppleIdentifier;
 import com.mygdx.game.actors.Bat;
 import com.mygdx.game.actors.Flammie;
 import com.mygdx.game.extras.AssetMan;
@@ -250,11 +249,18 @@ public class GameScreen extends BaseScreen implements ContactListener {
 
     @Override
     public void beginContact(Contact contact) {
-        if(areColider(contact, USER_FLAMMIE, USER_APPLE)){
+        AppleIdentifier appleIdentifier = null;
+        if(contact.getFixtureA().getUserData() instanceof AppleIdentifier){
+            appleIdentifier = (AppleIdentifier) contact.getFixtureA().getUserData();
+        }
+        if(contact.getFixtureB().getUserData() instanceof AppleIdentifier){
+            appleIdentifier = (AppleIdentifier) contact.getFixtureB().getUserData();
+        }
+        if(appleIdentifier != null && appleIdentifier.getName().equals(USER_APPLE)){
             this.scoreNumber++;
             this.chompSound.play();
             for(Apple apple : this.arrayApples){
-                if(contact.getFixtureB().getUserData().equals(USER_APPLE) || contact.getFixtureA().getUserData().equals(USER_APPLE)){
+                if(apple.getIdentifier().getNumber() == appleIdentifier.getNumber()){
                     apple.getsEaten();
                 }
             }
@@ -294,20 +300,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     }
 
     // Métodos auxiliares
-    /**
-     * Método encargado de averiguar si dos actores se han chocado. Internamente debe comprobar dos
-     * casos: si A se ha topado con B o si B se ha topado con A, ya que el registro del contacto
-     * sino puede ser erróneo.
-     * @param contact Objeto que registra el contacto entre dos objetos
-     * @param objA Objeto A que se registra en el contacto
-     * @param objB Objeto B que se registra en el contacto
-     * @return Devuelve true si se ha producido contacto entre los dos objetos o false si no se ha
-     * producido contacto.
-     */
-    private boolean areColider(Contact contact, Object objA, Object objB){
-        return (contact.getFixtureA().getUserData().equals(objA) && contact.getFixtureB().getUserData().equals(objB)) ||
-                (contact.getFixtureA().getUserData().equals(objB) && contact.getFixtureB().getUserData().equals(objA));
-    }
+
 
     private void addBorder(Body border, Fixture fixture, String user, Vector2 vector1, Vector2 vector2) {
         BodyDef bodydef = new BodyDef();
