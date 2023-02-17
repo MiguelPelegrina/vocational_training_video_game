@@ -37,10 +37,15 @@ public class Bat extends BaseActor {
         createFixture();
     }
 
+    /**
+     *
+     * @param batch
+     * @param parentAlpha Indica el nivel de transparencia del padre
+     */
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        setPosition(this.body.getPosition().x - (BAT_WIDTH/2), this.body.getPosition().y - (BAT_HEIGHT/2) );
-        batch.draw(this.animation.getKeyFrame(stateTime, true), getX(),getY(),BAT_WIDTH,BAT_HEIGHT);
+        setPosition(this.body.getPosition().x - (BAT_WIDTH/2), this.body.getPosition().y - (BAT_HEIGHT/2));
+        batch.draw(this.animation.getKeyFrame(stateTime, true), this.getX(), this.getY(), BAT_WIDTH, BAT_HEIGHT);
 
         this.stateTime += Gdx.graphics.getDeltaTime();
     }

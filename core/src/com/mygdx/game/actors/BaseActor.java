@@ -57,6 +57,12 @@ public abstract class BaseActor extends Actor {
     }
 
     // Métodos auxiliares que se van a utilizar en varios clases hijas
+    /**
+     * Método encargado de crear un cuerpo kinemático
+     * @param position Posición en la cual se va a posicionar el actor
+     * @param velocityX Velocidad en el eje X que se le asigna al actor
+     * @param velocityY Velocidad en el eje Y que se le asigna al actor
+     */
     protected void createKinematicBody(Vector2 position, float velocityX, float velocityY){
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(position);

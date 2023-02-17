@@ -14,11 +14,11 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.extras.AssetMan;
 
 public class Flammie extends BaseActor {
+    // Atributos de la clase
     // Solo se requieren en la propio clase
     private static final float FLAMMIE_WIDTH = 1f;
     private static final float FLAMMIE_HEIGHT = 1f;
     private static final float FLAMMIE_FIXTURE_RADIUS = 0.3f;
-
     //Atributos de la instancia
     private int state;
     private Animation<TextureRegion> animation;
@@ -87,7 +87,7 @@ public class Flammie extends BaseActor {
     /**
      *
      * @param batch
-     * @param parentAlpha
+     * @param parentAlpha Indica el nivel de transparencia del padre
      */
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -97,6 +97,10 @@ public class Flammie extends BaseActor {
         stateTime += Gdx.graphics.getDeltaTime();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getState(){
         return this.state;
     }
