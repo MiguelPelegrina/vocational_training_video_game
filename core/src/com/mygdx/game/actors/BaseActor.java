@@ -2,6 +2,7 @@ package com.mygdx.game.actors;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
@@ -23,8 +24,8 @@ public abstract class BaseActor extends Actor {
 
     /**
      * Constructor por parámetros
-     * @param world
-     * @param position
+     * @param world Mundo en el que se instancia el actor
+     * @param position Posición en la que se instancia el actor
      */
     public BaseActor(World world, Vector2 position) {
         this.world = world;
@@ -32,7 +33,7 @@ public abstract class BaseActor extends Actor {
     }
 
     /**
-     * Método encargado de indicar cuando actor se encuentra fuera de la pantalla
+     * Método encargado de indicar cuando un actor se encuentra fuera de la pantalla
      * @return Devuelve true si la posición actual del actor está fuera de la pantalla o false si se
      * encuentra dentro
      */
@@ -48,14 +49,29 @@ public abstract class BaseActor extends Actor {
     }
 
     /**
-     *
+     * Método encargado de eliminar el body y el fixture del actor
      */
     public void detach(){
         this.body.destroyFixture(this.fixture);
         this.world.destroyBody(this.body);
     }
 
-    // Métodos auxiliares
+    // Métodos auxiliares que se van a utilizar en varios clases hijas
+    protected void createKinematicBody(Vector2 position, float velocityX, float velocityY){
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.position.set(position);
+        bodyDef.type = BodyDef.BodyType.KinematicBody;
+
+        this.body = this.world.createBody(bodyDef);
+        this.body.setLinearVelocity(velocityX, velocityY);
+    }
+
+    /**
+     * Método encargado de asignar un fixture circular a un objeto
+     * @param radius Tamaño del radio que se quiere asignar como fixture
+     * @param identifier Objeto que identificará posteriormente al fixture del objeto a través del
+     *                   método getUserData()
+     */
     protected void createCircularFixture(float radius, Object identifier){
         CircleShape circle = new CircleShape();
         circle.setRadius(radius);

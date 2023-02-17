@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.extras.AssetMan;
@@ -18,7 +17,6 @@ public class Bat extends BaseActor {
     public static final float BAT_WIDTH = 1f;
     public static final float BAT_HEIGHT = 0.4f;
     private static final float SPEED = -2f;
-
     // Atributos de la instancia
     private Animation<TextureRegion> animation;
     private float stateTime;
@@ -35,10 +33,8 @@ public class Bat extends BaseActor {
 
         this.randomSpeedFactor = SPEED + MathUtils.random(-0.5f, 0.5f);
 
-        createBody(position);
+        createKinematicBody(position, 0, this.randomSpeedFactor);
         createFixture();
-        // TODO
-        //createCounter();
     }
 
     @Override
@@ -47,17 +43,6 @@ public class Bat extends BaseActor {
         batch.draw(this.animation.getKeyFrame(stateTime, true), getX(),getY(),BAT_WIDTH,BAT_HEIGHT);
 
         this.stateTime += Gdx.graphics.getDeltaTime();
-    }
-
-
-    // Métodos auxiliares
-    private void createBody(Vector2 position){
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(position);
-        bodyDef.type = BodyDef.BodyType.KinematicBody;
-
-        this.body = this.world.createBody(bodyDef);
-        this.body.setLinearVelocity(0, randomSpeedFactor);
     }
 
     private void createFixture(){

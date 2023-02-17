@@ -3,8 +3,6 @@ package com.mygdx.game.actors;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.extras.AssetMan;
 
@@ -14,7 +12,6 @@ public class Apple extends BaseActor {
     public static final float APPLE_HEIGHT = 0.5f;
     private static final float APPLE_FIXTURE_RADIUS = 0.225f;
     private static final float SPEED = -1f;
-
 
     // Atributos de la instancia
     private TextureRegion appleTR;
@@ -28,7 +25,7 @@ public class Apple extends BaseActor {
 
         this.identifier = new AppleIdentifier();
 
-        createBody();
+        createKinematicBody(position,0, SPEED);
         createCircularFixture(APPLE_FIXTURE_RADIUS, this.identifier);
     }
 
@@ -48,15 +45,5 @@ public class Apple extends BaseActor {
 
     public AppleIdentifier getIdentifier(){
         return this.identifier;
-    }
-
-    // Métodos auxiliares
-    private void createBody() {
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(position);
-        bodyDef.type = BodyDef.BodyType.KinematicBody;
-
-        this.body = this.world.createBody(bodyDef);
-        this.body.setLinearVelocity(0, SPEED);
     }
 }
