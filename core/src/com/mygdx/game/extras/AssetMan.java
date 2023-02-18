@@ -200,32 +200,40 @@ public class AssetMan {
     }
 
     /**
-     *
-     * @return
+     * étodo encargado de devolver la música de fondo de la pantalla de game over
+     * @return Devuelve la música de fondo
      */
     public Music getGOMusic(){
         return this.assetManager.get(MUSIC_GAMEOVER);
     }
 
     /**
-     * Método encargado de devolver el sonido del choque del muñeco
+     * Método encargado de devolver el sonido del choque del actor principal
      * @return Devuelve el sonido de choque con otros objetos
      */
     public Sound getHitSound(){
         return this.assetManager.get(SOUND_HIT);
     }
 
+    /**
+     * Método encargado de devolver el sonido para llamar la atención en los mensajes del tutorial
+     * @return Devuelve un sonido que avisa para prestar atención
+     */
     public Sound getListenSound(){
         return this.assetManager.get(SOUND_LISTEN);
     }
 
+    /**
+     * Método encargado de devolver el sonido de comer
+     * @return Devuelve un sonido de comer
+     */
     public Sound getChompSound(){
         return this.assetManager.get(SOUND_CHOMP);
     }
 
     /**
-     *
-     * @return
+     * Método encargado de devolver la fuente principal que se va a utilizar en todo el proyecto
+     * @return Devuele la fuente para escribir mensajes
      */
     public BitmapFont getFont(){
         return new BitmapFont(Gdx.files.internal(FONT_FNT), Gdx.files.internal(FONT_PNG), false);

@@ -58,7 +58,6 @@ public abstract class BaseScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-
         this.stage.act();
         this.world.step(delta,6,2);
         this.stage.draw();
@@ -121,7 +120,7 @@ public abstract class BaseScreen implements Screen {
      *
      */
     protected void startMusic(){
-        music.setLooping(true);
-        music.play();
+        this.music.setLooping(true);
+        this.music.play();
     }
 }
