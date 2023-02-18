@@ -59,7 +59,7 @@ public class Bat extends BaseActor {
      */
     private void createFixture(){
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(BAT_WIDTH/2, BAT_HEIGHT/2);
+        shape.setAsBox(BAT_WIDTH/2.5f, BAT_HEIGHT/2.5f);
         this.fixture = body.createFixture(shape,8);
         this.fixture.setUserData(USER_BAT);
         shape.dispose();
