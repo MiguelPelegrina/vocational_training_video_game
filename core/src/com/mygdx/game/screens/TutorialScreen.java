@@ -65,7 +65,6 @@ public class TutorialScreen extends BaseScreen{
 
         if(Gdx.input.justTouched()){
             this.mainGame.setScreen(new GameScreen(this.mainGame));
-            dispose();
         }
     }
 

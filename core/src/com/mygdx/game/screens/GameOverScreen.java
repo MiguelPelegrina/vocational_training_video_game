@@ -33,7 +33,6 @@ public class GameOverScreen extends BaseScreen{
     @Override
     public void show(){
         super.show();
-
         startMusic();
     }
 
@@ -64,7 +63,6 @@ public class GameOverScreen extends BaseScreen{
 
         if(Gdx.input.isTouched()){
             this.mainGame.setScreen(new GameScreen(this.mainGame));
-            dispose();
         }
     }
 }

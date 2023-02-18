@@ -214,7 +214,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
         addFlammie();
         addBorder(leftBorder,leftBorderFixture, USER_LEFTBORDER,new Vector2(0,0), new Vector2(0,WORLD_HEIGHT));
         addBorder(rightBorder,rightBorderFixture, USER_RIGHTBORDER,new Vector2(WORLD_WIDTH,0),new Vector2(WORLD_WIDTH,WORLD_HEIGHT));
-
         startMusic();
     }
 
@@ -225,7 +224,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
     public void hide() {
         this.flammie.detach();
         this.flammie.remove();
-
         this.music.stop();
     }
 
