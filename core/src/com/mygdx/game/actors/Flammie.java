@@ -19,6 +19,7 @@ public class Flammie extends BaseActor {
     private static final float FLAMMIE_WIDTH = 1f;
     private static final float FLAMMIE_HEIGHT = 1f;
     private static final float FLAMMIE_FIXTURE_RADIUS = 0.3f;
+    private static final float SPEED_FACTOR = 1.5f;
     //Atributos de la instancia
     private int state;
     private Animation<TextureRegion> animation;
@@ -76,8 +77,8 @@ public class Flammie extends BaseActor {
             // la del actor de tal forma que cuanto más lejos se encuentran el uno del otro más
             // acelera, tanto en el eje X como Y
             this.body.setLinearVelocity(
-                    auxCoordinates.x - this.body.getPosition().x,
-                    auxCoordinates.y - this.body.getPosition().y
+                    (auxCoordinates.x - this.body.getPosition().x) * SPEED_FACTOR,
+                    (auxCoordinates.y - this.body.getPosition().y) * SPEED_FACTOR
             );
         }else{
             // Movimiento por defecto cuando no se toca la pantalla
