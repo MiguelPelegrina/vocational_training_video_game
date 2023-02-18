@@ -93,91 +93,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
 
     /**
      *
-     */
-    public void addFlammie(){
-        this.flammie = new Flammie(this.world, new Vector2(WORLD_WIDTH/2f,WORLD_HEIGHT/4f));
-        this.stage.addActor(this.flammie);
-    }
-
-    public void addApples(float delta){
-        if(flammie.getState() == Flammie.STATE_ALIVE){
-            this.timeToCreateApple += delta;
-            if (this.timeToCreateApple >= APPLE_SPAWN_TIME){
-                this.timeToCreateApple -= APPLE_SPAWN_TIME;
-                Apple apple = new Apple(this.world, new Vector2(MathUtils.random(APPLE_WIDTH,
-                        WORLD_WIDTH - APPLE_WIDTH),WORLD_HEIGHT + APPLE_HEIGHT + 0.1f));
-                arrayApples.add(apple);
-                this.stage.addActor(apple);
-            }
-        }
-    }
-
-    /**
-     *
-     */
-    public void removeApples(){
-        for(Apple apple : this.arrayApples){
-            // Mientras que no se esté actualizando el mundo en este momento
-            if(!world.isLocked()){
-                // Comprobamos si la manzana se encuentra dentro de la pantalla o se ha comido
-                if(apple.isOutOfScreen(APPLE_HEIGHT) || apple.getState() == STATE_DEAD){
-                    // Liberamos el espacio en la gráfica
-                    apple.detach();
-                    // Quitamos la manzana de la escena
-                    apple.remove();
-                    // Sacamos la manzana del array
-                    arrayApples.removeValue(apple,false);
-                }
-            }
-        }
-    }
-
-    /**
-     *
-     * @param delta
-     */
-    public void addBats(float delta){
-        // Mientras que el actor principal está vivo
-        if(flammie.getState() == Flammie.STATE_ALIVE){
-            // Acumulamos el tiempo entre un fotograma y el siguiente
-            this.timeToCreateBat += delta;
-            // Si el tiempo acumulado supera el establecido
-            if(this.timeToCreateBat >= BAT_SPAWN_TIME){
-                // Reiniciamos el contador
-                this.timeToCreateBat -= BAT_SPAWN_TIME;
-                // Instanciamos un grupo de rocas fuera de la pantalla en función de la posición
-                // actual de nuestro protagonista
-                Bat bat = new Bat(this.world, new Vector2(flammie.getX() + BAT_WIDTH/2f, WORLD_HEIGHT + 0.5f));
-                arrayBats.add(bat);
-                // Añadimos el murciélago a la escena
-                this.stage.addActor(bat);
-            }
-        }
-    }
-
-    /**
-     *
-     */
-    public void removeBats(){
-        // Por cada uno de los grupos de rocas (roca inferior, roca superior y bloque del contador)
-        for(Bat bat : this.arrayBats){
-            // Mientras que no se esté actualizando el mundo en este momento
-            if(!world.isLocked()){
-                // Comprobamos si el grupo de rocas se encuentra visibles
-                if(bat.isOutOfScreen(BAT_HEIGHT)){
-                    // Liberamos el espacio en la gráfica
-                    bat.detach();
-                    // Quitamos las rocas de la escena
-                    bat.remove();
-                    // Sacamos los murciélagos de la colección
-                    arrayBats.removeValue(bat,false);
-                }
-            }
-        }
-    }
-
-    /**
-     *
      * @param delta
      */
     @Override
@@ -250,34 +165,9 @@ public class GameScreen extends BaseScreen implements ContactListener {
         }
         // Si los objetos son manzanas y se chocan con nuestro actor principal
         if(appleIdentifier != null && appleIdentifier.getName().equals(USER_APPLE)){
-            this.scoreNumber++;
-            this.chompSound.play();
-            // Borramos del array de manzanas la manzana que corresponde
-            for(Apple apple : this.arrayApples){
-                if(apple.getIdentifier().getNumber() == appleIdentifier.getNumber()){
-                    apple.getsEaten();
-                }
-            }
+            eatApple(appleIdentifier);
         }else{
-            this.flammie.dies();
-            this.hitSound.play();
-            this.music.stop();
-            for (Bat bat : arrayBats) {
-                bat.stopActor();
-            }
-            for(Apple apple : this.arrayApples){
-                apple.stopActor();
-            }
-
-            this.stage.addAction(Actions.sequence(
-                    Actions.delay(3f),
-                    Actions.run(new Runnable() {
-                        @Override
-                        public void run() {
-                            mainGame.setScreen(mainGame.gameOverScreen);
-                        }
-                    })
-            ));
+            endGame();
         }
     }
 
@@ -297,6 +187,135 @@ public class GameScreen extends BaseScreen implements ContactListener {
     }
 
     // Métodos auxiliares
+    /**
+     *
+     */
+    private void addFlammie(){
+        this.flammie = new Flammie(this.world, new Vector2(WORLD_WIDTH/2f,WORLD_HEIGHT/4f));
+        this.stage.addActor(this.flammie);
+    }
+
+    /**
+     *
+     * @param delta
+     */
+    private void addApples(float delta){
+        if(flammie.getState() == Flammie.STATE_ALIVE){
+            this.timeToCreateApple += delta;
+            if (this.timeToCreateApple >= APPLE_SPAWN_TIME){
+                this.timeToCreateApple -= APPLE_SPAWN_TIME;
+                Apple apple = new Apple(this.world, new Vector2(MathUtils.random(APPLE_WIDTH,
+                        WORLD_WIDTH - APPLE_WIDTH),WORLD_HEIGHT + APPLE_HEIGHT + 0.1f));
+                arrayApples.add(apple);
+                this.stage.addActor(apple);
+            }
+        }
+    }
+
+    /**
+     *
+     */
+    private void removeApples(){
+        for(Apple apple : this.arrayApples){
+            // Mientras que no se esté actualizando el mundo en este momento
+            if(!world.isLocked()){
+                // Comprobamos si la manzana se encuentra dentro de la pantalla o se ha comido
+                if(apple.isOutOfScreen(APPLE_HEIGHT) || apple.getState() == STATE_DEAD){
+                    // Liberamos el espacio en la gráfica
+                    apple.detach();
+                    // Quitamos la manzana de la escena
+                    apple.remove();
+                    // Sacamos la manzana del array
+                    arrayApples.removeValue(apple,false);
+                }
+            }
+        }
+    }
+
+    /**
+     *
+     * @param delta
+     */
+    private void addBats(float delta){
+        // Mientras que el actor principal está vivo
+        if(flammie.getState() == Flammie.STATE_ALIVE){
+            // Acumulamos el tiempo entre un fotograma y el siguiente
+            this.timeToCreateBat += delta;
+            // Si el tiempo acumulado supera el establecido
+            if(this.timeToCreateBat >= BAT_SPAWN_TIME){
+                // Reiniciamos el contador
+                this.timeToCreateBat -= BAT_SPAWN_TIME;
+                // Instanciamos un grupo de rocas fuera de la pantalla en función de la posición
+                // actual de nuestro protagonista
+                Bat bat = new Bat(this.world, new Vector2(flammie.getX() + BAT_WIDTH/2f, WORLD_HEIGHT + 0.5f));
+                arrayBats.add(bat);
+                // Añadimos el murciélago a la escena
+                this.stage.addActor(bat);
+            }
+        }
+    }
+
+    /**
+     *
+     */
+    private void removeBats(){
+        // Por cada uno de los grupos de rocas (roca inferior, roca superior y bloque del contador)
+        for(Bat bat : this.arrayBats){
+            // Mientras que no se esté actualizando el mundo en este momento
+            if(!world.isLocked()){
+                // Comprobamos si el grupo de rocas se encuentra visibles
+                if(bat.isOutOfScreen(BAT_HEIGHT)){
+                    // Liberamos el espacio en la gráfica
+                    bat.detach();
+                    // Quitamos las rocas de la escena
+                    bat.remove();
+                    // Sacamos los murciélagos de la colección
+                    arrayBats.removeValue(bat,false);
+                }
+            }
+        }
+    }
+
+    /**
+     *
+     * @param appleIdentifier
+     */
+    private void eatApple(AppleIdentifier appleIdentifier){
+        this.scoreNumber++;
+        this.chompSound.play();
+        // Borramos del array de manzanas la manzana que corresponde
+        for(Apple apple : this.arrayApples){
+            if(apple.getIdentifier().getNumber() == appleIdentifier.getNumber()){
+                apple.getsEaten();
+            }
+        }
+    }
+
+    /**
+     *
+     */
+    private void endGame(){
+        this.flammie.dies();
+        this.hitSound.play();
+        this.music.stop();
+        for (Bat bat : arrayBats) {
+            bat.stopActor();
+        }
+        for(Apple apple : this.arrayApples){
+            apple.stopActor();
+        }
+
+        this.stage.addAction(Actions.sequence(
+                Actions.delay(3f),
+                Actions.run(new Runnable() {
+                    @Override
+                    public void run() {
+                        mainGame.setScreen(mainGame.gameOverScreen);
+                    }
+                })
+        ));
+    }
+
     private void addBorder(Body border, Fixture fixture, String user, Vector2 vector1, Vector2 vector2) {
         BodyDef bodydef = new BodyDef();
         bodydef.type = BodyDef.BodyType.StaticBody;
