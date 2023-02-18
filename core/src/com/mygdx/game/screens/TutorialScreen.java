@@ -52,15 +52,15 @@ public class TutorialScreen extends BaseScreen{
         if(this.timeToSwapState >= SWAP_STATE_TIME){
             this.timeToSwapState -= SWAP_STATE_TIME;
             this.state++;
-            if(this.state == 6) {
+            if(this.state == 4) {
                 this.state = 1;
             }
         }
 
+        configureMessage();
         this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
         this.stage.getBatch().begin();
-        configureMessage();
-        this.font.draw(this.stage.getBatch(), this.text + "", SCREEN_WIDTH*0.25f, SCREEN_HEIGHT*0.65f);
+        this.font.draw(this.stage.getBatch(), this.text, SCREEN_WIDTH*0.25f, SCREEN_HEIGHT*0.65f);
         this.stage.getBatch().end();
 
         if(Gdx.input.justTouched()){
@@ -75,19 +75,13 @@ public class TutorialScreen extends BaseScreen{
     private void configureMessage(){
         switch (this.state){
             case 1:
-                prepareMessage("Move Flammie\nto the point\nyou wish by\ntouching!");
+                this.text = "Move Flammie\nto the point\nyou wish by\ntouching!";
                 break;
             case 2:
-                prepareMessage("Dodge bats!");
+                this.text = "Dodge bats\nand eat apples!";
                 break;
             case 3:
-                prepareMessage("Grab apples!");
-                break;
-            case 4:
-                prepareMessage("Don't touch\nthe borders!");
-                break;
-            case 5:
-                prepareMessage("Touch the\nscreen to \nto start!");
+                this.text = "Touch the\nscreen to start!";
                 break;
         }
     }
