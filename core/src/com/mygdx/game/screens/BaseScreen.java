@@ -120,17 +120,16 @@ public abstract class BaseScreen implements Screen {
     }
 
     /**
-     *
+     * Método en
      */
     protected void addBackground(){
-        this.background = new Image(AssetMan.getInstance().getBackgroundStart());
         this.background.setPosition(0,0);
         this.background.setSize(WORLD_WIDTH,WORLD_HEIGHT);
         this.stage.addActor(this.background);
     }
 
     /**
-     *
+     * Método encargado de empezar a tocar la música instanciada previamente
      */
     protected void startMusic(){
         this.music.setLooping(true);

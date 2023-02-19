@@ -103,7 +103,7 @@ public class AssetMan {
      * Método encargado de devolver la imagen de fondo
      * @return Devuelve la imagen de fondo
      */
-    public TextureRegion getBackground(){
+    public TextureRegion getBackgroundPlay(){
         return this.textureAtlas.findRegion(BACKGROUND_IMAGE);
     }
 
@@ -111,7 +111,7 @@ public class AssetMan {
      * Método encargado de devolver la imagen de fondo
      * @return Devuelve la imagen de fondo
      */
-    public TextureRegion getBackgroundStart(){
+    public TextureRegion getBackgroundDark(){
         return this.textureAtlas.findRegion(BACKGROUND_IMAGE_START);
     }
 

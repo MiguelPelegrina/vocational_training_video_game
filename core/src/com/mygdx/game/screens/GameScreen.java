@@ -76,22 +76,12 @@ public class GameScreen extends BaseScreen implements ContactListener {
         this.arrayApples = new Array<>();
         this.timeToCreateBat= 0f;
         this.timeToCreateApple = 0f;
-
+        this.background = new Image(AssetMan.getInstance().getBackgroundPlay());
         prepareGameSound();
         scoreNumber = 0;
         prepareMessage("Apples");
 
         this.worldCamera = (OrthographicCamera) this.stage.getCamera();
-    }
-
-    /**
-     *
-     */
-    public void addBackground(){
-        this.background = new Image(AssetMan.getInstance().getBackground());
-        this.background.setPosition(0,0);
-        this.background.setSize(WORLD_WIDTH,WORLD_HEIGHT);
-        this.stage.addActor(this.background);
     }
 
     /**

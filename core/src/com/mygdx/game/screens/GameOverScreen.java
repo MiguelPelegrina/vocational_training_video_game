@@ -6,6 +6,7 @@ import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.mygdx.game.MainGame;
 import com.mygdx.game.extras.AssetMan;
 
@@ -23,7 +24,7 @@ public class GameOverScreen extends BaseScreen{
         super(mainGame);
 
         this.fontCamera = (OrthographicCamera) this.stage.getCamera();
-
+        this.background = new Image(AssetMan.getInstance().getBackgroundDark());
         prepareMessage("\n\nTouch the \nscreen to \ntry again!");
 
         this.music = AssetMan.getInstance().getGOMusic();

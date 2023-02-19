@@ -6,6 +6,7 @@ import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.mygdx.game.MainGame;
 import com.mygdx.game.extras.AssetMan;
 
@@ -32,7 +33,7 @@ public class TutorialScreen extends BaseScreen{
         this.state = 1;
         this.timeToSwapState = 0f;
         this.listenSound = AssetMan.getInstance().getListenSound();
-
+        this.background = new Image(AssetMan.getInstance().getBackgroundDark());
         this.worldCamera = (OrthographicCamera) this.stage.getCamera();
 
         prepareMessage("");
