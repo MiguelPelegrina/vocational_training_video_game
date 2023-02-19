@@ -41,20 +41,26 @@ public abstract class BaseScreen implements Screen {
      */
     public BaseScreen(MainGame mainGame){
         this.mainGame = mainGame;
-
         // Como todos los actores de este juego vuelan, el mundo no tendrá gravedad
         this.world = new World(new Vector2(0,0), true);
-        // Asignamos la interfaz encargada de gestionar los eventos de contacto implementados en la
-        // propia clase
+        // Instanciamos el punto de vista
         FitViewport fitViewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT);
+        // Instanciamos el escenario
         this.stage = new Stage(fitViewport);
     }
 
+    /**
+     *
+     */
     @Override
     public void show() {
         addBackground();
     }
 
+    /**
+     *
+     * @param delta
+     */
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -92,11 +98,12 @@ public abstract class BaseScreen implements Screen {
 
     // Métodos auxiliares para clases hijas
     /**
-     *
-     * @param contact
-     * @param objA
-     * @param objB
-     * @return
+     * Método encargado de detectar colisiones entre dos clases de objetos
+     * @param contact Contacto registrado
+     * @param objA Primer objeto implicado en la colision
+     * @param objB Segundo objeto implicado en la colision
+     * @return Devuelve true si uno de los dos objetos ha colisionado con el otro o false si no han
+     * colisionado
      */
     protected boolean areColliding(Contact contact, Object objA, Object objB) {
         return (contact.getFixtureA().getUserData().equals(objA) && contact.getFixtureB().getUserData().equals(objB)) ||
@@ -104,13 +111,15 @@ public abstract class BaseScreen implements Screen {
     }
 
     /**
-     *
+     * Método encargado de preparar el texto que se va a mostrar por pantalla
      * @param text
      */
     protected void prepareMessage(String text) {
         // Configuramos la fuente y su escala
         this.text = text;
         this.font = AssetMan.getInstance().getFont();
+        // Es necesario escalar la fuente, si el tamaño de las letras es más grande. En este caso
+        // es más grande porque sino las letras quedan difuminadas
         this.font.getData().setScale(0.5f,0.5f);
 
         // Instanciamos la cámara con el tamáno de la pantalla
@@ -120,7 +129,7 @@ public abstract class BaseScreen implements Screen {
     }
 
     /**
-     * Método en
+     * Método encargado colocar la imagen de fondo y añadirla al escenario
      */
     protected void addBackground(){
         this.background.setPosition(0,0);
