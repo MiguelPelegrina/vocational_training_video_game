@@ -23,7 +23,6 @@ public class GameOverScreen extends BaseScreen{
     public GameOverScreen(MainGame mainGame) {
         super(mainGame);
 
-        this.fontCamera = (OrthographicCamera) this.stage.getCamera();
         this.background = new Image(AssetMan.getInstance().getBackgroundDark());
         this.text = "\n\nTouch the \nscreen to \ntry again!";
         prepareMessage();
