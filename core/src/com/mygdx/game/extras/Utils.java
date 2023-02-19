@@ -71,7 +71,6 @@ public class Utils {
     public static final String SOUND_LISTEN = "musicSound/soundTutorial.mp3";
 
     // Fuentes
-    // TODO otros fonts?
     public static final String FONT_FNT = "FlammieFont.fnt";
     public static final String FONT_PNG = "FlammieFont.png";
 
