@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -92,13 +93,25 @@ public abstract class BaseScreen implements Screen {
     // Métodos auxiliares para clases hijas
     /**
      *
+     * @param contact
+     * @param objA
+     * @param objB
+     * @return
+     */
+    protected boolean areColliding(Contact contact, Object objA, Object objB) {
+        return (contact.getFixtureA().getUserData().equals(objA) && contact.getFixtureB().getUserData().equals(objB)) ||
+                (contact.getFixtureA().getUserData().equals(objB) && contact.getFixtureB().getUserData().equals(objA));
+    }
+
+    /**
+     *
      * @param text
      */
     protected void prepareMessage(String text) {
         // Configuramos la fuente y su escala
         this.text = text;
         this.font = AssetMan.getInstance().getFont();
-        this.font.getData().scale(1f);
+        this.font.getData().setScale(0.5f,0.5f);
 
         // Instanciamos la cámara con el tamáno de la pantalla
         this.fontCamera = new OrthographicCamera();
