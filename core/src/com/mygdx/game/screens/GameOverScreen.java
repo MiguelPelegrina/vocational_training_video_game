@@ -13,6 +13,8 @@ import com.mygdx.game.extras.AssetMan;
  *
  */
 public class GameOverScreen extends BaseScreen{
+    private int score;
+
     /**
      * Constructor por parámetros
      * @param mainGame
@@ -22,7 +24,7 @@ public class GameOverScreen extends BaseScreen{
 
         this.fontCamera = (OrthographicCamera) this.stage.getCamera();
 
-        prepareMessage("Game over!\nTouch the \nscreen to \nstart again!");
+        prepareMessage("\n\nTouch the \nscreen to \ntry again!");
 
         this.music = AssetMan.getInstance().getGOMusic();
     }
@@ -58,11 +60,20 @@ public class GameOverScreen extends BaseScreen{
 
         this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
         this.stage.getBatch().begin();
-        this.font.draw(this.stage.getBatch(), this.text, SCREEN_WIDTH*0.3f, SCREEN_HEIGHT*0.7f);
+        this.font.draw(this.stage.getBatch(), "You got\n" + this.score + " apples!" +
+                this.text, SCREEN_WIDTH*0.3f, SCREEN_HEIGHT*0.8f);
         this.stage.getBatch().end();
 
         if(Gdx.input.isTouched()){
             this.mainGame.setScreen(new GameScreen(this.mainGame));
         }
+    }
+
+    /**
+     *
+     * @param score
+     */
+    public void setScore(int score){
+        this.score = score;
     }
 }
