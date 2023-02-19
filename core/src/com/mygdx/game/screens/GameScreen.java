@@ -8,6 +8,8 @@ import static com.mygdx.game.actors.Bat.BAT_WIDTH;
 import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
 import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 import static com.mygdx.game.extras.Utils.USER_APPLE;
+import static com.mygdx.game.extras.Utils.USER_BAT;
+import static com.mygdx.game.extras.Utils.USER_FLAMMIE;
 import static com.mygdx.game.extras.Utils.USER_LEFTBORDER;
 import static com.mygdx.game.extras.Utils.USER_RIGHTBORDER;
 import static com.mygdx.game.extras.Utils.WORLD_HEIGHT;
@@ -76,7 +78,8 @@ public class GameScreen extends BaseScreen implements ContactListener {
         this.timeToCreateApple = 0f;
 
         prepareGameSound();
-        prepareScore();
+        scoreNumber = 0;
+        prepareMessage("Apples");
 
         this.worldCamera = (OrthographicCamera) this.stage.getCamera();
     }
@@ -167,7 +170,9 @@ public class GameScreen extends BaseScreen implements ContactListener {
         if(appleIdentifier != null && appleIdentifier.getName().equals(USER_APPLE)){
             eatApple(appleIdentifier);
         }else{
-            endGame();
+            if (areColliding(contact, USER_FLAMMIE, USER_BAT)) {
+                endGame();
+            }
         }
     }
 
@@ -310,6 +315,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
                 Actions.run(new Runnable() {
                     @Override
                     public void run() {
+                        mainGame.gameOverScreen.setScore(scoreNumber);
                         mainGame.setScreen(mainGame.gameOverScreen);
                     }
                 })
@@ -335,20 +341,5 @@ public class GameScreen extends BaseScreen implements ContactListener {
         this.music = AssetMan.getInstance().getBGMusic();
         this.hitSound = AssetMan.getInstance().getHitSound();
         this.chompSound = AssetMan.getInstance().getChompSound();
-    }
-
-    /**
-     * Método encargado de configurar la puntuación
-     */
-    private void prepareScore(){
-        // Configuramos la fuente y su escala
-        this.scoreNumber = 0;
-        this.font = AssetMan.getInstance().getFont();
-        this.font.getData().scale(1f);
-
-        // Instanciamos la cámara con el tamáno de la pantalla
-        this.fontCamera = new OrthographicCamera();
-        this.fontCamera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
-        this.fontCamera.update();
     }
 }
