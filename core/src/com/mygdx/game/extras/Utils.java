@@ -80,5 +80,4 @@ public class Utils {
     public static final String USER_BAT = "bat";
     public static final String USER_LEFTBORDER = "leftborder";
     public static final String USER_RIGHTBORDER = "rightborder";
-    public static final String USER_COUNTER = "counter";
 }
