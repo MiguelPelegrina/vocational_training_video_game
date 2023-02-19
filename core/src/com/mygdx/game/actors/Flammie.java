@@ -48,7 +48,7 @@ public class Flammie extends BaseActor {
         // donde el tiempo es crucial
         this.auxCoordinates = new Vector3(position.x, position.y, 0);
 
-        createBody();
+        createDinamicBody(this.position);
         createCircularFixture(FLAMMIE_FIXTURE_RADIUS, USER_FLAMMIE);
     }
 
@@ -113,16 +113,5 @@ public class Flammie extends BaseActor {
     public void dies(){
         state = STATE_DEAD;
         stateTime = 0f;
-    }
-
-    // Métodos auxiliares
-    /**
-     * Método encargado de crear un cuerpo dinámico
-     */
-    private void createBody(){
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(this.position);
-        bodyDef.type = BodyDef.BodyType.DynamicBody;
-        this.body = this.world.createBody(bodyDef);
     }
 }

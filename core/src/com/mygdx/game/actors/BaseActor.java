@@ -69,6 +69,16 @@ public abstract class BaseActor extends Actor {
     }
 
     /**
+     * Método encargado de crear un cuerpo dinámico
+     */
+    protected void createDinamicBody(Vector2 position){
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.position.set(position);
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        this.body = this.world.createBody(bodyDef);
+    }
+
+    /**
      * Método encargado de asignar un fixture circular a un objeto
      * @param radius Tamaño del radio que se quiere asignar como fixture
      * @param identifier Objeto que identificará posteriormente al fixture del objeto a través del
