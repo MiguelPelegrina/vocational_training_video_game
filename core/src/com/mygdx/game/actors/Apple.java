@@ -33,8 +33,8 @@ public class Apple extends BaseActor {
         this.identifier = new AppleIdentifier();
 
         createKinematicBody(position);
-        this.body.setLinearVelocity(0, SPEED);
         createCircularFixture(APPLE_FIXTURE_RADIUS, this.identifier);
+        this.body.setLinearVelocity(0, SPEED);
     }
 
     /**

@@ -38,8 +38,8 @@ public class Bat extends BaseActor {
         this.randomSpeedFactor = SPEED + MathUtils.random(-0.5f, 0.5f);
 
         createKinematicBody(position);
-        this.body.setLinearVelocity(0, this.randomSpeedFactor);
         createFixture();
+        this.body.setLinearVelocity(0, this.randomSpeedFactor);
     }
 
     /**
