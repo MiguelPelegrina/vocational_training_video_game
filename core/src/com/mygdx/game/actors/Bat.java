@@ -37,7 +37,8 @@ public class Bat extends BaseActor {
         // Calculamos un velocidad aleatoria para cada uno de los murciélagos
         this.randomSpeedFactor = SPEED + MathUtils.random(-0.5f, 0.5f);
 
-        createKinematicBody(position, 0, this.randomSpeedFactor);
+        createKinematicBody(position);
+        this.body.setLinearVelocity(0, this.randomSpeedFactor);
         createFixture();
     }
 
