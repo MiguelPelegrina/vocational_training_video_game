@@ -25,7 +25,8 @@ public class GameOverScreen extends BaseScreen{
 
         this.fontCamera = (OrthographicCamera) this.stage.getCamera();
         this.background = new Image(AssetMan.getInstance().getBackgroundDark());
-        prepareMessage("\n\nTouch the \nscreen to \ntry again!");
+        this.text = "\n\nTouch the \nscreen to \ntry again!";
+        prepareMessage();
 
         this.music = AssetMan.getInstance().getGOMusic();
     }

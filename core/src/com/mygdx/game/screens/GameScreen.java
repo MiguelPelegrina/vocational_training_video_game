@@ -69,17 +69,16 @@ public class GameScreen extends BaseScreen implements ContactListener {
      */
     public GameScreen(MainGame mainGame) {
         super(mainGame);
-
         this.world.setContactListener(this);
 
-        this.arrayBats = new Array<>();
-        this.arrayApples = new Array<>();
-        this.timeToCreateBat= 0f;
-        this.timeToCreateApple = 0f;
         this.background = new Image(AssetMan.getInstance().getBackgroundPlay());
+        prepareActors();
+
         prepareGameSound();
-        scoreNumber = 0;
-        prepareMessage("Apples");
+
+        this.scoreNumber = 0;
+        this.text = "Apples";
+        prepareMessage();
 
         this.worldCamera = (OrthographicCamera) this.stage.getCamera();
     }
@@ -182,6 +181,13 @@ public class GameScreen extends BaseScreen implements ContactListener {
     }
 
     // Métodos auxiliares
+    private void prepareActors(){
+        this.arrayBats = new Array<>();
+        this.arrayApples = new Array<>();
+        this.timeToCreateBat= 0f;
+        this.timeToCreateApple = 0f;
+    }
+
     /**
      *
      */

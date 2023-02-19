@@ -35,8 +35,7 @@ public class TutorialScreen extends BaseScreen{
         this.listenSound = AssetMan.getInstance().getListenSound();
         this.background = new Image(AssetMan.getInstance().getBackgroundDark());
         this.worldCamera = (OrthographicCamera) this.stage.getCamera();
-
-        prepareMessage("");
+        prepareMessage();
     }
 
     @Override

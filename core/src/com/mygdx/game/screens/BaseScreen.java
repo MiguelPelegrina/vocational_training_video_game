@@ -50,7 +50,7 @@ public abstract class BaseScreen implements Screen {
     }
 
     /**
-     *
+     * Método encargado de colocar la imagen de fondo
      */
     @Override
     public void show() {
@@ -112,11 +112,9 @@ public abstract class BaseScreen implements Screen {
 
     /**
      * Método encargado de preparar el texto que se va a mostrar por pantalla
-     * @param text
      */
-    protected void prepareMessage(String text) {
+    protected void prepareMessage() {
         // Configuramos la fuente y su escala
-        this.text = text;
         this.font = AssetMan.getInstance().getFont();
         // Es necesario escalar la fuente, si el tamaño de las letras es más grande. En este caso
         // es más grande porque sino las letras quedan difuminadas
