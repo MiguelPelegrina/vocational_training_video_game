@@ -24,7 +24,6 @@ public class GameOverScreen extends BaseScreen{
         super(mainGame);
 
         this.background = new Image(AssetMan.getInstance().getBackgroundDark());
-        this.text = "\n\nTouch the \nscreen to \ntry again!";
         prepareMessage();
 
         this.music = AssetMan.getInstance().getGOMusic();
@@ -61,8 +60,8 @@ public class GameOverScreen extends BaseScreen{
 
         this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
         this.stage.getBatch().begin();
-        this.font.draw(this.stage.getBatch(), "You got\n" + this.score + " apples!" +
-                this.text, SCREEN_WIDTH*0.3f, SCREEN_HEIGHT*0.8f);
+        this.font.draw(this.stage.getBatch(), "You got\n" + this.score + this.text,
+                SCREEN_WIDTH*0.3f, SCREEN_HEIGHT*0.8f);
         this.stage.getBatch().end();
 
         if(Gdx.input.isTouched()){
@@ -76,5 +75,10 @@ public class GameOverScreen extends BaseScreen{
      */
     public void setScore(int score){
         this.score = score;
+        if(this.score == 1){
+            this.text = " apple! \n\nTouch the \nscreen to \ntry again!";
+        }else{
+            this.text = " apples! \n\nTouch the \nscreen to \ntry again!";
+        }
     }
 }
