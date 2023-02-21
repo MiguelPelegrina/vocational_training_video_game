@@ -84,7 +84,7 @@ public class AssetMan {
         this.assetManager.load(SOUND_LISTEN, Sound.class);
         this.assetManager.load(SOUND_CHOMP, Sound.class);
         // Esperamos a que todos los recursos se hayan cargado
-        assetManager.finishLoading();
+        this.assetManager.finishLoading();
 
         this.textureAtlas = assetManager.get(ATLAS_MAP);
     }

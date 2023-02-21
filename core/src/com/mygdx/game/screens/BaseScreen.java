@@ -12,7 +12,11 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -97,6 +101,26 @@ public abstract class BaseScreen implements Screen {
     }
 
     // Métodos auxiliares para clases hijas
+    /**
+     *
+     * @param border
+     * @param fixture
+     * @param user
+     * @param vector1
+     * @param vector2
+     */
+    protected void addBorder(Body border, Fixture fixture, String user, Vector2 vector1, Vector2 vector2) {
+        BodyDef bodydef = new BodyDef();
+        bodydef.type = BodyDef.BodyType.StaticBody;
+        border = this.world.createBody(bodydef);
+
+        EdgeShape edge = new EdgeShape();
+        edge.set(vector1,vector2);
+        fixture = border.createFixture(edge, 1);
+        fixture.setUserData(user);
+        edge.dispose();
+    }
+
     /**
      * Método encargado de detectar colisiones entre dos clases de objetos
      * @param contact Contacto registrado

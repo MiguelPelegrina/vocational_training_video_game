@@ -119,8 +119,10 @@ public class GameScreen extends BaseScreen implements ContactListener {
     public void show(){
         super.show();
         addFlammie();
-        addBorder(leftBorder,leftBorderFixture, USER_LEFTBORDER,new Vector2(0,0), new Vector2(0,WORLD_HEIGHT));
-        addBorder(rightBorder,rightBorderFixture, USER_RIGHTBORDER,new Vector2(WORLD_WIDTH,0),new Vector2(WORLD_WIDTH,WORLD_HEIGHT));
+        addBorder(leftBorder, leftBorderFixture, USER_LEFTBORDER, new Vector2(0,0),
+                new Vector2(0, WORLD_HEIGHT));
+        addBorder(rightBorder, rightBorderFixture, USER_RIGHTBORDER, new Vector2(WORLD_WIDTH,0),
+                new Vector2(WORLD_WIDTH, WORLD_HEIGHT));
         startMusic();
     }
 
@@ -316,18 +318,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
                     }
                 })
         ));
-    }
-
-    private void addBorder(Body border, Fixture fixture, String user, Vector2 vector1, Vector2 vector2) {
-        BodyDef bodydef = new BodyDef();
-        bodydef.type = BodyDef.BodyType.StaticBody;
-        border = world.createBody(bodydef);
-
-        EdgeShape edge = new EdgeShape();
-        edge.set(vector1,vector2);
-        fixture = border.createFixture(edge, 1);
-        fixture.setUserData(user);
-        edge.dispose();
     }
 
     /**
