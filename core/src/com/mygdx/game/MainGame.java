@@ -5,17 +5,24 @@ import com.mygdx.game.screens.GameOverScreen;
 import com.mygdx.game.screens.GameScreen;
 import com.mygdx.game.screens.TutorialScreen;
 
+/**
+ * Clase principal que gestiona las diferentes pantallas
+ */
 public class MainGame extends Game {
-	//Variables de la instancia
+	// Atributos de la instancia
 	public TutorialScreen tutorialScreen;
 	public GameScreen gameScreen;
 	public GameOverScreen gameOverScreen;
 
+	/**
+	 * Instanciamos todas las pantallas
+	 */
 	@Override
 	public void create () {
 		this.tutorialScreen = new TutorialScreen(this);
 		this.gameScreen = new GameScreen(this);
 		this.gameOverScreen = new GameOverScreen(this);
+		// Ponemos la pantalla de tutorial
 		setScreen(this.tutorialScreen);
 	}
 }
