@@ -5,20 +5,20 @@ import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
 import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.mygdx.game.MainGame;
 import com.mygdx.game.extras.AssetMan;
 
 /**
- *
+ * Clase encargada de gestionar el fin del juego
  */
 public class GameOverScreen extends BaseScreen{
+    // Atributos de la instancia
     private int score;
 
     /**
      * Constructor por parámetros
-     * @param mainGame
+     * @param mainGame Instancia del juego
      */
     public GameOverScreen(MainGame mainGame) {
         super(mainGame);

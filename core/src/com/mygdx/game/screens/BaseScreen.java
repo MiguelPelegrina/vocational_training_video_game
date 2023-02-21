@@ -41,7 +41,7 @@ public abstract class BaseScreen implements Screen {
 
     /**
      * Constructor por parámetros
-     * @param mainGame
+     * @param mainGame Instancia del juego
      */
     public BaseScreen(MainGame mainGame){
         this.mainGame = mainGame;
@@ -102,22 +102,22 @@ public abstract class BaseScreen implements Screen {
 
     // Métodos auxiliares para clases hijas
     /**
-     *
-     * @param border
-     * @param fixture
-     * @param user
+     * Método encargado de crear un borde en función de los parámetros establecidos
+     * @param body Body que funge como cuerpo del borde
+     * @param fixture Fixture que como forma física del cuerpo
+     * @param userData UserData que identifica
      * @param vector1
      * @param vector2
      */
-    protected void addBorder(Body border, Fixture fixture, String user, Vector2 vector1, Vector2 vector2) {
+    protected void addBorder(Body body, Fixture fixture, String userData, Vector2 vector1, Vector2 vector2) {
         BodyDef bodydef = new BodyDef();
         bodydef.type = BodyDef.BodyType.StaticBody;
-        border = this.world.createBody(bodydef);
+        body = this.world.createBody(bodydef);
 
         EdgeShape edge = new EdgeShape();
         edge.set(vector1,vector2);
-        fixture = border.createFixture(edge, 1);
-        fixture.setUserData(user);
+        fixture = body.createFixture(edge, 1);
+        fixture.setUserData(userData);
         edge.dispose();
     }
 

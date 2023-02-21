@@ -20,11 +20,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -65,7 +63,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
 
     /**
      * Constructor por parámetros
-     * @param mainGame
+     * @param mainGame Instancia del juego
      */
     public GameScreen(MainGame mainGame) {
         super(mainGame);
