@@ -5,7 +5,6 @@ import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.mygdx.game.MainGame;
 import com.mygdx.game.extras.AssetMan;
@@ -16,17 +15,16 @@ import com.mygdx.game.extras.AssetMan;
  */
 public class TutorialScreen extends BaseScreen{
     // Atributos de la clase
+    //  Tiempo entre cada mensaje que se va a mostrar
     private static final float SWAP_STATE_TIME = 2.5f;
     // Atributos de la instancia
     private float timeToSwapState;
     private int state;
     private Sound listenSound;
 
-    private OrthographicCamera worldCamera;
-
     /**
      * Constructor por parámetros
-     * @param mainGame
+     * @param mainGame Instancia del juego
      */
     public TutorialScreen(MainGame mainGame) {
         super(mainGame);
@@ -47,6 +45,8 @@ public class TutorialScreen extends BaseScreen{
     public void render(float delta){
         super.render(delta);
 
+        // Acumulamos el delta para cambiar los mensajes de texto que se van a mostrar por pantalla
+        // en función del tiempo
         this.timeToSwapState += delta;
         if(this.timeToSwapState >= SWAP_STATE_TIME){
             this.timeToSwapState -= SWAP_STATE_TIME;
@@ -69,7 +69,8 @@ public class TutorialScreen extends BaseScreen{
 
     // Métodos auxiliares
     /**
-     * Configuramos el mensaje que se va a mostrar en función del estado actual
+     * Método encargado de configurar el mensaje que se va a mostrar en función del estado actual
+     * del tutorial
      */
     private void configureMessage(){
         switch (this.state){
