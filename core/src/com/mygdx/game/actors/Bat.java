@@ -1,14 +1,11 @@
 package com.mygdx.game.actors;
 
-import static com.mygdx.game.extras.Utils.USER_BAT;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.extras.AssetMan;
 
@@ -38,7 +35,7 @@ public class Bat extends BaseActor {
         this.randomSpeedFactor = SPEED + MathUtils.random(-0.5f, 0.5f);
 
         createKinematicBody(position);
-        createFixture();
+        createRectangularFixture(BAT_WIDTH/2.5f,BAT_HEIGHT/2.5f);
         this.body.setLinearVelocity(0, this.randomSpeedFactor);
     }
 
@@ -52,17 +49,5 @@ public class Bat extends BaseActor {
         setPosition(this.body.getPosition().x - (BAT_WIDTH/2), this.body.getPosition().y - (BAT_HEIGHT/2));
         batch.draw(this.animation.getKeyFrame(stateTime, true), this.getX(), this.getY(), BAT_WIDTH, BAT_HEIGHT);
         this.stateTime += Gdx.graphics.getDeltaTime();
-    }
-
-    // Métodos auxiliares
-    /**
-     * Método encargado de asignar un fixture y un userData rectangular al murciélago
-     */
-    private void createFixture(){
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(BAT_WIDTH/2.5f, BAT_HEIGHT/2.5f);
-        this.fixture = body.createFixture(shape,8);
-        this.fixture.setUserData(USER_BAT);
-        shape.dispose();
     }
 }

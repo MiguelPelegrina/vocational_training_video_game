@@ -1,10 +1,13 @@
 package com.mygdx.game.actors;
 
+import static com.mygdx.game.extras.Utils.USER_BAT;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
@@ -90,5 +93,16 @@ public abstract class BaseActor extends Actor {
         this.fixture = this.body.createFixture(circle, 8);
         this.fixture.setUserData(identifier);
         circle.dispose();
+    }
+
+    /**
+     * Método encargado de asignar un fixture y un userData rectangular al murciélago
+     */
+    protected void createRectangularFixture(float width, float height){
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(width, height);
+        this.fixture = body.createFixture(shape,8);
+        this.fixture.setUserData(USER_BAT);
+        shape.dispose();
     }
 }

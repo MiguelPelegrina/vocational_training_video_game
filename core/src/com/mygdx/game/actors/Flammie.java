@@ -19,7 +19,7 @@ public class Flammie extends BaseActor {
     private static final float FLAMMIE_WIDTH = 1f;
     private static final float FLAMMIE_HEIGHT = 1f;
     private static final float FLAMMIE_FIXTURE_RADIUS = 0.3f;
-    private static final float SPEED_FACTOR = 1.5f;
+    private static final float SPEED_FACTOR = 1.25f;
     //Atributos de la instancia
     private int state;
     private Animation<TextureRegion> animation;
