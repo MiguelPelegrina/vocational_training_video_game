@@ -36,15 +36,16 @@ import com.mygdx.game.actors.Flammie;
 import com.mygdx.game.extras.AssetMan;
 
 /**
- *
+ * Clase que gestiona la pantalla principal del juego
  */
 public class GameScreen extends BaseScreen implements ContactListener {
-    // Atributo de la clase
+    // Atributos de la clase
     private static final float BAT_SPAWN_TIME = 2f;
     private static final float APPLE_SPAWN_TIME = 3f;
     // Atributos de la instancia
     private float timeToCreateBat;
     private float timeToCreateApple;
+
     private Flammie flammie;
     private Sound hitSound;
     private Sound chompSound;
@@ -81,10 +82,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
         this.worldCamera = (OrthographicCamera) this.stage.getCamera();
     }
 
-    /**
-     *
-     * @param delta
-     */
     @Override
     public void render(float delta) {
         // Colocamos los murciélagos
