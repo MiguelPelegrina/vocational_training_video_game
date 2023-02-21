@@ -10,7 +10,7 @@ import com.mygdx.game.MainGame;
 import com.mygdx.game.extras.AssetMan;
 
 /**
- * Clase encargada de gestionar el fin del juego
+ * Clase que gestiona la pantalla final del juego
  */
 public class GameOverScreen extends BaseScreen{
     // Atributos de la instancia
@@ -29,26 +29,17 @@ public class GameOverScreen extends BaseScreen{
         this.music = AssetMan.getInstance().getGOMusic();
     }
 
-    /**
-     *
-     */
     @Override
     public void show(){
         super.show();
         startMusic();
     }
 
-    /**
-     *
-     */
     @Override
     public void hide() {
         this.music.stop();
     }
 
-    /**
-     *
-     */
     @Override
     public void dispose() {
         this.music.dispose();
@@ -69,16 +60,19 @@ public class GameOverScreen extends BaseScreen{
         }
     }
 
+    // Setter
     /**
-     *
-     * @param score
+     * Método encargado de modificar el texto que se va a mostrar posteriormente
+     * @param score Puntuación final de la ronda
      */
     public void setScore(int score){
         this.score = score;
+        // Comprobamos el número de manzanas para escribir el texto de forma adecuada
         if(this.score == 1){
-            this.text = " apple! \n\nTouch the \nscreen to \ntry again!";
+            this.text = " apple!";
         }else{
-            this.text = " apples! \n\nTouch the \nscreen to \ntry again!";
+            this.text = " apples!";
         }
+        this.text += "\n\nTouch the \nscreen to \ntry again!";
     }
 }
