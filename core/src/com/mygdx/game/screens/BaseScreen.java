@@ -53,18 +53,11 @@ public abstract class BaseScreen implements Screen {
         this.stage = new Stage(fitViewport);
     }
 
-    /**
-     * Método encargado de colocar la imagen de fondo
-     */
     @Override
     public void show() {
         addBackground();
     }
 
-    /**
-     *
-     * @param delta
-     */
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -106,8 +99,8 @@ public abstract class BaseScreen implements Screen {
      * @param body Body que funge como cuerpo del borde
      * @param fixture Fixture que como forma física del cuerpo
      * @param userData UserData que identifica
-     * @param vector1
-     * @param vector2
+     * @param vector1 Posición desde la cual empieza a crear un EdgeShape
+     * @param vector2 Posición hasta el cual acaba creando un EdgeShape
      */
     protected void addBorder(Body body, Fixture fixture, String userData, Vector2 vector1, Vector2 vector2) {
         BodyDef bodydef = new BodyDef();
