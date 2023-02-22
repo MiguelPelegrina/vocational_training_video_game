@@ -52,7 +52,7 @@ public class GameOverScreen extends BaseScreen{
         this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
         this.stage.getBatch().begin();
         this.font.draw(this.stage.getBatch(), "You got\n" + this.score + this.text,
-                SCREEN_WIDTH*0.3f, SCREEN_HEIGHT*0.8f);
+                SCREEN_WIDTH * 0.3f, SCREEN_HEIGHT * 0.8f);
         this.stage.getBatch().end();
 
         if(Gdx.input.isTouched()){

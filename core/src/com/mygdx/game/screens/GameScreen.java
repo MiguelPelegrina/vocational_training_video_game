@@ -110,11 +110,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     @Override
     public void show(){
         super.show();
-        // Comprobamos que actor NO esté instanciado ya. Esta comprobación es necesario porque sino
-        // al volver de la pantalla de pausa se volvería a crear OTRO actor del mismo tipo
-        if(flammie == null){
-            addFlammie();
-        }
+        addFlammie();
         addBorder(leftBorder, leftBorderFixture, USER_LEFTBORDER, new Vector2(0,0),
                 new Vector2(0, WORLD_HEIGHT));
         addBorder(rightBorder, rightBorderFixture, USER_RIGHTBORDER, new Vector2(WORLD_WIDTH,0),
@@ -123,13 +119,10 @@ public class GameScreen extends BaseScreen implements ContactListener {
     }
 
     @Override
-    public void pause() {
-        this.mainGame.setScreen(this.mainGame.pauseScreen);
-    }
-
-    @Override
     public void hide() {
-        this.music.pause();
+        this.flammie.detach();
+        this.flammie.remove();
+        this.music.stop();
     }
 
     @Override
@@ -174,6 +167,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
     }
+
 
     // Métodos auxiliares
     /**

@@ -3,7 +3,6 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.mygdx.game.screens.GameOverScreen;
 import com.mygdx.game.screens.GameScreen;
-import com.mygdx.game.screens.PauseScreen;
 import com.mygdx.game.screens.TutorialScreen;
 
 /**
@@ -13,7 +12,6 @@ public class MainGame extends Game {
 	// Atributos de la instancia
 	public TutorialScreen tutorialScreen;
 	public GameScreen gameScreen;
-	public PauseScreen pauseScreen;
 	public GameOverScreen gameOverScreen;
 
 	/**
@@ -23,7 +21,6 @@ public class MainGame extends Game {
 	public void create () {
 		this.tutorialScreen = new TutorialScreen(this);
 		this.gameScreen = new GameScreen(this);
-		this.pauseScreen = new PauseScreen(this);
 		this.gameOverScreen = new GameOverScreen(this);
 		// Ponemos la pantalla de tutorial
 		setScreen(this.tutorialScreen);
