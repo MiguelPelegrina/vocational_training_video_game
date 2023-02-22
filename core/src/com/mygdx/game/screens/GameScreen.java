@@ -110,7 +110,9 @@ public class GameScreen extends BaseScreen implements ContactListener {
     @Override
     public void show(){
         super.show();
-        addFlammie();
+        if(flammie == null){
+            addFlammie();
+        }
         addBorder(leftBorder, leftBorderFixture, USER_LEFTBORDER, new Vector2(0,0),
                 new Vector2(0, WORLD_HEIGHT));
         addBorder(rightBorder, rightBorderFixture, USER_RIGHTBORDER, new Vector2(WORLD_WIDTH,0),
@@ -119,14 +121,19 @@ public class GameScreen extends BaseScreen implements ContactListener {
     }
 
     @Override
+    public void pause() {
+        this.mainGame.setScreen(this.mainGame.pauseScreen);
+    }
+
+    @Override
     public void hide() {
-        this.flammie.detach();
-        this.flammie.remove();
-        this.music.stop();
+        this.music.pause();
     }
 
     @Override
     public void dispose() {
+        this.flammie.detach();
+        this.flammie.remove();
         this.stage.dispose();
         this.world.dispose();
         this.music.dispose();
