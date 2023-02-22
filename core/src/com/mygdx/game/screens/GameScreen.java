@@ -110,6 +110,8 @@ public class GameScreen extends BaseScreen implements ContactListener {
     @Override
     public void show(){
         super.show();
+        // Comprobamos que actor NO esté instanciado ya. Esta comprobación es necesario porque sino
+        // al volver de la pantalla de pausa se volvería a crear OTRO actor del mismo tipo
         if(flammie == null){
             addFlammie();
         }
@@ -132,8 +134,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
 
     @Override
     public void dispose() {
-        this.flammie.detach();
-        this.flammie.remove();
         this.stage.dispose();
         this.world.dispose();
         this.music.dispose();
