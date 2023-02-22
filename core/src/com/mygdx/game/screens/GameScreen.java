@@ -122,6 +122,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     public void hide() {
         this.flammie.detach();
         this.flammie.remove();
+        this.background.remove();
         this.music.stop();
     }
 
