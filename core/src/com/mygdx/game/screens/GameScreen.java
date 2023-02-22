@@ -107,9 +107,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
         this.stage.getBatch().end();
     }
 
-    /**
-     *
-     */
     @Override
     public void show(){
         super.show();
@@ -121,9 +118,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
         startMusic();
     }
 
-    /**
-     *
-     */
     @Override
     public void hide() {
         this.flammie.detach();
@@ -131,9 +125,6 @@ public class GameScreen extends BaseScreen implements ContactListener {
         this.music.stop();
     }
 
-    /**
-     *
-     */
     @Override
     public void dispose() {
         this.stage.dispose();
@@ -178,6 +169,9 @@ public class GameScreen extends BaseScreen implements ContactListener {
     }
 
     // Métodos auxiliares
+    /**
+     *
+     */
     private void prepareActors(){
         this.arrayBats = new Array<>();
         this.arrayApples = new Array<>();
@@ -257,15 +251,15 @@ public class GameScreen extends BaseScreen implements ContactListener {
      *
      */
     private void removeBats(){
-        // Por cada uno de los grupos de rocas (roca inferior, roca superior y bloque del contador)
+        // Por cada uno de los murciélagos
         for(Bat bat : this.arrayBats){
             // Mientras que no se esté actualizando el mundo en este momento
             if(!world.isLocked()){
-                // Comprobamos si el grupo de rocas se encuentra visibles
+                // Comprobamos si el murciélago se encuentra visibles
                 if(bat.isOutOfScreen(BAT_HEIGHT)){
                     // Liberamos el espacio en la gráfica
                     bat.detach();
-                    // Quitamos las rocas de la escena
+                    // Quitamos el murciélago de la escena
                     bat.remove();
                     // Sacamos los murciélagos de la colección
                     arrayBats.removeValue(bat,false);
@@ -308,7 +302,9 @@ public class GameScreen extends BaseScreen implements ContactListener {
                 Actions.run(new Runnable() {
                     @Override
                     public void run() {
+                        // Pasamos la puntuación a la pantalla de GameOver
                         mainGame.gameOverScreen.setScore(scoreNumber);
+                        // Cambiamos a la pantalla de GameOver
                         mainGame.setScreen(mainGame.gameOverScreen);
                     }
                 })

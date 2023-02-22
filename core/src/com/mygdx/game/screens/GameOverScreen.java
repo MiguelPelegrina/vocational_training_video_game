@@ -56,6 +56,7 @@ public class GameOverScreen extends BaseScreen{
         this.stage.getBatch().end();
 
         if(Gdx.input.isTouched()){
+            // Nos creamos una nueva pantalla de juego para empezar una nueva ronda
             this.mainGame.setScreen(new GameScreen(this.mainGame));
         }
     }
