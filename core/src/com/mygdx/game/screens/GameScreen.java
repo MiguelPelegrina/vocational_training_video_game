@@ -285,27 +285,35 @@ public class GameScreen extends BaseScreen implements ContactListener {
     }
 
     /**
-     *
-     * @param appleIdentifier
+     * Método encargado de "comer" una manzana
+     * @param appleIdentifier Identificador de la manzana. Identifica a cada manzana de forma
+     *                        independiente.
      */
     private void eatApple(AppleIdentifier appleIdentifier){
+        // Incrementamos la puntuación
         this.scoreNumber++;
+        // Hacemos el sonido de comer
         this.chompSound.play();
         // Borramos del array de manzanas la manzana que corresponde
         for(Apple apple : this.arrayApples){
+            // Averiguamos que manzana ha sido comida
             if(apple.getIdentifier().getNumber() == appleIdentifier.getNumber()){
+                // Eliminamos la manzana
                 apple.getsEaten();
             }
         }
     }
 
     /**
-     *
+     * Método encargado de acabar el juego
      */
     private void endGame(){
+        // Cambiamos el estado del actor principal
         this.flammie.dies();
+        // Hacemos el sonido de morir
         this.hitSound.play();
         this.music.stop();
+        // Paramos los demás actores involucrados
         for (Bat bat : arrayBats) {
             bat.stopActor();
         }
@@ -313,7 +321,9 @@ public class GameScreen extends BaseScreen implements ContactListener {
             apple.stopActor();
         }
 
+        // Para que el sonido de morir del actor principal se juega
         this.stage.addAction(Actions.sequence(
+                // Ralentizamos el cambio de una pantalla a otra durante tres segundos
                 Actions.delay(3f),
                 Actions.run(new Runnable() {
                     @Override
