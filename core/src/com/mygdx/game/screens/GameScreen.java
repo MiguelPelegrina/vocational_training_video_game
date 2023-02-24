@@ -179,10 +179,9 @@ public class GameScreen extends BaseScreen implements ContactListener {
 
     }
 
-
     // Métodos auxiliares
     /**
-     *
+     * Método encargado de instanciar los atributos implicados en la gestión de los actores
      */
     private void prepareActors(){
         this.arrayBats = new Array<>();
@@ -192,7 +191,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     }
 
     /**
-     *
+     * Método encargado de instanciar el actor principal y añadirlo al escenario
      */
     private void addFlammie(){
         this.flammie = new Flammie(this.world, new Vector2(WORLD_WIDTH/2f,WORLD_HEIGHT/4f));
@@ -200,12 +199,17 @@ public class GameScreen extends BaseScreen implements ContactListener {
     }
 
     /**
-     *
-     * @param delta
+     * Método encargado seguir añadiendo manzanas al escenario mientras que el actor principal esté
+     * vivo
+     * @param delta Tiempo de desde la última llamada al método render
      */
     private void addApples(float delta){
+        // Comprobamos si el actor sigue vivo
         if(flammie.getState() == Flammie.STATE_ALIVE){
+            // Aumentamos el contador de delta para gestionar la generación de nuevas manzanas
             this.timeToCreateApple += delta;
+            // Si ha pasado un tiempo predeterminado añadimos una nueva manzana fuera de la visión
+            // del jugador
             if (this.timeToCreateApple >= APPLE_SPAWN_TIME){
                 this.timeToCreateApple -= APPLE_SPAWN_TIME;
                 Apple apple = new Apple(this.world, new Vector2(MathUtils.random(APPLE_WIDTH,
@@ -217,7 +221,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     }
 
     /**
-     *
+     * Método encargado de eliminar las manzanas del escenario
      */
     private void removeApples(){
         for(Apple apple : this.arrayApples){
@@ -237,8 +241,8 @@ public class GameScreen extends BaseScreen implements ContactListener {
     }
 
     /**
-     *
-     * @param delta
+     * Método encargado de añadir murciélagos al escenario mientras que el actor principal siga vivo
+     * @param delta Tiempo de desde la última llamada al método render
      */
     private void addBats(float delta){
         // Mientras que el actor principal está vivo
@@ -249,7 +253,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
             if(this.timeToCreateBat >= BAT_SPAWN_TIME){
                 // Reiniciamos el contador
                 this.timeToCreateBat -= BAT_SPAWN_TIME;
-                // Instanciamos un grupo de rocas fuera de la pantalla en función de la posición
+                // Instanciamos un murciélago fuera de la pantalla en función de la posición
                 // actual de nuestro protagonista
                 Bat bat = new Bat(this.world, new Vector2(flammie.getX() + BAT_WIDTH/2f, WORLD_HEIGHT + 0.5f));
                 arrayBats.add(bat);
@@ -260,7 +264,7 @@ public class GameScreen extends BaseScreen implements ContactListener {
     }
 
     /**
-     *
+     * Método encargado eliminar los murciélagos que hayan salido fuera de la visión del jugador
      */
     private void removeBats(){
         // Por cada uno de los murciélagos
