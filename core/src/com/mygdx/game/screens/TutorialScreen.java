@@ -79,7 +79,7 @@ public class TutorialScreen extends BaseScreen{
                 break;
             case 2:
                 this.text = "The greater the\ndistance between\nthe point and \nFlammie the" +
-                        "\nfaster you will\n fly!";
+                        "\nfaster you will\nfly!";
                 break;
             case 3:
                 this.text = "Dodge bats\nand eat apples!\nTouch the\nscreen to start!";
