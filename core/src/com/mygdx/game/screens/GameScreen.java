@@ -9,9 +9,11 @@ import static com.mygdx.game.extras.Utils.SCREEN_HEIGHT;
 import static com.mygdx.game.extras.Utils.SCREEN_WIDTH;
 import static com.mygdx.game.extras.Utils.USER_APPLE;
 import static com.mygdx.game.extras.Utils.USER_BAT;
+import static com.mygdx.game.extras.Utils.USER_BOTTOMBORDER;
 import static com.mygdx.game.extras.Utils.USER_FLAMMIE;
 import static com.mygdx.game.extras.Utils.USER_LEFTBORDER;
 import static com.mygdx.game.extras.Utils.USER_RIGHTBORDER;
+import static com.mygdx.game.extras.Utils.USER_TOPBORDER;
 import static com.mygdx.game.extras.Utils.WORLD_HEIGHT;
 import static com.mygdx.game.extras.Utils.WORLD_WIDTH;
 
@@ -52,8 +54,12 @@ public class GameScreen extends BaseScreen implements ContactListener {
 
     private Body leftBorder;
     private Body rightBorder;
+    private Body topBorder;
+    private Body bottomBorder;
     private Fixture leftBorderFixture;
     private Fixture rightBorderFixture;
+    private Fixture topBorderFixture;
+    private Fixture bottomBorderFixture;
 
     private int scoreNumber;
 
@@ -115,6 +121,10 @@ public class GameScreen extends BaseScreen implements ContactListener {
                 new Vector2(0, WORLD_HEIGHT));
         addBorder(rightBorder, rightBorderFixture, USER_RIGHTBORDER, new Vector2(WORLD_WIDTH,0),
                 new Vector2(WORLD_WIDTH, WORLD_HEIGHT));
+        addBorder(topBorder, topBorderFixture, USER_TOPBORDER, new Vector2(0,WORLD_HEIGHT),
+                new Vector2(WORLD_WIDTH,WORLD_HEIGHT));
+        addBorder(bottomBorder,bottomBorderFixture,USER_BOTTOMBORDER, new Vector2(0,0),
+                new Vector2(WORLD_WIDTH,0));
         startMusic();
     }
 

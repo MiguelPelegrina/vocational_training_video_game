@@ -16,7 +16,7 @@ import com.mygdx.game.extras.AssetMan;
 public class TutorialScreen extends BaseScreen{
     // Atributos de la clase
     //  Tiempo entre cada mensaje que se va a mostrar
-    private static final float SWAP_STATE_TIME = 2.5f;
+    private static final float SWAP_STATE_TIME = 4f;
     // Atributos de la instancia
     private float timeToSwapState;
     private int state;
@@ -59,7 +59,7 @@ public class TutorialScreen extends BaseScreen{
         configureMessage();
         this.stage.getBatch().setProjectionMatrix(this.fontCamera.combined);
         this.stage.getBatch().begin();
-        this.font.draw(this.stage.getBatch(), this.text, SCREEN_WIDTH*0.25f, SCREEN_HEIGHT*0.65f);
+        this.font.draw(this.stage.getBatch(), this.text, SCREEN_WIDTH*0.2f, SCREEN_HEIGHT*0.75f);
         this.stage.getBatch().end();
 
         if(Gdx.input.justTouched()){
@@ -78,10 +78,11 @@ public class TutorialScreen extends BaseScreen{
                 this.text = "Move Flammie\nto the point\nyou wish by\ntouching!";
                 break;
             case 2:
-                this.text = "Dodge bats\nand eat apples!";
+                this.text = "The greater the\ndistance between\nthe point and \nFlammie the" +
+                        "\nfaster you will\n fly!";
                 break;
             case 3:
-                this.text = "Touch the\nscreen to start!";
+                this.text = "Dodge bats\nand eat apples!\nTouch the\nscreen to start!";
                 break;
         }
     }
