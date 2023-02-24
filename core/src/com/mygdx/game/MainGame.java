@@ -19,6 +19,7 @@ public class MainGame extends Game {
 	 */
 	@Override
 	public void create () {
+		// Instanciamos las diferentes pantallas que vamos a utilizar
 		this.tutorialScreen = new TutorialScreen(this);
 		this.gameScreen = new GameScreen(this);
 		this.gameOverScreen = new GameOverScreen(this);

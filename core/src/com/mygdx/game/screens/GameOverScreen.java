@@ -10,7 +10,8 @@ import com.mygdx.game.MainGame;
 import com.mygdx.game.extras.AssetMan;
 
 /**
- * Clase que gestiona la pantalla final del juego
+ * Clase que gestiona la pantalla final del juego. Se mostrará en cuanto nos hayamos chocado con
+ * un murciélago
  */
 public class GameOverScreen extends BaseScreen{
     // Atributos de la instancia
@@ -37,11 +38,14 @@ public class GameOverScreen extends BaseScreen{
 
     @Override
     public void hide() {
+        this.background.remove();
         this.music.stop();
     }
 
     @Override
     public void dispose() {
+        this.stage.dispose();
+        this.world.dispose();
         this.music.dispose();
     }
 

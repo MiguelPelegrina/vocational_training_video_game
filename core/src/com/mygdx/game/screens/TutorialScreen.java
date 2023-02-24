@@ -18,6 +18,8 @@ public class TutorialScreen extends BaseScreen{
     //  Tiempo entre cada mensaje que se va a mostrar
     private static final float SWAP_STATE_TIME = 4f;
     // Atributos de la instancia
+    // Estos dos atributos nos sirven para cambiar el mensaje del tutorial en función del tiempo
+    // que ha pasado
     private float timeToSwapState;
     private int state;
     private Sound listenSound;
@@ -46,11 +48,15 @@ public class TutorialScreen extends BaseScreen{
         super.render(delta);
 
         // Acumulamos el delta para cambiar los mensajes de texto que se van a mostrar por pantalla
-        // en función del tiempo
+        // en función del tiempo que ha pasado
         this.timeToSwapState += delta;
+        // Mientras que sea menor a tiempo de cambio preestablecido
         if(this.timeToSwapState >= SWAP_STATE_TIME){
+            // Reiniciamos el contador
             this.timeToSwapState -= SWAP_STATE_TIME;
+            // Cambiamos de estado
             this.state++;
+            // Reseteamos el estado una vez que hayamos llegado al último mensaje
             if(this.state == 4) {
                 this.state = 1;
             }
@@ -62,6 +68,7 @@ public class TutorialScreen extends BaseScreen{
         this.font.draw(this.stage.getBatch(), this.text, SCREEN_WIDTH*0.2f, SCREEN_HEIGHT*0.75f);
         this.stage.getBatch().end();
 
+        // Cuando pulsamos, cambiamos de pantalla
         if(Gdx.input.justTouched()){
             this.mainGame.setScreen(this.mainGame.gameScreen);
         }

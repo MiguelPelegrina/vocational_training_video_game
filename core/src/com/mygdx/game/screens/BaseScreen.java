@@ -85,12 +85,13 @@ public abstract class BaseScreen implements Screen {
 
     @Override
     public void hide() {
-
+        this.background.remove();
     }
 
     @Override
     public void dispose() {
-
+        this.stage.dispose();
+        this.world.dispose();
     }
 
     // Métodos auxiliares para clases hijas
